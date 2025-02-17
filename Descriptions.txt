@@ -1,0 +1,12 @@
+Project Title: "HealthScope: A Multi-Disease Progression and Severity Prediction Platform"
+
+1.Kidney Disease Progression Prediction
+2.Heart Disease Severity Prediction
+3.Diabetes Progression Prediction
+4.Cancer Survival Time Prediction
+5.Liver Disease Progression Prediction
+
+============================================================================================
+
+
+
