@@ -6,6 +6,18 @@ __pycache__/
 # C extensions
 *.so
 
+
+#######################################
+
+Chatbot application using gemini
+Cancer Survival Time Prediction
+Heart Disease Severity Prediction
+Kidney Disease Progression Prediction
+Liver Disease Progression Prediction
+Diabetes Progression Prediction/ANN_Models_using_PyTorch_On_Pima_Diabetes_Dataset.ipynb
+
+
+#######################################
 # Distribution / packaging
 .Python
 build/
