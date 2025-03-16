@@ -3,7 +3,7 @@ import pandas as pd
 import joblib
 
 # Load the model, top 10 features, and scaler
-rf_model = joblib.load('Models/random_forest.pkl')
+rf_model = joblib.load('Models/best_model.pkl')
 features = joblib.load('Models/features.pkl')
 scaler = joblib.load('Models/scaler.pkl')
 
@@ -14,16 +14,17 @@ st.title("Diabetes Risk Prediction App")
 st.header("Enter Patient Details")
 
 # Create input fields for each feature
-polyuria = st.selectbox("Polyuria (Excessive urination)", ["No", "Yes"])
-polydipsia = st.selectbox("Polydipsia (Excessive thirst)", ["No", "Yes"])
-gender = st.selectbox("Gender", ["Female", "Male"])
-age = st.number_input("Age", min_value=10, max_value=100, value=30)
-sudden_weight_loss = st.selectbox("Sudden Weight Loss", ["No", "Yes"])
-partial_paresis = st.selectbox("Partial Paresis (Muscle weakness)", ["No", "Yes"])
-alopecia = st.selectbox("Alopecia (Hair loss)", ["No", "Yes"])
-irritability = st.selectbox("Irritability (Mood swings)", ["No", "Yes"])
-delayed_healing = st.selectbox("Delayed Healing (Slow wound healing)", ["No", "Yes"])
-itching = st.selectbox("Itching (Skin irritation)", ["No", "Yes"])
+# Create input fields for each feature
+polyuria = st.selectbox("Do you experience excessive urination (Polyuria)?", ["No", "Yes"])
+polydipsia = st.selectbox("Do you feel excessively thirsty (Polydipsia)?", ["No", "Yes"])
+gender = st.selectbox("What is your gender?", ["Female", "Male"])
+age = st.number_input("What is your age?", min_value=10, max_value=100, value=30)
+sudden_weight_loss = st.selectbox("Have you experienced sudden weight loss?", ["No", "Yes"])
+partial_paresis = st.selectbox("Do you have muscle weakness (Partial Paresis)?", ["No", "Yes"])
+alopecia = st.selectbox("Have you noticed hair loss (Alopecia)?", ["No", "Yes"])
+irritability = st.selectbox("Do you experience frequent mood swings (Irritability)?", ["No", "Yes"])
+delayed_healing = st.selectbox("Do your wounds heal slowly (Delayed Healing)?", ["No", "Yes"])
+itching = st.selectbox("Do you experience skin itching (Itching)?", ["No", "Yes"])
 
 # Map "Yes" to 1 and "No" to 0
 input_data = {
