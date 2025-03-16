@@ -45,7 +45,6 @@ This project provides a systematic approach to predicting diabetes progression u
 ## Future Enhancements
 - Expanding the dataset with more diverse clinical parameters.
 - Implementing deep learning models for improved accuracy.
-- Integrating real-time data input for continuous monitoring.
 
 ## References
 - Kaggle dataset: [Early Stage Diabetes Risk Prediction Dataset](https://www.kaggle.com/datasets/ishandutta/early-stage-diabetes-risk-prediction-dataset)
