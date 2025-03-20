@@ -59,7 +59,7 @@ streamlit run app.py
 ```
 
 ## **Results & Conclusion**
-- The best model achieved high accuracy in predicting heart disease severity.
+- The best model achieved high accuracy in predicting heart disease severity(SVM model = 88.52% accuracy).
 - The Streamlit app provides a simple and accessible way for users to make predictions.
 - Future improvements include adding more advanced models and real-time data integration.
 
