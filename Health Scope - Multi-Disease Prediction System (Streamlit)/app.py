@@ -31,15 +31,14 @@ st.markdown("""
         text-align: center;
         margin-bottom: 2rem;
         padding: 1rem;
-        background: linear-gradient(90deg, rgba(18,141,172,0.1), rgba(15,120,165,0.1));
+        background: linear-gradient(90deg, rgba(18,141,172,0.1), rgba(255,50,50,0.1));
         border-radius: 10px;
         box-shadow: 0 4px 6px rgba(0,0,0,0.05);
     }
     /* Main title styling */
     .title {
-        background: #128DAC;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #128DAC;
+        background: linear-gradient(90deg, rgba(18,141,172,0.1), rgba(50,200,100,0.1), rgba(255,50,50,0.1));
         text-align: center;
         font-size: 3.5rem;
         font-weight: 800;
@@ -54,6 +53,7 @@ st.markdown("""
         font-size: 1.8rem;
         font-weight: 500;
         margin-bottom: 2.5rem;
+        background: linear-gradient(90deg, rgba(18,141,172,0.1), rgba(255,50,50,0.1));
     }
     
     /* Feature icons */
@@ -75,7 +75,7 @@ st.markdown("""
     .footer {
         text-align: center;
         padding: 1.5rem;
-        color: #6C757D;
+        color: #128DAC;
         font-size: 0.9rem;
         margin-top: 2rem;
         border-top: 1px solid #E9ECEF;
@@ -122,8 +122,8 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; margin-top: 2rem;">
-        <p style="font-size: 0.9rem; color: #6C757D;">Version 2.0.0</p>
-        <p style="font-size: 0.8rem; color: #6C757D;">© 2025 HealthScope</p>
+        <p style="font-size: 0.9rem; color: #128DAC;">Version 2.0.0</p>
+        <p style="font-size: 0.8rem; color: #128DAC;">© 2025 HealthScope</p>
     </div>
     """, unsafe_allow_html=True)
 
