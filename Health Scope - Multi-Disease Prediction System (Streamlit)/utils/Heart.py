@@ -39,7 +39,7 @@ def show_heart_page():
     )
 
     # Input fields section with color
-    st.markdown("<h2 style='color: #128DAC;'>📝 Please Provide Your Health Information</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: #128DAC;'>📝 Please Provide Your Health Information about Heart Disease:</h2>", unsafe_allow_html=True)
 
     # Create a two-column layout
     col1, col2 = st.columns(2)

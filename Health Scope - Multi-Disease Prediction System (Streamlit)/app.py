@@ -2,6 +2,7 @@ import streamlit as st
 from utils.Diabetes import show_diabetes_page
 from utils.Heart import show_heart_page
 from utils.Kidney import show_kidney_page
+from utils.About import show_about_page
 
 # Set page config
 st.set_page_config(
@@ -65,9 +66,7 @@ st.markdown("""
     
     /* About section */
     .about-section {
-        padding: 2.5rem;
         border-radius: 15px;
-        margin: 3rem 0 1rem 0;
         box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
     
@@ -100,7 +99,7 @@ with st.sidebar:
     <div class="sidebar-title">
         HealthScope<br>
         <span style="font-size: 1.2rem; font-weight: 200;">
-        Multi-Disease Progression<br>
+        A Multi-Disease Progression<br>
         and Severity Prediction Platform
         </span>
     </div>
@@ -108,7 +107,10 @@ with st.sidebar:
 
     # Navigation buttons using session state
     if st.button("🏠 Home", key="home", help="Return to main page", use_container_width=True):
-        set_page("Home") # navigate_to("Home") 
+        set_page("Home") # navigate_to("Home")
+
+    if st.button("ℹ️ About", key="about", help="Return to about section of Project", use_container_width=True):
+        set_page("About")  # navigate_to("About")
 
     if st.button("🩺 Diabetes Prediction", key="sidebar_diabetes", help="Predict risk of diabetes", use_container_width=True):
         set_page("Diabetes") # navigate_to("Diabetes")
@@ -124,6 +126,8 @@ with st.sidebar:
     <div style="text-align: center; margin-top: 2rem;">
         <p style="font-size: 0.9rem; color: #128DAC;">Version 2.0.0</p>
         <p style="font-size: 0.8rem; color: #128DAC;">© 2025 HealthScope</p>
+        <p style="font-size: 0.8rem; color: #128DAC;">Developed with ❤️ by Medical AI Team</p>
+
     </div>
     """, unsafe_allow_html=True)
 
@@ -217,6 +221,9 @@ if st.session_state.current_page == "Home":
                 <p style="font-size: 0.8rem; margin-top: 0.5rem;">For research and educational purposes only</p>
             </div>
             """, unsafe_allow_html=True)
+
+elif st.session_state.current_page == "About":
+    show_about_page()
 
 elif st.session_state.current_page == "Diabetes":
     show_diabetes_page()

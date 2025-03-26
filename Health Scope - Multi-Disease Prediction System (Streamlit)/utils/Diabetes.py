@@ -37,7 +37,7 @@ def show_diabetes_page():
     )
 
     # Input fields section with color
-    st.markdown("<h2 style='color: #128DAC;'>📝 Please Provide Your Health Information</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: #128DAC;'>📝 Please Provide Your Health Information about Diabetes:</h2>", unsafe_allow_html=True)
 
     # Create a two-column layout (5 rows x 2 columns)
     col1, col2 = st.columns(2)

@@ -36,7 +36,7 @@ def show_kidney_page():
     )
 
     # Input fields section with color
-    st.markdown("<h2 style='color: #128DAC;'>📝 Please Provide Your Health Details for a Personalized Assessment</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 style='color: #128DAC;'>📝 Please Provide Your Health Details for a Personalized Assessment:</h2>", unsafe_allow_html=True)
 
     # Create a two-column layout (6 rows x 2 columns)
     col1, col2 = st.columns(2)
