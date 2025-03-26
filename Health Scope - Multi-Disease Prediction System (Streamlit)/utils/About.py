@@ -24,8 +24,8 @@ def show_about_page():
             """,
             unsafe_allow_html=True
         )
-        # Input fields section with color
-        st.markdown("<h2 style='color: #128DAC;'>🧠 About Health Scope</h2>", unsafe_allow_html=True)
+        # About section with color
+        st.markdown("<h2 style='color: #128DAC;'>🧠 Overview of Health Scope</h2>", unsafe_allow_html=True)
 
         # **About Section**
         st.markdown("""

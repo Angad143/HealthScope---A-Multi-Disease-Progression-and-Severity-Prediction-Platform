@@ -3,6 +3,7 @@ from utils.Diabetes import show_diabetes_page
 from utils.Heart import show_heart_page
 from utils.Kidney import show_kidney_page
 from utils.About import show_about_page
+from utils.Disease_Details import show_disease_details_page
 
 # Set page config
 st.set_page_config(
@@ -112,6 +113,9 @@ with st.sidebar:
     if st.button("ℹ️ About", key="about", help="Return to about section of Project", use_container_width=True):
         set_page("About")  # navigate_to("About")
 
+    if st.button("📌 Disease Details", key="sidebar_disease_details", help="Click to view detailed information about Diabetes, Heart and Kidney Disease.", use_container_width=True):
+        set_page("Disease_Details")  # navigate_to("Disease_Details")
+
     if st.button("🩺 Diabetes Prediction", key="sidebar_diabetes", help="Predict risk of diabetes", use_container_width=True):
         set_page("Diabetes") # navigate_to("Diabetes")
 
@@ -120,6 +124,10 @@ with st.sidebar:
 
     if st.button("🧬 Kidney Disease Prediction", key="sidebar_kidney", help="Predict risk of kidney disease", use_container_width=True):
         set_page("Kidney") # navigate_to("Kidney")
+
+    if st.button("🤖 AI Health Assistant", key="sidebar_ai_assistant", help="Ask me anything about diseases, I am your AI Assistant chatbot.", use_container_width=True):
+        set_page("AI_Assistant")  # Navigate to AI Assistant page
+
 
     st.markdown("---")
     st.markdown("""
@@ -135,7 +143,7 @@ with st.sidebar:
 if st.session_state.current_page == "Home":
 
             # Main content
-            st.markdown('<div class="title">HealthScope</div>', unsafe_allow_html=True)
+            st.markdown('<div class="title">🫀🩸HealthScope🩸🫀</div>', unsafe_allow_html=True)
             st.markdown('<div class="subheader">Advanced Multi-Disease Progression and Severity Prediction Platform</div>', unsafe_allow_html=True)
 
             # Hero image
@@ -224,6 +232,9 @@ if st.session_state.current_page == "Home":
 
 elif st.session_state.current_page == "About":
     show_about_page()
+
+elif st.session_state.current_page == "Disease_Details":
+    show_disease_details_page()
 
 elif st.session_state.current_page == "Diabetes":
     show_diabetes_page()
