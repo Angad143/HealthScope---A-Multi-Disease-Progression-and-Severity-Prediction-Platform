@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+from Disease_Reports.diabetes_report import generate_diabetes_report
 
 def show_diabetes_page():
     # Load the model, top 10 features, and scaler
@@ -97,6 +98,15 @@ def show_diabetes_page():
             with col2:
                 st.image("Images/diabetes_save.jpg", caption="✅ Stay Healthy! 😊", width=350)
 
+
+        # Generate and show download button for PDF report in both cases
+        pdf_report = generate_diabetes_report(input_data, prediction[0], age)
+        st.download_button(
+            label="📄 Download Detailed Report (PDF)",
+            data=pdf_report,
+            file_name="diabetes_risk_report.pdf",
+            mime="application/pdf",
+        )
 
     # Back button to navigate back to Home
     if st.button("Back to Main Page"):
