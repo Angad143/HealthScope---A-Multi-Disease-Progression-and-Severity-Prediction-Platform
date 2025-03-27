@@ -1,4 +1,4 @@
-# heart_report.py
+# pdf for heart report
 from fpdf import FPDF
 
 # Function to generate heart disease report in PDF format
