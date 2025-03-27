@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
-
+from Disease_Reports.heart_report import generate_heart_report
 def show_heart_page():
     # Load the model and scaler
     svm_loaded = joblib.load("Models/Heart/best_model.pkl")
@@ -135,6 +135,15 @@ def show_heart_page():
             col1, col2, col3 = st.columns([1, 2, 1])  # Centering
             with col2:
                 st.image("Images/heart_safe.jpg", caption="✅ Keep your heart healthy! 😊", width=350)
+     
+        # Generate and show download button for PDF report in both cases
+        pdf_report = generate_heart_report(input_data, prediction[0], numerical_cols)
+        st.download_button(
+            label="📄 Download Detailed Report (PDF)",
+            data=pdf_report,
+            file_name="heart_disease_risk_report.pdf",
+            mime="application/pdf",
+        )
 
     # Back button to navigate back to Home
     if st.button("Back to Main Page"):
