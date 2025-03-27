@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
-
+from Disease_Reports.kidney_report import generate_kidney_report
 def show_kidney_page():
     # Load saved model and scaler
     loaded_model = joblib.load('Models/Kidney/best_model.pkl')
@@ -166,6 +166,15 @@ def show_kidney_page():
             with col2:
                 st.image("Images/kidney_safe.jpg", caption="✅ Your kidneys are healthy! 😊", width=350)
 
+        # Generate and show download button for PDF report in both cases
+        pdf_report = generate_kidney_report(input_data, prediction[0])
+        st.download_button(
+            label="📄 Download Detailed Report (PDF)",
+            data=pdf_report,
+            file_name="kidney_disease_risk_report.pdf",
+            mime="application/pdf",
+        )
+        
     # Back button to navigate back to Home
     if st.button("Back to Main Page"):
         st.session_state.current_page = "Home"  # Update session state for navigation
