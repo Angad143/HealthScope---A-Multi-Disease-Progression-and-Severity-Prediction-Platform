@@ -2,7 +2,7 @@
 from fpdf import FPDF
 
 # Function to generate heart disease report in PDF format
-def generate_heart_report(input_data, prediction, numerical_cols):
+def generate_heart_report(input_data, prediction):
     pdf = FPDF()
     pdf.add_page()
     pdf.set_font("Arial", size=12)

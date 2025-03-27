@@ -137,7 +137,7 @@ def show_heart_page():
                 st.image("Images/heart_safe.jpg", caption="✅ Keep your heart healthy! 😊", width=350)
      
         # Generate and show download button for PDF report in both cases
-        pdf_report = generate_heart_report(input_data, prediction[0], numerical_cols)
+        pdf_report = generate_heart_report(input_data, prediction[0])
         st.download_button(
             label="📄 Download Detailed Report (PDF)",
             data=pdf_report,
