@@ -4,6 +4,7 @@ from utils.Heart import show_heart_page
 from utils.Kidney import show_kidney_page
 from utils.About import show_about_page
 from utils.Disease_Details import show_disease_details_page
+from AI_Chatbot.AI_Assistant_Gemini import show_ai_assistant_gemini_page
 
 # Set page config
 st.set_page_config(
@@ -126,7 +127,7 @@ with st.sidebar:
         set_page("Kidney") # navigate_to("Kidney")
 
     if st.button("🤖 AI Health Assistant", key="sidebar_ai_assistant", help="Ask me anything about diseases, I am your AI Assistant chatbot.", use_container_width=True):
-        set_page("AI_Assistant")  # Navigate to AI Assistant page
+        set_page("AI_Assistant_Gemini")  # Navigate to AI Assistant page
 
 
     st.markdown("---")
@@ -244,3 +245,7 @@ elif st.session_state["current_page"] == "Heart":
 
 elif st.session_state["current_page"] == "Kidney":
     show_kidney_page()
+
+elif st.session_state["current_page"] == "AI_Assistant_Gemini":
+    show_ai_assistant_gemini_page()
+    
