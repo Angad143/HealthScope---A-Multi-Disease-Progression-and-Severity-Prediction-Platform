@@ -1,4 +1,18 @@
-# HealthScope - A Multi-Disease Progression and Severity Prediction Platform
+# **Tools and Libraries Used in Our Project**  
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">  
+  <img src="https://img.shields.io/badge/Streamlit-FF4B4B?style=flat&logo=streamlit&logoColor=white" alt="Streamlit" style="flex: 1 1 30%;">  
+  <img src="https://img.shields.io/badge/OpenAI-412991?style=flat&logo=openai&logoColor=white" alt="OpenAI" style="flex: 1 1 30%;">  
+  <img src="https://img.shields.io/badge/Datetime-000000?style=flat&logo=python&logoColor=white" alt="Datetime" style="flex: 1 1 30%;">  
+  <img src="https://img.shields.io/badge/Google%20Generative%20AI-4285F4?style=flat&logo=google&logoColor=white" alt="Google Generative AI" style="flex: 1 1 30%;">  
+  <img src="https://img.shields.io/badge/FPDF-008000?style=flat&logo=pdf&logoColor=white" alt="FPDF" style="flex: 1 1 30%;">  
+  <img src="https://img.shields.io/badge/Joblib-1A202C?style=flat&logo=python&logoColor=white" alt="Joblib" style="flex: 1 1 30%;">  
+  <img src="https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white" alt="Pandas" style="flex: 1 1 30%;">  
+</div>  
+
+------
+
+# **HealthScope - A Multi-Disease Progression and Severity Prediction Platform  (web application using streamlit)**
 
 ## **📌 Project Overview**
 HealthScope is a **web-based application** built using **Streamlit** that predicts the progression and severity of multiple diseases, including **Diabetes, Heart Disease, and Kidney Disease**. It also features an **AI Health Assistant** to provide insights based on user inputs.
