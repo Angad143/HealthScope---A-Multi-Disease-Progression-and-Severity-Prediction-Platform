@@ -65,7 +65,8 @@ def show_ai_assistant_gemini_page():
     #     response = chat.send_message(human_prompt)
     #     st.chat_message("ai").write(response.text)
     #     st.session_state["chat_history"] = chat.history
-
+    
+    # if there is no chat history then
     if "chat_history" not in st.session_state:
         st.session_state["chat_history"] = []
 
