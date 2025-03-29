@@ -46,23 +46,78 @@ def show_ai_assistant_gemini_page():
     # main app
     st.markdown("<h2 style='color: #128DAC;'>💬 Ask anything about diseases, symptoms, healthcare, and medical guidance instantly!</h2>", unsafe_allow_html=True)
 
-    st.chat_message("ai").write("Hi! I'm your AI-powered Health Guide. How can I assist you with medical concerns, diseases, or healthcare tips today?")  
+    # st.chat_message("ai").write("Hi! I'm your AI-powered Health Guide. How can I assist you with medical concerns, diseases, or healthcare tips today?")  
 
-    # if there is no chat history then
+    # # if there is no chat history then
+    # if "chat_history" not in st.session_state:
+    #     st.session_state["chat_history"] = []
+    
+    # # finitialize the chat models
+    # chat = model.start_chat(history= st.session_state["chat_history"])
+
+    # for msg in chat.history:
+    #     st.chat_message(msg.role).write(msg.parts[0].text)
+
+    # human_prompt = st.chat_input("Ask me about health, diseases, symptoms, or medical advice...")
+
+    # if human_prompt:
+    #     st.chat_message("user").write(human_prompt)
+    #     response = chat.send_message(human_prompt)
+    #     st.chat_message("ai").write(response.text)
+    #     st.session_state["chat_history"] = chat.history
+
+    # Initialize chat history if not exists
     if "chat_history" not in st.session_state:
         st.session_state["chat_history"] = []
-    
-    # finitialize the chat models
-    chat = model.start_chat(history= st.session_state["chat_history"])
+        # Display initial greeting (not part of the API history)
+        st.chat_message("assistant").write("Hi! I'm your AI-powered Health Guide. How can I assist you with medical concerns, diseases, or healthcare tips today?")
 
-    for msg in chat.history:
-        st.chat_message(msg.role).write(msg.parts[0].text)
+    # Function to convert between formats
+    def get_gemini_history():
+        gemini_history = []
+        for msg in st.session_state["chat_history"]:
+            # Convert our format to Gemini's format
+            if msg["role"] == "user":
+                gemini_history.append({
+                    "role": "user",
+                    "parts": [{"text": msg["parts"][0]["text"]}]
+                })
+            else:  # assistant/ai messages
+                gemini_history.append({
+                    "role": "model",
+                    "parts": [{"text": msg["parts"][0]["text"]}]
+                })
+        return gemini_history
 
-    human_prompt = st.chat_input("Say something...")
+    # Initialize chat with properly formatted history
+    chat = model.start_chat(history=get_gemini_history())
+
+    # Display existing chat history
+    for msg in st.session_state["chat_history"]:
+        role = "assistant" if msg["role"] != "user" else "user"
+        st.chat_message(role).write(msg["parts"][0]["text"])
+
+    human_prompt = st.chat_input("Ask me about health, diseases, symptoms, or medical advice...")
 
     if human_prompt:
+        # Display user message
         st.chat_message("user").write(human_prompt)
+        
+        # Get AI response
         response = chat.send_message(human_prompt)
-        st.chat_message("ai").write(response.text)
-        st.session_state["chat_history"] = chat.history
+        
+        # Display AI response
+        st.chat_message("assistant").write(response.text)
+        
+        # Update history in consistent format
+        st.session_state["chat_history"].extend([
+            {
+                "role": "user",
+                "parts": [{"text": human_prompt}]
+            },
+            {
+                "role": "ai",
+                "parts": [{"text": response.text}]
+            }
+        ])
     

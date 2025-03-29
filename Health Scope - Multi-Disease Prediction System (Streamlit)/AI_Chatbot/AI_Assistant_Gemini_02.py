@@ -67,7 +67,7 @@ def show_ai_assistant_gemini_02_page():
         st.chat_message(msg["role"], avatar=avatar).write(msg["content"])
 
     # Get user input
-    human_prompt = st.chat_input("Say something...")
+    human_prompt = st.chat_input("Ask me about health, diseases, symptoms, or medical advice...")
 
     if human_prompt:
         # Display user message instantly
