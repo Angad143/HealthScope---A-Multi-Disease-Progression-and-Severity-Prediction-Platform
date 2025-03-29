@@ -191,7 +191,7 @@ def show_ai_assistant_deepseek_page():
                 st.rerun()
 
     # Regular user input
-    user_input = st.chat_input("Type your health question here...")
+    user_input = st.chat_input("Ask me about health, diseases, symptoms, or medical advice...")
     
     if user_input:
         st.session_state.chat_history.append({
