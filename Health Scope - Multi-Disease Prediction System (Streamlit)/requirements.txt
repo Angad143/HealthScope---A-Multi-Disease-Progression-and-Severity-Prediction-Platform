@@ -1,0 +1,7 @@
+streamlit
+openai
+datetime
+google-generativeai
+fpdf
+joblib
+pandas
