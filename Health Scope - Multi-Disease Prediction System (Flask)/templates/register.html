@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h2>Register</h2>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+        <p class="{{ 'text-danger' if category == 'danger' else 'text-success' }}">{{ message }}</p>
+        {% endfor %}
+    {% endwith %}
+    <form action="{{ url_for('register_user') }}" method="POST">
+        <input type="text" name="name" placeholder="Name" required><br>
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="password" name="password" placeholder="Password" required><br>
+        <input type="password" name="conform_password" placeholder="Conform Password" required><br>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>
