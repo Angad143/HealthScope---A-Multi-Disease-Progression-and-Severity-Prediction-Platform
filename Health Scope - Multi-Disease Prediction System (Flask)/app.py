@@ -41,10 +41,10 @@ def dashboard():
 
 @app.route("/logout")
 def logout():
-    session.pop("logged_in", None)
-    session.pop("user", None)
+    session.clear()  # Clears all session data, including flash messages
     flash("You have been logged out!", "info")
     return redirect(url_for("home"))
+
 
 if __name__ == "__main__":
     app.run(debug=True)

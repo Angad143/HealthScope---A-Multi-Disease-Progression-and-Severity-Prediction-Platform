@@ -1,11 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Health Scope - Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to the favicon image -->
+    <link rel="icon" href="{{ url_for('static', filename='images/Health.ico') }}" type="image/x-icon">
+
+    <title>Health Scope - A Multi-Disease Progression and Severity Prediction Platform</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 </head>
 <body>
-    <h2>Welcome to Health Scope</h2>
-    <a href="{{ url_for('login_user') }}">Login</a> | 
-    <a href="{{ url_for('register_user') }}">Register</a>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">HealthScope</a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#help" class="nav-link">Help</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="{{ url_for('login_user') }}" class="btn login-btn">Login</a></li>
+                <li><a href="{{ url_for('register_user') }}" class="btn register-btn">Register</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Your Health, Our Priority</h1>
+                <p>Predict and monitor disease progression with our AI-powered platform</p>
+                <div class="cta-buttons">
+                    <a href="{{ url_for('register_user') }}" class="btn primary-btn">Get Started</a>
+                    <a href="#services" class="btn secondary-btn">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Health Monitoring">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About Health Scope</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Health Scope is a multi-disease progression and severity prediction platform that leverages machine learning to provide personalized health insights.</p>
+                    <p>Our platform helps users monitor their health status and predict potential risks for diabetes, heart disease, and kidney disease.</p>
+                    <ul class="features-list">
+                        <li><i class="fas fa-check-circle"></i> Accurate disease prediction</li>
+                        <li><i class="fas fa-check-circle"></i> Personalized health insights</li>
+                        <li><i class="fas fa-check-circle"></i> Easy-to-understand reports</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 AI health assistant</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="{{ url_for('static', filename='images/image1.jpg') }}" alt="About Health Scope">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Section -->
+    <section id="help" class="help-section">
+        <div class="container">
+            <h2>Need Help?</h2>
+            <div class="help-content">
+                <div class="help-card">
+                    <i class="fas fa-question-circle"></i>
+                    <h3>FAQs</h3>
+                    <p>Find answers to common questions about our platform and services.</p>
+
+                </div>
+                <div class="help-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Contact Support</h3>
+                    <p>Can't find what you're looking for? Our team is here to help.</p>
+                    <a href="#contact" class="btn help-btn">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Heart Disease Prediction</h3>
+                    <p>Assess your risk of cardiovascular diseases based on your health metrics.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-syringe"></i>
+                    <h3>Diabetes Prediction</h3>
+                    <p>Predict the likelihood of developing diabetes with our advanced algorithms.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-kidneys"></i>
+                    <h3>Kidney Disease Prediction</h3>
+                    <p>Monitor your kidney health and detect potential issues early.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>AI Health Assistant</h3>
+                    <p>Get personalized health advice from our AI companion anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p><i class="fas fa-envelope"></i> contact@healthscope.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (123) 456-7890</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Health St, Medical City, MC 12345</p>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">HealthScope</a>
+                    <p>Empowering your health journey with AI.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#help">Help</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Health Scope. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- <script src="{{ url_for('static', filename='js/main.js') }}"></script> -->
+    {% if scroll_to %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const element = document.getElementById('{{ scroll_to }}');
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+    {% endif %}
 </body>
 </html>
