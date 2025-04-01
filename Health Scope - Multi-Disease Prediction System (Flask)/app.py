@@ -23,6 +23,14 @@ def register_user():
 def login_user():
     return login(mysql, bcrypt)
 
+@app.route("/forgot_password", methods=["GET", "POST"])
+def forgot_password_user():
+    return forgot_password(mysql)
+
+@app.route("/reset_password", methods=["GET", "POST"])
+def reset_password_user():
+    return reset_password(mysql, bcrypt)
+
 @app.route("/dashboard")
 def dashboard():
     if "logged_in" in session:

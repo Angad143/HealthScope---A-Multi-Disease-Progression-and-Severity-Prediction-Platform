@@ -1,78 +1,78 @@
 from flask import render_template, request, redirect, url_for, flash
-import secrets
-import smtplib
+import jwt
+from datetime import datetime, timedelta
+from config import Config
 
-# Simulated email sending function (Replace with actual email service)
-def send_email(to_email, reset_link):
-    sender_email = "your-email@example.com"
-    sender_password = "your-email-password"
+SECRET_KEY = Config.SECRET_KEY  # Ensure your config has a secret key
 
-    try:
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.starttls()
-        server.login(sender_email, sender_password)
-        subject = "Password Reset Request"
-        message = f"Click the link below to reset your password:\n\n{reset_link}"
-        email_content = f"Subject: {subject}\n\n{message}"
+def generate_reset_token(email):
+    """Generate a secure reset token for the user."""
+    payload = {
+        "email": email,
+        "exp": datetime.utcnow() + timedelta(minutes=15),  # Token expires in 15 minutes
+    }
+    token = jwt.encode(payload, SECRET_KEY, algorithm="HS256")
+    return token
 
-        server.sendmail(sender_email, to_email, email_content)
-        server.quit()
-    except Exception as e:
-        print(f"Error sending email: {e}")
-
-# Forgot Password Route
 def forgot_password(mysql):
+    """Handles the forgot password request."""
     if request.method == "POST":
-        email = request.form["email"]
+        email = request.form.get("email")
 
-        # Check if the email exists in the database
+        # Check if email exists in database
         cur = mysql.connection.cursor()
-        cur.execute("SELECT email FROM user_details WHERE email = %s", (email,))
+        cur.execute("SELECT * FROM user_details WHERE email = %s", (email,))
         user = cur.fetchone()
         cur.close()
 
         if user:
-            # Generate reset token
-            reset_token = secrets.token_urlsafe(16)
+            reset_token = generate_reset_token(email)
 
-            # Store token in the database
+            # Store token in database
             cur = mysql.connection.cursor()
             cur.execute("UPDATE user_details SET reset_token = %s WHERE email = %s", (reset_token, email))
             mysql.connection.commit()
             cur.close()
 
-            # Generate reset link
-            reset_link = url_for("reset_password_user", token=reset_token, _external=True)
-
-            # Send email with the reset link
-            send_email(email, reset_link)
-
-            flash("Password reset link has been sent to your email!", "info")
+            flash("Password reset link generated! Copy and paste the URL below:", "info")
+            flash(f"http://127.0.0.1:5000/reset_password?token={reset_token}", "success")
         else:
             flash("Email not found!", "danger")
 
+        return redirect(url_for("forgot_password_user"))
+
     return render_template("forgot_password.html")
 
-# Reset Password Route
-def reset_password(mysql, bcrypt, token):
+def verify_reset_token(token):
+    """Verify and decode reset token."""
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
+        return payload["email"]
+    except jwt.ExpiredSignatureError:
+        return None  # Token expired
+    except jwt.InvalidTokenError:
+        return None  # Invalid token
+
+def reset_password(mysql, bcrypt):
+    """Handles password reset."""
+    token = request.args.get("token")
+    email = verify_reset_token(token)
+
+    if not email:
+        flash("Invalid or expired token!", "danger")
+        return redirect(url_for("forgot_password_user"))
+
     if request.method == "POST":
-        new_password = request.form["password"]
+        new_password = request.form.get("password")
         hashed_password = bcrypt.generate_password_hash(new_password).decode("utf-8")
 
-        # Find the user by token
         cur = mysql.connection.cursor()
-        cur.execute("SELECT email FROM user_details WHERE reset_token = %s", (token,))
-        user = cur.fetchone()
-
-        if user:
-            email = user[0]
-            cur.execute("UPDATE user_details SET password = %s, reset_token = NULL WHERE email = %s", (hashed_password, email))
-            mysql.connection.commit()
-            flash("Password updated successfully!", "success")
-            return redirect(url_for("login_user"))
-        else:
-            flash("Invalid or expired reset link!", "danger")
-
+        cur.execute("UPDATE user_details SET password = %s, reset_token = NULL WHERE email = %s",
+                    (hashed_password, email))
+        mysql.connection.commit()
         cur.close()
 
-    return render_template("reset_password.html")
+        flash("Password updated successfully! Please log in.", "success")
+        return redirect(url_for("login_user"))
+
+    return render_template("reset_password.html", token=token)

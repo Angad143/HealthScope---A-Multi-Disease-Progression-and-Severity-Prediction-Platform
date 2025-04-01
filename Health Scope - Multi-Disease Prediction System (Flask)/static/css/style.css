@@ -1,6 +1,75 @@
-.text-danger {
-    color: red;
+
+/*========================== Login page, SignUp page, Forget Password Page and Reset Password page============================ */
+.register-body {
+    background: url("../images/image3.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    color: #000000;
 }
-.text-success {
-    color: green;
+.login-body {
+    background: url("../images/image4.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    color: #000000;
 }
+.forget_password-body {
+    background: url("../images/image5.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    color: #000000;
+}
+.reset_password-body {
+    background: url("../images/image6.jpg") no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    color: #000000;
+}
+.login-card {
+    background: rgba(184, 184, 184, 0.75);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.form-label {
+    font-weight: bold;
+    color: #020202;
+}
+
+.input-group-text {
+    background-color: transparent;
+    border: none;
+    color: #000000;
+}
+
+.form-control {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+}
+
+.form-control:focus {
+    background-color: transparent;
+    border-color: #007bff;
+    color: #fff;
+    box-shadow: none;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/*========================== Signup page ============================ */
