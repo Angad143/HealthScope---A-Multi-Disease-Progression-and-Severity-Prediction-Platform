@@ -95,7 +95,7 @@ img {
 }
 
 /* Navigation Bar */
-.navbar {
+/* .navbar {
     background-color: white;
     box-shadow: var(--box-shadow);
     position: fixed;
@@ -151,7 +151,7 @@ img {
     background-color: var(--dark-color);
     margin: 5px 0;
     transition: var(--transition);
-}
+} */
 
 /* Hero Section */
 .hero {

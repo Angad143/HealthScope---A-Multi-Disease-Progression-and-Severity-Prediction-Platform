@@ -1,0 +1,79 @@
+/* ===== NAVBAR STYLES ===== */
+/* Navigation links */
+/* Navigation Bar */
+.navbar {
+    background-color: rgb(204, 199, 180);
+    box-shadow: var(--box-shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 15px 0;
+    transition: var(--transition);
+}
+.navbar.scrolled {
+    padding: 0.75rem 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* Logo styles */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #3c8ad7;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.logo:hover {
+    color: #457494;
+}
+
+.logo-img {
+    height: 2.5rem;
+    width: auto;
+    object-fit: contain;
+}
+
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-link {
+    padding: 10px 15px;
+    font-weight: 600;
+    transition: var(--transition);
+    color: var(--dark-color);
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--dark-color);
+    margin: 5px 0;
+    transition: var(--transition);
+}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,17 +9,26 @@
     <link rel="icon" href="{{ url_for('static', filename='images/Health.ico') }}" type="image/x-icon">
 
     <title>Health Scope - A Multi-Disease Progression and Severity Prediction Platform</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <!--===============================================================================-->>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container">
-            <a href="#" class="logo">HealthScope</a>
+            <a href="{{ url_for('home') }}" class="logo">
+                <img src="{{ url_for('static', filename='images/HealthScope.jpg') }}" alt="HealthScope Logo" class="logo-img">
+                <b>Health Scope</b>
+            </a>
             <ul class="nav-links">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -59,8 +69,10 @@
             <h2>About Health Scope</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <p>Health Scope is a multi-disease progression and severity prediction platform that leverages machine learning to provide personalized health insights.</p>
-                    <p>Our platform helps users monitor their health status and predict potential risks for diabetes, heart disease, and kidney disease.</p>
+                    <p>Health Scope is a multi-disease progression and severity prediction platform that leverages
+                        machine learning to provide personalized health insights.</p>
+                    <p>Our platform helps users monitor their health status and predict potential risks for diabetes,
+                        heart disease, and kidney disease.</p>
                     <ul class="features-list">
                         <li><i class="fas fa-check-circle"></i> Accurate disease prediction</li>
                         <li><i class="fas fa-check-circle"></i> Personalized health insights</li>
@@ -189,7 +201,7 @@
     <!-- <script src="{{ url_for('static', filename='js/main.js') }}"></script> -->
     {% if scroll_to %}
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const element = document.getElementById('{{ scroll_to }}');
             if (element) {
                 element.scrollIntoView({ behavior: 'smooth' });
@@ -198,4 +210,5 @@
     </script>
     {% endif %}
 </body>
+
 </html>
