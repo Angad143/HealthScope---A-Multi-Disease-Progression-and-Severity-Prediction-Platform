@@ -5,3 +5,5 @@ class Config:
     MYSQL_PASSWORD = ""
     MYSQL_DB = "users"
 
+    # EMAIL_USER = "your_email@gmail.com"  
+    # EMAIL_PASS = "your_app_password" 

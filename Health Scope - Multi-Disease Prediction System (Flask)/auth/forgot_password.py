@@ -2,8 +2,10 @@ from flask import render_template, request, redirect, url_for, flash
 import jwt
 from datetime import datetime, timedelta
 from config import Config
+import re
 
-SECRET_KEY = Config.SECRET_KEY  # Ensure your config has a secret key
+# Ensure your config has a secret key
+SECRET_KEY = Config.SECRET_KEY  
 
 def generate_reset_token(email):
     """Generate a secure reset token for the user."""
@@ -53,8 +55,18 @@ def verify_reset_token(token):
     except jwt.InvalidTokenError:
         return None  # Invalid token
 
+def is_valid_password(password):
+    """Validate password complexity."""
+    if (len(password) < 8 or
+        not re.search(r"[A-Z]", password) or  # At least one uppercase
+        not re.search(r"[a-z]", password) or  # At least one lowercase
+        not re.search(r"\d", password) or  # At least one digit
+        not re.search(r"[!@#$%^&*(),.?\":{}|<>]", password)):  # At least one special character
+        return False
+    return True
+
 def reset_password(mysql, bcrypt):
-    """Handles password reset."""
+    """Handles password reset with validation."""
     token = request.args.get("token")
     email = verify_reset_token(token)
 
@@ -64,6 +76,19 @@ def reset_password(mysql, bcrypt):
 
     if request.method == "POST":
         new_password = request.form.get("password")
+        confirm_password = request.form.get("confirm_password")
+
+        # Check if passwords match
+        if new_password != confirm_password:
+            flash("Passwords do not match!", "danger")
+            return redirect(url_for("reset_password_user", token=token))
+
+        # Validate password strength
+        if not is_valid_password(new_password):
+            flash("Password must be at least 8 characters long, include an uppercase letter, lowercase letter, a number, and a special character.", "warning")
+            return redirect(url_for("reset_password_user", token=token))
+
+        # Hash and store the new password
         hashed_password = bcrypt.generate_password_hash(new_password).decode("utf-8")
 
         cur = mysql.connection.cursor()
