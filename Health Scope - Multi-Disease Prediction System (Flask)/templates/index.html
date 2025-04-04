@@ -5,20 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
     <!-- Link to the favicon image -->
     <link rel="icon" href="{{ url_for('static', filename='images/Health.ico') }}" type="image/x-icon">
 
     <title>Health Scope - A Multi-Disease Progression and Severity Prediction Platform</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
     <!--===============================================================================-->>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}"> -->
     <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
+
 </head>
 
 <body>
@@ -26,14 +28,20 @@
     <nav class="navbar">
         <div class="container">
             <a href="{{ url_for('home') }}" class="logo">
-                <img src="{{ url_for('static', filename='images/HealthScope.jpg') }}" alt="HealthScope Logo" class="logo-img">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="HealthScope Logo" class="logo-img">
                 <b>Health Scope</b>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark</span>
+                </button>
             </a>
+
             <ul class="nav-links">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#help" class="nav-link">Help</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#technology" class="nav-link">Technology</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
                 <li><a href="{{ url_for('login_user') }}" class="btn login-btn">Login</a></li>
                 <li><a href="{{ url_for('register_user') }}" class="btn register-btn">Register</a></li>
@@ -48,17 +56,28 @@
 
     <!-- Home Section -->
     <section id="home" class="hero">
-        <div class="container">
+        <div class="container"><br><br><br><br><br>
             <div class="hero-content">
+                <span class="subheading">Welcome to Health Scope</span>
                 <h1>Your Health, Our Priority</h1>
-                <p>Predict and monitor disease progression with our AI-powered platform</p>
+                <p>Predict and monitor disease progression with our AI-powered platform that brings together
+                    cutting-edge machine learning and medical expertise for personalized health insights.</p>
                 <div class="cta-buttons">
                     <a href="{{ url_for('register_user') }}" class="btn primary-btn">Get Started</a>
                     <a href="#services" class="btn secondary-btn">Learn More</a>
                 </div>
-            </div>
-            <div class="hero-image">
-                <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Health Monitoring">
+
+                <!-- Additional content -->
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Privacy-First Approach</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-bolt"></i>
+                        <span>Real-Time Analysis</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -113,25 +132,107 @@
         <div class="container">
             <h2>Our Services</h2>
             <div class="services-grid">
+                <!-- First Row - 4 Columns -->
                 <div class="service-card">
                     <i class="fas fa-heartbeat"></i>
                     <h3>Heart Disease Prediction</h3>
                     <p>Assess your risk of cardiovascular diseases based on your health metrics.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-syringe"></i>
                     <h3>Diabetes Prediction</h3>
                     <p>Predict the likelihood of developing diabetes with our advanced algorithms.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
                 </div>
                 <div class="service-card">
-                    <i class="fas fa-kidneys"></i>
+                    <i class="fas fa-prescription-bottle-alt"></i> <!-- Medicine icon -->
                     <h3>Kidney Disease Prediction</h3>
                     <p>Monitor your kidney health and detect potential issues early.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-robot"></i>
                     <h3>AI Health Assistant</h3>
                     <p>Get personalized health advice from our AI companion anytime.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
+                </div>
+
+                <!-- Second Row - 3 Columns -->
+                <div class="service-card">
+                    <i class="fas fa-microphone-alt"></i>
+                    <h3>Voice AI Health Assistance</h3>
+                    <p>Ask health questions via voice about diseases and symptoms.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-image"></i>
+                    <h3>AI Image Diagnosis</h3>
+                    <p>Upload images of body parts for AI to identify potential medical conditions.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-file-pdf"></i>
+                    <h3>Medical Report Analysis</h3>
+                    <p>Upload patient details in PDF format for AI analysis and recommendations.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section id="technology" class="technology-section">
+        <div class="container">
+            <h2>Our Technology Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <img src="{{ url_for('static', filename='images/tech-icons/deep-learning.png') }}"
+                        alt="Deep Learning" class="tech-icon">
+                    <h3>Deep Learning</h3>
+                    <p>Advanced neural networks for accurate disease prediction and pattern recognition.</p>
+                </div>
+                <div class="tech-card">
+                    <img src="{{ url_for('static', filename='images/tech-icons/machine-learning.png') }}"
+                        alt="Machine Learning" class="tech-icon">
+                    <h3>Machine Learning</h3>
+                    <p>Predictive algorithms that learn from health data to provide personalized insights.</p>
+                </div>
+                <div class="tech-card">
+                    <img src="{{ url_for('static', filename='images/tech-icons/ai.png') }}"
+                        alt="Artificial Intelligence" class="tech-icon">
+                    <h3>Artificial Intelligence</h3>
+                    <p>AI-powered analysis for comprehensive health assessments and recommendations.</p>
+                </div>
+                <div class="tech-card">
+                    <img src="{{ url_for('static', filename='images/tech-icons/genai.png') }}" alt="Generative AI"
+                        class="tech-icon">
+                    <h3>Generative AI</h3>
+                    <p>Cutting-edge models for synthetic data generation and advanced analysis.</p>
+                </div>
+                <div class="tech-card">
+                    <img src="{{ url_for('static', filename='images/tech-icons/data-science.png') }}" alt="Data Science"
+                        class="tech-icon">
+                    <h3>Data Science</h3>
+                    <p>Extracting meaningful patterns from complex medical datasets.</p>
+                </div>
+                <div class="tech-card">
+                    <img src="{{ url_for('static', filename='images/tech-icons/data-analytics.png') }}"
+                        alt="Data Analytics" class="tech-icon">
+                    <h3>Data Analytics</h3>
+                    <p>Statistical analysis and visualization of health trends and metrics.</p>
+                </div>
+                <div class="tech-card">
+                    <img src="{{ url_for('static', filename='images/tech-icons/python.png') }}" alt="Python"
+                        class="tech-icon">
+                    <h3>Python</h3>
+                    <p>Powerful programming language for backend development and data processing.</p>
+                </div>
+                <div class="tech-card">
+                    <img src="{{ url_for('static', filename='images/tech-icons/flask.png') }}" alt="Flask"
+                        class="tech-icon">
+                    <h3>Flask</h3>
+                    <p>Lightweight web framework for building robust and scalable applications.</p>
                 </div>
             </div>
         </div>
