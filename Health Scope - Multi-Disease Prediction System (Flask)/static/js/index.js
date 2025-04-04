@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile Navigation Toggle
+    // Mobile menu toggle
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     
@@ -16,14 +16,42 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    const themeIcon = themeToggle.querySelector('i');
+    const themeText = themeToggle.querySelector('span');
+    
+    // Check for saved theme preference or use preferred color scheme
+    const currentTheme = localStorage.getItem('theme') || 
+                        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    
+    // Apply the current theme
+    if (currentTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+        themeText.textContent = 'Light';
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+        themeText.textContent = 'Dark';
+    }
+    
+    // Theme toggle button click event
+    themeToggle.addEventListener('click', function() {
+        let theme;
+        if (document.documentElement.getAttribute('data-theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'light');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+            themeText.textContent = 'Dark';
+            theme = 'light';
         } else {
-            navbar.classList.remove('scrolled');
+            document.documentElement.setAttribute('data-theme', 'dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+            themeText.textContent = 'Light';
+            theme = 'dark';
         }
+        // Save the theme preference
+        localStorage.setItem('theme', theme);
     });
     
     // Smooth scrolling for anchor links
@@ -44,43 +72,111 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Scroll animation for sections
+    const sections = document.querySelectorAll('section');
+    
+    function checkScroll() {
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (sectionTop < windowHeight - 100) {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+            }
+        });
+    }
+    
+    // Initial check
+    checkScroll();
+    
+    // Check on scroll
+    window.addEventListener('scroll', checkScroll);
+    
     // Form submission handling
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Here you would typically send the form data to your server
-            // For now, we'll just show an alert
-            alert('Thank you for your message! We will get back to you soon.');
+            // Get form values
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const message = this.querySelector('textarea').value;
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            // Here you would typically send the data to a server
+            // For demo purposes, we'll just show a success message
+            alert(`Thank you, ${name}! Your message has been sent. We'll get back to you soon.`);
+            
+            // Reset the form
             this.reset();
         });
     }
     
-    // Service card animation on scroll
-    const animateOnScroll = function() {
-        const serviceCards = document.querySelectorAll('.service-card');
+    // Add animation to elements when they come into view
+    const animateOnScroll = () => {
+        const elements = document.querySelectorAll('.tech-card, .service-card, .help-card');
         
-        serviceCards.forEach(card => {
-            const cardPosition = card.getBoundingClientRect().top;
-            const screenPosition = window.innerHeight / 1.3;
+        elements.forEach(element => {
+            const elementPosition = element.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
             
-            if (cardPosition < screenPosition) {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
+            if (elementPosition < windowHeight - 100) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
             }
         });
     };
     
-    // Set initial state for animation
-    const serviceCards = document.querySelectorAll('.service-card');
-    serviceCards.forEach(card => {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    });
-    
-    window.addEventListener('scroll', animateOnScroll);
-    // Trigger once on load in case elements are already in view
+    // Initial check
     animateOnScroll();
+    
+    // Check on scroll
+    window.addEventListener('scroll', animateOnScroll);
+    
+    // Set initial opacity and transform for animated elements
+    document.querySelectorAll('.tech-card, .service-card, .help-card, section').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+    });
 });
+
+/* Add this JavaScript to handle scroll effect */
+document.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+});
+
+// Reset scroll on page load
+window.addEventListener('load', function() {
+    // First try with history API
+    if (history.scrollRestoration) {
+      history.scrollRestoration = 'manual';
+    }
+    
+    // Then force scroll
+    window.scrollTo(0, 0);
+    
+    // Handle hash links after reset
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView();
+        }, 100);
+      }
+    }
+  });
