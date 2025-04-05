@@ -56,8 +56,8 @@
 
     <!-- Home Section -->
     <section id="home" class="hero">
-        <div class="container"><br><br><br><br><br>
-            <div class="hero-content">
+        <div class="container">
+            <div class="hero-content"><br><br>
                 <span class="subheading">Welcome to Health Scope</span>
                 <h1>Your Health, Our Priority</h1>
                 <p>Predict and monitor disease progression with our AI-powered platform that brings together
@@ -66,7 +66,7 @@
                     <a href="{{ url_for('register_user') }}" class="btn primary-btn">Get Started</a>
                     <a href="#services" class="btn secondary-btn">Learn More</a>
                 </div>
-
+                <br>
                 <!-- Additional content -->
                 <div class="hero-features">
                     <div class="feature-item">
@@ -87,20 +87,70 @@
         <div class="container">
             <h2>About Health Scope</h2>
             <div class="about-content">
+                <div class="about-image">
+                    <img src="{{ url_for('static', filename='images/image8.jpg') }}" alt="Health Analytics"
+                        class="featured-image">
+                    <div class="image-highlights">
+                        <div class="highlight-item">
+                            <div class="icon-box">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <span>Real-time Health Monitoring</span>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="icon-box">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <span>AI-Powered Analysis</span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="about-text">
+                    <h3>Transforming Healthcare Through AI Innovation</h3>
                     <p>Health Scope is a multi-disease progression and severity prediction platform that leverages
                         machine learning to provide personalized health insights.</p>
                     <p>Our platform helps users monitor their health status and predict potential risks for diabetes,
                         heart disease, and kidney disease.</p>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check-circle"></i> Accurate disease prediction</li>
-                        <li><i class="fas fa-check-circle"></i> Personalized health insights</li>
-                        <li><i class="fas fa-check-circle"></i> Easy-to-understand reports</li>
-                        <li><i class="fas fa-check-circle"></i> 24/7 AI health assistant</li>
-                    </ul>
-                </div>
-                <div class="about-image">
-                    <img src="{{ url_for('static', filename='images/image1.jpg') }}" alt="About Health Scope">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>Secure & Private</h4>
+                            <p>Your health data is encrypted and never shared without consent.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <h4>Instant Results</h4>
+                            <p>Get your risk assessment in seconds with our advanced algorithms.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <h4>Medical Expertise</h4>
+                            <p>Developed in collaboration with healthcare professionals.</p>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Progress Tracking</h4>
+                            <p>Monitor your health improvements over time.</p>
+                        </div>
+                    </div>
+
+                    <div class="disclaimer-box">
+                        <i class="fas fa-info-circle"></i>
+                        <p>Note: Our predictions are based on statistical models and should not replace professional
+                            medical advice.</p>
+                    </div>
                 </div>
             </div>
         </div>
