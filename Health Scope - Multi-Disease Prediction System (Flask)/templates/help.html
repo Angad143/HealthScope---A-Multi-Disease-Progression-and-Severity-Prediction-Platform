@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to the favicon image -->
+    <link rel="icon" href="{{ url_for('static', filename='images/Health.ico') }}" type="image/x-icon">
+
+    <title>Help - Health Scope</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/help.css') }}">
+    <script src="{{ url_for('static', filename='js/help.js') }}"></script>
+
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="{{ url_for('help_questions') }}" class="logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="HealthScope Logo" class="logo-img">
+                <b>Health Scope</b>
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark</span>
+                </button>
+            </a>
+
+            <ul class="nav-links">
+                <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
+                <li><a href="{{ url_for('home', _anchor='about') }}" class="nav-link">About</a></li>
+                <li><a href="{{ url_for('home', _anchor='help') }}" class="nav-link">Help</a></li>
+                <li><a href="{{ url_for('home', _anchor='services') }}" class="nav-link">Services</a></li>
+                <li><a href="{{ url_for('home', _anchor='technology') }}" class="nav-link">Technology</a></li>
+                <li><a href="{{ url_for('login_user') }}" class="btn login-btn">Login</a></li>
+                <li><a href="{{ url_for('register_user') }}" class="btn register-btn">Register</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Help Content -->
+    <section class="help-page">
+        <div class="container">
+            <h1>Frequently Asked Questions</h1>
+
+            <div class="faq-section">
+                <h2>General Questions</h2>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What is Health Scope?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Health Scope is a multi-disease progression and severity prediction platform that uses
+                            machine learning to help users monitor their health status and predict potential risks for
+                            various diseases.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How to use HealthScope - A Multi-Disease Prediction System?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Please find below the steps for administrators to use the Health Scope system:</p>
+                        <ol>
+                            <li>Log into the System using your account to start generating risk assessments</li>
+                            <li>Select the type of disease for which you want to generate risks</li>
+                            <li>Input the Patient's Vitals</li>
+                            <li>Click on Submit</li>
+                            <li>Get Assessment Result</li>
+                            <li>Download as PDF</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How accurate are the predictions?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our predictions are based on validated machine learning models trained on large datasets.
+                            While they provide valuable insights, they should not replace professional medical advice.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Is my data secure?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, we take data security very seriously. All your health data is encrypted and stored
+                            securely in compliance with privacy regulations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h2>Account Questions</h2>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How do I create an account?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Click on the "Register" button in the top navigation or on the homepage, fill in the required
+                            information, and follow the instructions to complete your registration.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        I forgot my password. What should I do?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>On the login page, click on "Forgot password" and follow the instructions to reset your
+                            password. You'll receive an email with a password reset link.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h2>Technical Support</h2>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        The website isn't working properly. What should I do?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Try refreshing the page or clearing your browser cache. If the problem persists, please
+                            contact our support team with details about the issue you're experiencing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Which browsers are supported?
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Health Scope works best on the latest versions of Chrome, Firefox, Safari, and Edge. Make
+                            sure your browser is up to date for the best experience.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-support">
+                <h2>Still need help?</h2>
+                <p>If you can't find the answer to your question here, our support team is ready to assist you.</p>
+                <a href="{{ url_for('home', _anchor='contact') }}" class="btn primary-btn">Contact Support</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">HealthScope</a>
+                    <p>Empowering your health journey with AI.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('home', _anchor='about') }}">About</a></li>
+                        <li><a href="{{ url_for('help_questions') }}">Help</a></li>
+                        <li><a href="{{ url_for('home', _anchor='services') }}">Services</a></li>
+                        <li><a href="{{ url_for('home', _anchor='technology') }}">Technology</a></li>
+                        <li><a href="{{ url_for('home', _anchor='contact') }}">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Health Scope. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

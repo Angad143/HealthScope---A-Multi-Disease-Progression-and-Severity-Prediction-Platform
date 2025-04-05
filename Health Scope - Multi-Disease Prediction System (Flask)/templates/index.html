@@ -5,21 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <!-- Link to the favicon image -->
     <link rel="icon" href="{{ url_for('static', filename='images/Health.ico') }}" type="image/x-icon">
 
     <title>Health Scope - A Multi-Disease Progression and Severity Prediction Platform</title>
 
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-    <!--===============================================================================-->>
-
-    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}"> -->
-    <script src="{{ url_for('static', filename='js/navbar.js') }}"></script>
 
 </head>
 
@@ -165,7 +159,7 @@
                     <i class="fas fa-question-circle"></i>
                     <h3>FAQs</h3>
                     <p>Find answers to common questions about our platform and services.</p>
-
+                    <a href="{{ url_for('help_questions') }}" class="btn help-btn">View FAQs</a>
                 </div>
                 <div class="help-card">
                     <i class="fas fa-envelope"></i>
@@ -361,5 +355,4 @@
     </script>
     {% endif %}
 </body>
-
 </html>
