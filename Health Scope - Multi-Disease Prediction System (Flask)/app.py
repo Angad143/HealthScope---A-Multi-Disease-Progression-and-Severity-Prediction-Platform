@@ -15,8 +15,9 @@ app.config.from_object(Config)
 mysql = MySQL(app)
 bcrypt = Bcrypt(app)
 
-# Set up routes and views
+# Main index route
 @app.route("/")
+@app.route("/home")
 def home():
     return render_template("index.html")
 
@@ -43,6 +44,11 @@ def forgot_password_user():
 @app.route("/reset_password", methods=["GET", "POST"])
 def reset_password_user():
     return reset_password(mysql, bcrypt)
+
+# Set up routes and views for about and help pages
+@app.route("/help")
+def help_questions():
+    return render_template("help.html")
 
 # Set up dashboard route (requires user to be logged in)
 @app.route("/dashboard")
