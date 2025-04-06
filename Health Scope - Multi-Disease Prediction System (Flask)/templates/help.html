@@ -23,21 +23,21 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container">
-            <a href="{{ url_for('help_questions') }}" class="logo">
+            <a href="{{ url_for('home') }}" class="logo">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="HealthScope Logo" class="logo-img">
                 <b>Health Scope</b>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                    <span>Dark</span>
-                </button>
             </a>
-
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+                <span>Dark</span>
+            </button>
             <ul class="nav-links">
                 <li><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
                 <li><a href="{{ url_for('home', _anchor='about') }}" class="nav-link">About</a></li>
                 <li><a href="{{ url_for('home', _anchor='help') }}" class="nav-link">Help</a></li>
                 <li><a href="{{ url_for('home', _anchor='services') }}" class="nav-link">Services</a></li>
                 <li><a href="{{ url_for('home', _anchor='technology') }}" class="nav-link">Technology</a></li>
+                <li><a href="{{ url_for('home', _anchor='contact') }}" class="nav-link">Contact</a></li>
                 <li><a href="{{ url_for('login_user') }}" class="btn login-btn">Login</a></li>
                 <li><a href="{{ url_for('register_user') }}" class="btn register-btn">Register</a></li>
             </ul>

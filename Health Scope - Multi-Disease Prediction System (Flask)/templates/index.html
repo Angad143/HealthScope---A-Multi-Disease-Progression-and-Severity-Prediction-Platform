@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sample.css') }}">
+
+
 </head>
 
 <body>
@@ -24,12 +27,11 @@
             <a href="{{ url_for('home') }}" class="logo">
                 <img src="{{ url_for('static', filename='images/logo.png') }}" alt="HealthScope Logo" class="logo-img">
                 <b>Health Scope</b>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                    <span>Dark</span>
-                </button>
             </a>
-
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+                <span>Dark</span>
+            </button>
             <ul class="nav-links">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
@@ -102,9 +104,9 @@
 
                 <div class="about-text">
                     <h3>Transforming Healthcare Through AI Innovation</h3>
-                    <p>Health Scope is a multi-disease progression and severity prediction platform that leverages
+                    <p class="about-section-description">Health Scope is a multi-disease progression and severity prediction platform that leverages
                         machine learning to provide personalized health insights.</p>
-                    <p>Our platform helps users monitor their health status and predict potential risks for diabetes,
+                    <p class="about-section-description">Our platform helps users monitor their health status and predict potential risks for diabetes,
                         heart disease, and kidney disease.</p>
                     <div class="features-grid">
                         <div class="feature-card">
@@ -153,19 +155,61 @@
     <!-- Help Section -->
     <section id="help" class="help-section">
         <div class="container">
-            <h2>Need Help?</h2>
+            <div class="section-header">
+                <h2 class="section-title">How Can We Help You?</h2>
+                <p class="section-description">
+                    Whether you're looking for quick answers, technical assistance, or personalized guidance,
+                    our comprehensive support system is here for you 24/7. Explore our knowledge base for
+                    instant solutions, connect with our AI assistant, or reach out to our human support
+                    specialists for more complex inquiries. Your satisfaction is our top priority.
+                </p>
+            </div>
             <div class="help-content">
+                <!-- FAQ Card -->
                 <div class="help-card">
-                    <i class="fas fa-question-circle"></i>
+                    <div class="card-icon">
+                        <i class="fas fa-question-circle"></i>
+                        <div class="icon-shape"></div>
+                    </div>
                     <h3>FAQs</h3>
-                    <p>Find answers to common questions about our platform and services.</p>
-                    <a href="{{ url_for('help_questions') }}" class="btn help-btn">View FAQs</a>
+                    <p>Find answers to common questions about our platform and services in our comprehensive knowledge
+                        base.</p>
+                    <div class="card-footer">
+                        <a href="{{ url_for('help_questions') }}" class="btn help-btn">
+                            <span>View FAQs</span>
+                        </a>
+                    </div>
                 </div>
+
+                <!-- Support Card -->
                 <div class="help-card">
-                    <i class="fas fa-envelope"></i>
-                    <h3>Contact Support</h3>
-                    <p>Can't find what you're looking for? Our team is here to help.</p>
-                    <a href="#contact" class="btn help-btn">Contact Us</a>
+                    <div class="card-icon">
+                        <i class="fas fa-headset"></i>
+                        <div class="icon-shape"></div>
+                    </div>
+                    <h3>Live Support</h3>
+                    <p>Chat with our support team in real-time for immediate assistance with any issues or questions.
+                    </p>
+                    <div class="card-footer">
+                        <a href="{{ url_for('login_user') }}" class="btn help-btn" id="liveChatBtn">
+                            <span>Start Chat</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contact Card -->
+                <div class="help-card">
+                    <div class="card-icon">
+                        <i class="fas fa-envelope"></i>
+                        <div class="icon-shape"></div>
+                    </div>
+                    <h3>Contact Us</h3>
+                    <p>Send us a message and we'll get back to you within 24 hours with a detailed response.</p>
+                    <div class="card-footer">
+                        <a href="#contact" class="btn help-btn">
+                            <span>Contact Us</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -355,4 +399,5 @@
     </script>
     {% endif %}
 </body>
+
 </html>

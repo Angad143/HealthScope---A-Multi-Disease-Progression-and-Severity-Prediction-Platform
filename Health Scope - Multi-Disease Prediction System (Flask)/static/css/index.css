@@ -225,7 +225,7 @@ img {
   color: var(--text-color);
   cursor: pointer;
   font-size: 0.9rem;
-  margin-left: 20px;
+  margin-left: -80px;
   padding: 0.7rem 1rem;
   border-radius: 10px;
   transition: var(--transition);
@@ -352,7 +352,6 @@ img {
 }
 
 /* ============================= About Section =============================*/
-/* About Section */
 .about-section {
   padding: 100px 0;
   background-color: var(--card-bg);
@@ -385,6 +384,15 @@ img {
   display: flex;
   align-items: center;
   gap: 50px;
+}
+
+.about-section-description {
+  max-width: 100%;
+  margin: 0 auto;
+  color: var(--text-color);
+  opacity: 1;
+  font-size: 1.1rem;
+  margin-bottom: 22px;
 }
 
 .about-image {
@@ -604,9 +612,24 @@ img {
 }
 
 /* ===================== Help Section ============================== */
+
 .help-section {
-  padding: 5rem 0;
-  background-color: var(--bg-color);
+  padding: 6rem 0;
+  background: linear-gradient(135deg, rgba(74, 111, 165, 0.03) 0%, rgba(22, 96, 136, 0.03) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.help-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg, rgba(116, 161, 228, 0.03) 0%, rgba(56, 93, 112, 0.03) 100%);
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: 0;
 }
 
 .help-section h2 {
@@ -614,52 +637,193 @@ img {
   font-size: 2.5rem;
   margin-bottom: 3rem;
   color: var(--primary-color);
+  line-height: 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section-description {
+  max-width: 100%;
+  margin: 0 auto;
+  color: var(--text-color);
+  opacity: 0.9;
+  font-size: 1.2rem;
 }
 
 .help-content {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
 .help-card {
-  background-color: var(--card-bg);
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
+  background: linear-gradient(90deg, rgba(18,141,172,0.1), rgba(255,50,50,0.1), rgba(255,50,50,0.1));
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  transition: var(--transition);
-  flex: 1;
-  min-width: 300px;
-  max-width: 400px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(74, 111, 165, 0.1);
+}
+
+.help-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
 }
 
 .help-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
 
-.help-card i {
-  font-size: 3rem;
-  color: var(--primary-color);
+.card-icon {
+  position: relative;
+  width: 80px;
+  height: 80px;
   margin-bottom: 1.5rem;
 }
 
+.card-icon i {
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  position: relative;
+  z-index: 2;
+  line-height: 80px;
+}
+
+.icon-shape {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(74, 111, 165, 0.1);
+  border-radius: 50%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transform: scale(0.8);
+  transition: all 0.4s ease;
+}
+
+.help-card:hover .icon-shape {
+  transform: scale(1);
+  background-color: rgba(74, 111, 165, 0.2);
+}
+
 .help-card h3 {
+  font-size: 1.5rem;
   margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.help-card p {
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.card-footer {
+  margin-top: auto;
+  width: 100%;
 }
 
 .help-btn {
-  margin-top: 1.5rem;
-  background-color: var(--primary-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   color: white;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 60%;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.help-btn span {
+  position: relative;
+  z-index: 2;
+  margin-right: 10px;
+}
+
+.help-btn i {
+  position: relative;
+  z-index: 2;
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+}
+
+.help-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
 .help-btn:hover {
-  background-color: var(--secondary-color);
+  box-shadow: 0 5px 15px rgba(74, 111, 165, 0.3);
 }
 
-/* Services Section */
+.help-btn:hover::before {
+  opacity: 1;
+}
+
+.help-btn:hover i {
+  transform: translateX(3px);
+}
+
+#liveChatBtn {
+  background: linear-gradient(135deg, #4CAF50, #2E7D32);
+}
+
+#liveChatBtn::before {
+  background: linear-gradient(135deg, #2E7D32, #4CAF50);
+}
+
+@media (max-width: 768px) {
+  .section-title {
+      font-size: 2rem;
+  }
+  
+  .help-content {
+      grid-template-columns: 1fr;
+  }
+  
+  .help-card {
+      padding: 2rem;
+  }
+}
+
+/* ===================== Services Section ============================== */
+
 .services-section {
   padding: 5rem 0;
   background-color: var(--card-bg);
