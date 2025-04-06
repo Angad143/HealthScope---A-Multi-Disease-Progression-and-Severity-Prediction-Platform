@@ -300,55 +300,93 @@
     <!-- Technology Section -->
     <section id="technology" class="technology-section">
         <div class="container">
-            <h2>Our Technology Stack</h2>
+            <div class="section-header">
+                <h2>Our Technology Stack</h2>
+                <p class="technology-section-description">
+                    This project uses some amazing tools. I used Python to handle the data and make things work.
+                    TensorFlow helps with deep learning, and Scikit-learn is used for machine learning. I used Flask to
+                    show everything on a website. All these tools work together that can analyze health data and provide
+                    meaningful insights.
+                </p>
+            </div>
+
             <div class="tech-grid">
+                <!-- Artificial Intelligence -->
                 <div class="tech-card">
-                    <img src="{{ url_for('static', filename='images/tech-icons/deep-learning.png') }}"
-                        alt="Deep Learning" class="tech-icon">
-                    <h3>Deep Learning</h3>
-                    <p>Advanced neural networks for accurate disease prediction and pattern recognition.</p>
+                    <div class="tech-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/tech-icons/Artificial-Intelligence.jpg') }}"
+                            alt="Artificial Intelligence" class="tech-image">
+                    </div>
+                    <div class="tech-content">
+                        <h3>Artificial Intelligence</h3>
+                        <p>AI-powered analysis for comprehensive health assessments and recommendations.</p>
+                        <span class="tech-tag AI-btn">Smart Analysis</span>
+                    </div>
                 </div>
+                <!-- Machine Learning -->
                 <div class="tech-card">
-                    <img src="{{ url_for('static', filename='images/tech-icons/machine-learning.png') }}"
-                        alt="Machine Learning" class="tech-icon">
-                    <h3>Machine Learning</h3>
-                    <p>Predictive algorithms that learn from health data to provide personalized insights.</p>
+                    <div class="tech-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/tech-icons/Machine-learning.jpg') }}"
+                            alt="Machine Learning" class="tech-image">
+                    </div>
+                    <div class="tech-content">
+                        <h3>Machine Learning</h3>
+                        <p>Predictive algorithms that learn from health data to provide personalized insights.</p>
+                        <span class="tech-tag ML-btn">Predictive Models</span>
+                    </div>
                 </div>
+
+                <!-- Generative AI -->
                 <div class="tech-card">
-                    <img src="{{ url_for('static', filename='images/tech-icons/ai.png') }}"
-                        alt="Artificial Intelligence" class="tech-icon">
-                    <h3>Artificial Intelligence</h3>
-                    <p>AI-powered analysis for comprehensive health assessments and recommendations.</p>
+                    <div class="tech-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/tech-icons/Generative-AI.png') }}"
+                            alt="Generative AI" class="tech-image">
+                    </div>
+                    <div class="tech-content">
+                        <h3>Generative AI</h3>
+                        <p>Cutting-edge models for synthetic data generation and advanced analysis.</p>
+                        <span class="tech-tag Gen-AI-btn">Data Synthesis</span>
+                    </div>
                 </div>
+
+                <!-- Data Science -->
                 <div class="tech-card">
-                    <img src="{{ url_for('static', filename='images/tech-icons/genai.png') }}" alt="Generative AI"
-                        class="tech-icon">
-                    <h3>Generative AI</h3>
-                    <p>Cutting-edge models for synthetic data generation and advanced analysis.</p>
+                    <div class="tech-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/tech-icons/Data-Science.jpg') }}"
+                            alt="Data Science" class="tech-image">
+                    </div>
+                    <div class="tech-content">
+                        <h3>Data Science</h3>
+                        <p>Extracting meaningful patterns from complex medical datasets.</p>
+                        <span class="tech-tag DS-btn">Pattern Recognition</span>
+                    </div>
                 </div>
+
+
+                <!-- Python -->
                 <div class="tech-card">
-                    <img src="{{ url_for('static', filename='images/tech-icons/data-science.png') }}" alt="Data Science"
-                        class="tech-icon">
-                    <h3>Data Science</h3>
-                    <p>Extracting meaningful patterns from complex medical datasets.</p>
+                    <div class="tech-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/tech-icons/Python.jpg') }}" alt="Python"
+                            class="tech-image">
+                    </div>
+                    <div class="tech-content">
+                        <h3>Python</h3>
+                        <p>Powerful programming language for backend development and data processing.</p>
+                        <span class="tech-tag Python-btn">Backend</span>
+                    </div>
                 </div>
+
+                <!-- Flask -->
                 <div class="tech-card">
-                    <img src="{{ url_for('static', filename='images/tech-icons/data-analytics.png') }}"
-                        alt="Data Analytics" class="tech-icon">
-                    <h3>Data Analytics</h3>
-                    <p>Statistical analysis and visualization of health trends and metrics.</p>
-                </div>
-                <div class="tech-card">
-                    <img src="{{ url_for('static', filename='images/tech-icons/python.png') }}" alt="Python"
-                        class="tech-icon">
-                    <h3>Python</h3>
-                    <p>Powerful programming language for backend development and data processing.</p>
-                </div>
-                <div class="tech-card">
-                    <img src="{{ url_for('static', filename='images/tech-icons/flask.png') }}" alt="Flask"
-                        class="tech-icon">
-                    <h3>Flask</h3>
-                    <p>Lightweight web framework for building robust and scalable applications.</p>
+                    <div class="tech-image-wrapper">
+                        <img src="{{ url_for('static', filename='images/tech-icons/Flask.jpg') }}" alt="Flask"
+                            class="tech-image">
+                    </div>
+                    <div class="tech-content">
+                        <h3>Flask</h3>
+                        <p>Lightweight web framework for building robust and scalable applications.</p>
+                        <span class="tech-tag Flask-btn">Web Framework</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -386,8 +424,16 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
-                    <a href="#" class="logo">HealthScope</a>
-                    <p>Empowering your health journey with AI.</p>
+                    <a href="#home" class="logo">Health Scope</a>
+                    <p>Empowering your health journey with AI-driven insights, predictive analytics, and personalized
+                        recommendations for better wellness outcomes.</p>
+                    <div class="footer-newsletter">
+                        <h4>Stay Updated</h4>
+                        <form class="newsletter-form">
+                            <input type="email" placeholder="Your email address" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <h3>Quick Links</h3>
@@ -395,27 +441,49 @@
                         <li><a href="#home">Home</a></li>
                         <li><a href="#about">About</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#technology">Technology</a></li>
                         <li><a href="#help">Help</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
+                <div class="footer-links">
+                    <h3>Health Resources</h3>
+                    <ul>
+                        <li><a href="#home">Prevention Guides</a></li>
+                        <li><a href="#home">Symptom Checker</a></li>
+                        <li><a href="#home">Wellness Tips</a></li>
+                        <li><a href="#home">Disease Information</a></li>
+                        <li><a href="#home">Health Screening Tools</a></li>
+                        <li><a href="#home">Patient Education</a></li>
+                    </ul>
+                </div>
                 <div class="footer-social">
-                    <h3>Follow Us</h3>
+                    <h3>Connect With Us</h3>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.facebook.com/gangad143" aria-label="Facebook" target="_blank"
+                            rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/in/angadgupta143/" aria-label="LinkedIn" target="_blank"
+                            rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/@greenature143" aria-label="YouTube" target="_blank"
+                            rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                        <a href="https://github.com/Angad143" aria-label="GitHub" target="_blank"
+                            rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    </div>
+                    <div class="footer-contact">
+                        <p><i class="fas fa-envelope"></i> contact@healthscope.com</p>
+                        <p><i class="fas fa-phone"></i> +91 8176047917</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Medical Drive, Health City, Rajkot, India</p>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Health Scope. All rights reserved.</p>
+                <p>&copy; 2025 HealthScope | Developed with ❤️ by Medical AI Team | Version 2.0.0</p>
+                <p class="footer-disclaimer">For research and educational purposes only. Not intended as medical advice.
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- <script src="{{ url_for('static', filename='js/main.js') }}"></script> -->
     {% if scroll_to %}
     <script>
         document.addEventListener('DOMContentLoaded', function () {
