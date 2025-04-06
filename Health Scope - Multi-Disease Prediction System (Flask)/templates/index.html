@@ -62,7 +62,7 @@
                     <a href="{{ url_for('register_user') }}" class="btn primary-btn">Get Started</a>
                     <a href="#services" class="btn secondary-btn">Learn More</a>
                 </div>
-                <br>
+                <br><br>
                 <!-- Additional content -->
                 <div class="hero-features">
                     <div class="feature-item">
@@ -104,9 +104,11 @@
 
                 <div class="about-text">
                     <h3>Transforming Healthcare Through AI Innovation</h3>
-                    <p class="about-section-description">Health Scope is a multi-disease progression and severity prediction platform that leverages
+                    <p class="about-section-description">Health Scope is a multi-disease progression and severity
+                        prediction platform that leverages
                         machine learning to provide personalized health insights.</p>
-                    <p class="about-section-description">Our platform helps users monitor their health status and predict potential risks for diabetes,
+                    <p class="about-section-description">Our platform helps users monitor their health status and
+                        predict potential risks for diabetes,
                         heart disease, and kidney disease.</p>
                     <div class="features-grid">
                         <div class="feature-card">
@@ -157,7 +159,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">How Can We Help You?</h2>
-                <p class="section-description">
+                <p class="help-section-description">
                     Whether you're looking for quick answers, technical assistance, or personalized guidance,
                     our comprehensive support system is here for you 24/7. Explore our knowledge base for
                     instant solutions, connect with our AI assistant, or reach out to our human support
@@ -218,52 +220,78 @@
     <!-- Services Section -->
     <section id="services" class="services-section">
         <div class="container">
-            <h2>Our Services</h2>
+            <div class="section-header">
+                <h2>Our Services</h2>
+                <p class="service-section-description">
+                    Comprehensive AI-powered health services designed to predict, analyze,
+                    and monitor your medical conditions with precision and care.
+                </p>
+            </div>
             <div class="services-grid">
-                <!-- First Row - 4 Columns -->
+                <!-- First Row - 3 Cards -->
                 <div class="service-card">
-                    <i class="fas fa-heartbeat"></i>
+                    <div class="icon-wrapper heart-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
                     <h3>Heart Disease Prediction</h3>
-                    <p>Assess your risk of cardiovascular diseases based on your health metrics.</p>
-                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-syringe"></i>
-                    <h3>Diabetes Prediction</h3>
-                    <p>Predict the likelihood of developing diabetes with our advanced algorithms.</p>
-                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-prescription-bottle-alt"></i> <!-- Medicine icon -->
-                    <h3>Kidney Disease Prediction</h3>
-                    <p>Monitor your kidney health and detect potential issues early.</p>
-                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-robot"></i>
-                    <h3>AI Health Assistant</h3>
-                    <p>Get personalized health advice from our AI companion anytime.</p>
-                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
+                    <p>Assess your risk of cardiovascular diseases based on health metrics.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn heart-btn">Get Started</a>
                 </div>
 
-                <!-- Second Row - 3 Columns -->
                 <div class="service-card">
-                    <i class="fas fa-microphone-alt"></i>
+                    <div class="icon-wrapper diabetes-icon">
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <h3>Diabetes Prediction</h3>
+                    <p>Predict the likelihood of developing diabetes using advanced algorithms.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn diabetes-btn">Get Started</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon-wrapper kidney-icon">
+                        <i class="fas fa-prescription-bottle-alt"></i>
+                    </div>
+                    <h3>Kidney Disease Prediction</h3>
+                    <p>Monitor kidney health and detect potential risks early.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn kidney-btn">Get Started</a>
+                </div>
+
+                <!-- Second Row - 3 Cards -->
+                <div class="service-card">
+                    <div class="icon-wrapper ai-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI Health Assistant</h3>
+                    <p>Get personalized health advice from our AI anytime.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn ai-btn">Get Started</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon-wrapper voice-icon">
+                        <i class="fas fa-microphone-alt"></i>
+                    </div>
                     <h3>Voice AI Health Assistance</h3>
                     <p>Ask health questions via voice about diseases and symptoms.</p>
-                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn voice-btn">Get Started</a>
                 </div>
+
                 <div class="service-card">
-                    <i class="fas fa-image"></i>
+                    <div class="icon-wrapper image-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
                     <h3>AI Image Diagnosis</h3>
-                    <p>Upload images of body parts for AI to identify potential medical conditions.</p>
-                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
+                    <p>Upload images for AI to detect potential medical conditions.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn image-btn">Get Started</a>
                 </div>
-                <div class="service-card">
-                    <i class="fas fa-file-pdf"></i>
+
+                <!-- Third Row - Centered Card -->
+                <div class="service-card center-card">
+                    <div class="icon-wrapper report-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
                     <h3>Medical Report Analysis</h3>
-                    <p>Upload patient details in PDF format for AI analysis and recommendations.</p>
-                    <a href="{{ url_for('login_user') }}" class="btn service-btn">Get Started</a>
+                    <p>Upload reports in PDF format for AI-based recommendations.</p>
+                    <a href="{{ url_for('login_user') }}" class="btn service-btn report-btn">Get Started</a>
                 </div>
             </div>
         </div>

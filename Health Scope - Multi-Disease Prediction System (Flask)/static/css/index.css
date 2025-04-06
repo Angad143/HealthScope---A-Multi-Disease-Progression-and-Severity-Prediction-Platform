@@ -352,6 +352,7 @@ img {
 }
 
 /* ============================= About Section =============================*/
+/* About Section */
 .about-section {
   padding: 100px 0;
   background-color: var(--card-bg);
@@ -363,6 +364,8 @@ img {
   font-size: 2.5rem;
   margin-bottom: 60px;
   color: var(--primary-color);
+  line-height: 0;
+
 }
 
 .about-section h2 span {
@@ -392,7 +395,7 @@ img {
   color: var(--text-color);
   opacity: 1;
   font-size: 1.1rem;
-  margin-bottom: 22px;
+  margin-bottom: 25px;
 }
 
 .about-image {
@@ -647,12 +650,13 @@ img {
   z-index: 1;
 }
 
-.section-description {
+.help-section-description {
   max-width: 100%;
   margin: 0 auto;
   color: var(--text-color);
-  opacity: 0.9;
+  opacity: 1;
   font-size: 1.2rem;
+  margin-bottom: 25px;
 }
 
 .help-content {
@@ -824,45 +828,178 @@ img {
 
 /* ===================== Services Section ============================== */
 
+/* ===================== Services Section ============================== */
 .services-section {
-  padding: 5rem 0;
-  background-color: var(--card-bg);
+  padding: 6rem 0;
+  background: var(--card-bg);
 }
 
-.services-section h2 {
+.section-header {
   text-align: center;
-  font-size: 2.5rem;
   margin-bottom: 3rem;
-  color: var(--primary-color);
+}
+
+.section-header h2 {
+  font-size: 2.5rem;
+  color: var(--primary-color);;
+  margin-bottom: 3rem;
+  line-height: 0;
+}
+
+.service-section-description {
+  max-width: 100%;
+  margin: 0 auto;
+  color: var(--text-color);
+  opacity: 1;
+  font-size: 1.2rem;
+  margin-bottom: 25px;
 }
 
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  justify-items: center;
 }
 
 .service-card {
-  background-color: var(--bg-color);
+  background: linear-gradient(90deg, rgba(85, 172, 18, 0.1), rgba(252, 255, 50, 0.1), rgba(255,50,50,0.1));
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   text-align: center;
-  transition: var(--transition);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .service-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
 }
 
-.service-card i {
-  font-size: 3rem;
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  transition: transform 0.3s ease;
 }
+
+.service-card:hover .icon-wrapper {
+  transform: rotate(15deg) scale(1.1);
+}
+
+.icon-wrapper i {
+  font-size: 2.5rem;
+  color: white;
+}
+
+/* Unique icon backgrounds */
+.heart-icon { background: linear-gradient(135deg, #e63946, #ff758f); }
+.diabetes-icon { background: linear-gradient(135deg, #3a86ff, #6a8cff); }
+.kidney-icon { background: linear-gradient(135deg, #8338ec, #b56aff); }
+.ai-icon { background: linear-gradient(135deg, #06d6a0, #48cae4); }
+.voice-icon { background: linear-gradient(135deg, #ffbe0b, #ff9100); }
+.image-icon { background: linear-gradient(135deg, #fb5607, #ff006e); }
+.report-icon { background: linear-gradient(135deg, #7209b7, #4361ee); }
 
 .service-card h3 {
+  font-size: 1.5rem;
   margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.service-card p {
+  color: var(--text-color);
+  opacity: 0.8;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.service-btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  color: white;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+  margin-top: auto;
+  border: none;
+  cursor: pointer;
+}
+
+/* Unique button colors */
+.heart-btn { background: linear-gradient(135deg, #e63946, #ff758f); }
+.heart-btn:hover { background: linear-gradient(135deg, #d62839, #e63946); }
+
+.diabetes-btn { background: linear-gradient(135deg, #3a86ff, #6a8cff); }
+.diabetes-btn:hover { background: linear-gradient(135deg, #2667cc, #3a86ff); }
+
+.kidney-btn { background: linear-gradient(135deg, #8338ec, #b56aff); }
+.kidney-btn:hover { background: linear-gradient(135deg, #6a2bc4, #8338ec); }
+
+.ai-btn { background: linear-gradient(135deg, #06d6a0, #48cae4); }
+.ai-btn:hover { background: linear-gradient(135deg, #05b388, #06d6a0); }
+
+.voice-btn { background: linear-gradient(135deg, #ffbe0b, #ff9100); }
+.voice-btn:hover { background: linear-gradient(135deg, #e6a800, #ffbe0b); }
+
+.image-btn { background: linear-gradient(135deg, #fb5607, #ff006e); }
+.image-btn:hover { background: linear-gradient(135deg, #d94806, #fb5607); }
+
+.report-btn { background: linear-gradient(135deg, #7209b7, #4361ee); }
+.report-btn:hover { background: linear-gradient(135deg, #5a0892, #7209b7); }
+
+.service-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.center-card {
+  grid-column: 2;
+}
+
+/* ===================== Responsive Styling ======================== */
+@media (max-width: 992px) {
+  .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .center-card {
+      grid-column: 1 / -1;
+      max-width: 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-header h2 {
+      font-size: 2rem;
+  }
+
+  .services-grid {
+      grid-template-columns: 1fr;
+  }
+
+  .service-card {
+      padding: 1.8rem;
+  }
+  
+  .center-card {
+      max-width: 100%;
+  }
 }
 
 /* Technology Section */
