@@ -1,18 +1,19 @@
 /* Help Page Styles with Dark/Light Theme Support */
 :root {
     /* Light Theme Colors */
-    --help-bg: #f5f7fa;
+    --help-bg: #ffffff;
     --help-text: #2c3e50;
     --help-card-bg: #ffffff;
     --help-card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --help-border: rgba(0, 0, 0, 0.1);
-    --help-primary: #4a6fa5;
+    --help-primary: #3784f7;
     --help-accent: #4fc3f7;
     --help-warning: #ffc107;
     --help-light-text: #5a6d80;
-    --help-hover-color: rgba(74, 111, 165, 0.1);
-}
+    --help-hover-color: linear-gradient(90deg, rgba(7, 179, 222, 0.224), rgba(30, 255, 105, 0.246), rgba(255, 50, 50, 0.235));
 
+}
+  
 [data-theme="dark"] {
     /* Dark Theme Colors */
     --help-bg: #121212;
@@ -20,9 +21,9 @@
     --help-card-bg: #1e1e1e;
     --help-card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     --help-border: rgba(255, 255, 255, 0.1);
-    --help-primary: #6c8fc7;
+    --help-primary: #3981f6;
     --help-light-text: #b0b0b0;
-    --help-hover-color: rgba(74, 111, 165, 0.3);
+    --help-hover-color: linear-gradient(90deg, rgba(29, 199, 241, 0.246), rgba(35, 244, 105, 0.249), rgba(255, 50, 50, 0.303));
 }
 
 /* Help Page Container */
@@ -45,25 +46,14 @@
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: var(--help-primary);
+    margin-top: 3rem;
+    color: var(--primary-color);
     position: relative;
-}
-
-.help-page h1::after {
-    content: '';
-    position: absolute;
-    width: 8rem;
-    height: 0.3rem;
-    background: linear-gradient(90deg, var(--help-primary), var(--help-accent));
-    bottom: -0.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 0.2rem;
 }
 
 .help-page h2 {
     font-size: 1.8rem;
-    color: var(--help-primary);
+    color: var(--primary-color);
     margin: 2rem 0 1rem;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid rgba(74, 111, 165, 0.2);
@@ -174,14 +164,14 @@
     text-align: center;
     margin-top: 3rem;
     padding: 2rem;
-    background: rgba(74, 111, 165, 0.05);
+    background: linear-gradient(90deg, rgba(18,141,172,0.1), rgba(50,200,100,0.1), rgba(255,50,50,0.1));
     border-radius: 1rem;
     border: 1px dashed rgba(74, 111, 165, 0.3);
     transition: all 0.3s ease;
 }
 
 .contact-support:hover {
-    background: rgba(74, 111, 165, 0.1);
+    background: linear-gradient(90deg, rgba(3, 202, 252, 0.281), rgba(1, 245, 82, 0.236), rgba(251, 0, 0, 0.156));
     border-color: var(--help-primary);
 }
 
