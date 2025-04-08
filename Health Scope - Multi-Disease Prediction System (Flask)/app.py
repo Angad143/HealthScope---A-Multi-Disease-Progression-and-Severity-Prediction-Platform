@@ -6,6 +6,8 @@ from auth.login import login
 from auth.register import register
 from auth.forgot_password import forgot_password, reset_password
 from auth.activate_account import activate_account
+from functools import wraps
+
 
 # Create a Flask web application instance
 app = Flask(__name__)
@@ -14,6 +16,16 @@ app.config.from_object(Config)
 # Initialize MySQL and Bcrypt (to be used in the Flask app)
 mysql = MySQL(app)
 bcrypt = Bcrypt(app)
+
+# # Login required decorator
+# def login_required(f):
+#     @wraps(f)
+#     def decorated_function(*args, **kwargs):
+#         if 'username' not in session:
+#             flash('Please log in to access this page.', 'warning')
+#             return redirect(url_for('dashboard'))
+#         return f(*args, **kwargs)
+#     return decorated_function
 
 # Main index route
 @app.route("/")
@@ -58,12 +70,17 @@ def dashboard():
     else:
         flash("Please log in first!", "warning")
         return redirect(url_for("login_user"))
+# Dashboard Routes
+# @app.route('/dashboard')
+# @login_required
+# def dashboard():
+#     return render_template('dashboard.html', username=session.get('username'))
 
 # Set up logout route (clears session data and flashes a message)
 @app.route("/logout")
 def logout():
     session.clear()  # Clears all session data, including flash messages
-    flash("You have been logged out!", "info")
+    # flash("You have been logged out!", "info")
     return redirect(url_for("home"))
 
 
