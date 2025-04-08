@@ -44,7 +44,7 @@ body {
 }
 
 .container {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
@@ -114,6 +114,7 @@ img {
   width: 100%;
   top: 0;
   left: 0;
+  bottom: 1;
   z-index: 1000;
   transition: var(--transition);
 }
@@ -196,12 +197,12 @@ img {
   padding: 10px 15px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 5px;
   transition: var(--transition);
 }
 
 .dropdown-content a:hover {
-  background-color: rgba(74, 111, 165, 0.1);
+  background-color: lightblue;
 }
 
 .dropdown:hover .dropdown-content {
@@ -217,14 +218,15 @@ img {
 .user-profile {
   display: flex;
   align-items: center;
-  gap: 8px;
+  flex-direction: column; /* Stack vertically */
+  gap: 0px;
   cursor: pointer;
   transition: var(--transition);
 }
 
 .user-avatar {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid var(--primary-color);
@@ -232,6 +234,8 @@ img {
 
 .username {
   font-weight: 500;
+  font-size: 12px;
+  text-align: center;
 }
 
 .user-menu {
@@ -260,13 +264,16 @@ img {
   gap: 8px;
   background: var(--primary-color);
   border: none;
-  color: white;
+  color: var(--text-color);
   cursor: pointer;
   font-size: 0.9rem;
+  margin-left: -65px;
   padding: 0.7rem 1rem;
   border-radius: 10px;
   transition: var(--transition);
+  color: white;
   font-weight: 550;
+  padding: 13px 13px;
 }
 
 .theme-toggle:hover {

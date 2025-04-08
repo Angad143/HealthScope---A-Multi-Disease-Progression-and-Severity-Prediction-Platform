@@ -43,7 +43,7 @@ body {
 }
 
 .container {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
@@ -225,7 +225,7 @@ img {
   color: var(--text-color);
   cursor: pointer;
   font-size: 0.9rem;
-  margin-left: -80px;
+  margin-left: -130px;
   padding: 0.7rem 1rem;
   border-radius: 10px;
   transition: var(--transition);
