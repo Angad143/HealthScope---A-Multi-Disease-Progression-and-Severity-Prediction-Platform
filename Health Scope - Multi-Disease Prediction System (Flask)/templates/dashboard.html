@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ url_for('static', filename='images/Health.ico') }}" type="image/x-icon">
     <title>Health Scope - A Multi-Disease Progression and Severity Prediction Platform</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
 </head>
 
@@ -71,13 +73,13 @@
                         <span class="username">{{ user }}</span>
                     </div>
                     <div class="dropdown-content user-menu">
-                        <a href="#" style="color: #17a2b8;">  <!-- Teal for user/account -->
+                        <a href="#" style="color: #17a2b8;"> <!-- Teal for user/account -->
                             <i class="fas fa-user-cog"></i> My Account
-                          </a>
-                          
-                          <a href="{{ url_for('logout') }}" style="color: #dc3545;">  <!-- Red for logout/exit -->
+                        </a>
+
+                        <a href="{{ url_for('logout') }}" style="color: #dc3545;"> <!-- Red for logout/exit -->
                             <i class="fas fa-sign-out-alt"></i> Logout
-                          </a>                          
+                        </a>
                     </div>
                 </li>
             </ul>
@@ -92,30 +94,30 @@
     <!-- Hero Slider Section -->
     <section id="home" class="hero-slider">
         <div class="slider-container">
-            <div class="slide active" style="background-image: url('/static/images/image3.jpg')">
+            <div class="slide active" style="background-image: url('/static/images/dashboard_01.jpg')">
                 <div class="slide-content">
-                    <span class="subheading">Welcome back, {{ username }}</span>
-                    <h1>Your Health Dashboard</h1>
-                    <p>Monitor your health status and get personalized recommendations based on your medical history and
-                        predictions.</p>
+                    <span class="subheading">Welcome back, Mr/Ms. {{ user }}</span>
+                    <h1>Your Health, Our Priority</h1>
+                    <p>Track your health status with intelligent insights powered by AI and Machine Learning, delivering
+                        personalized recommendations based on your medical history and predictive analysis.</p>
                     <div class="cta-buttons">
                         <a href="#quick-access" class="btn primary-btn">Quick Access</a>
                         <a href="#recent-activity" class="btn secondary-btn">Recent Activity</a>
                     </div>
                 </div>
             </div>
-            <div class="slide" style="background-image: url('/static/images/image1.jpg')">
+            <div class="slide" style="background-image: url('/static/images/dashboard_03.jpg')">
                 <div class="slide-content">
                     <span class="subheading">AI-Powered Insights</span>
                     <h1>Smart Health Monitoring</h1>
                     <p>Our advanced algorithms analyze your data to provide early warnings and health improvement
                         suggestions.</p>
                     <div class="cta-buttons">
-                        <a href="#" class="btn primary-btn">Ask AI Assistant</a>
+                        <a href="#" class="btn primary-btn">Ask AI Health Assistant</a>
                     </div>
                 </div>
             </div>
-            <div class="slide" style="background-image: url('/static/images/image2.jpg')">
+            <div class="slide" style="background-image: url('/static/images/dashboard_02.jpg')">
                 <div class="slide-content">
                     <span class="subheading">Comprehensive Analysis</span>
                     <h1>Track Your Health Progress</h1>
@@ -125,7 +127,7 @@
                     </div>
                 </div>
             </div>
-            <div class="slide" style="background-image: url('/static/images/image1.jpg')">
+            <div class="slide" style="background-image: url('/static/images/dashboard_04.jpg')">
                 <div class="slide-content">
                     <span class="subheading">Stay Protected</span>
                     <h1>Privacy First Approach</h1>
@@ -143,39 +145,104 @@
         </div>
     </section>
 
+    <!-- Floating AI-Health Services Section -->
+    <div class="floating-services">
+        <!-- AI Health Risk Predictor -->
+        <div class="service-card">
+            <div class="icon-box icon-blue">
+                <i class="fas fa-brain"></i>
+            </div>
+            <div>
+                <strong>AI Health Risk Predictor</strong><br>
+                <small>Diabetes | Heart | Kidney</small>
+            </div>
+        </div>
+
+        <!-- Virtual Health Assistant -->
+        <div class="service-card">
+            <div class="icon-box icon-green">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div>
+                <strong>Virtual Health Assistant</strong><br>
+                <small>24x7 ML Chat Support</small>
+            </div>
+        </div>
+
+        <!-- Smart Health Monitoring -->
+        <div class="service-card">
+            <div class="icon-box icon-pink">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <div>
+                <strong>Smart Health Monitoring</strong><br>
+                <small>Real-time Vitals Tracking</small>
+            </div>
+        </div>
+    </div>
+
     <!-- Quick Access Section -->
-    <section id="quick-access" class="quick-access-section">
-        <div class="container">
-            <h2 class="section-title">Quick Access</h2>
-            <p class="section-description">Get instant access to our most used features</p>
-
-            <div class="quick-access-grid">
-                <a href="#" class="quick-access-card diabetes">
+<section id="quick-access" class="quick-access-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Quick Access</h2>
+            <p class="quick-access-description">
+                Checking your health is now super easy! Use our tools to quickly understand how your body is doing. 
+                Whether you want to look at something specific or just stay healthy, these features help you in just a few seconds.
+            </p>
+            
+        </div>
+        <div class="quick-access-grid">
+            <!-- Diabetes Card -->
+            <div class="quick-access-card">
+                <div class="icon-wrapper diabetes-icon">
                     <i class="fas fa-syringe"></i>
-                    <h3>Diabetes Prediction</h3>
-                    <p>Check your risk of diabetes based on health metrics</p>
+                </div>
+                <h3>Diabetes Prediction</h3>
+                <p>Predict the likelihood of developing diabetes using advanced algorithms.</p>
+                <a href="#" class="quick-access-btn diabetes-btn">
+                    Check Now <i class="fas fa-arrow-right"></i>
                 </a>
+            </div>
 
-                <a href="#" class="quick-access-card heart">
+            <!-- Heart Card -->
+            <div class="quick-access-card">
+                <div class="icon-wrapper heart-icon">
                     <i class="fas fa-heartbeat"></i>
-                    <h3>Heart Disease Prediction</h3>
-                    <p>Assess your cardiovascular health risks</p>
+                </div>
+                <h3>Heart Disease Prediction</h3>
+                <p>Assess your risk of cardiovascular diseases based on health metrics.</p>
+                <a href="#" class="quick-access-btn heart-btn">
+                    Assess Now <i class="fas fa-arrow-right"></i>
                 </a>
+            </div>
 
-                <a href="#" class="quick-access-card kidney">
-                    <i class="fas fa-kidneys"></i>
-                    <h3>Kidney Disease Prediction</h3>
-                    <p>Evaluate your kidney function status</p>
+            <!-- Kidney Card -->
+            <div class="quick-access-card">
+                <div class="icon-wrapper kidney-icon">
+                    <i class="fas fa-prescription-bottle-alt"></i>
+                </div>
+                <h3>Kidney Disease Prediction</h3>
+                <p>Monitor kidney health and detect potential risks early.</p>
+                <a href="#" class="quick-access-btn kidney-btn">
+                    Test Now <i class="fas fa-arrow-right"></i>
                 </a>
+            </div>
 
-                <a href="#" class="quick-access-card ai">
+            <!-- AI Assistant Card -->
+            <div class="quick-access-card">
+                <div class="icon-wrapper ai-icon">
                     <i class="fas fa-robot"></i>
-                    <h3>AI Health Assistant</h3>
-                    <p>Get personalized health advice from our AI</p>
+                </div>
+                <h3>AI Health Assistant</h3>
+                <p>Get personalized health advice from our AI anytime.</p>
+                <a href="#" class="quick-access-btn ai-btn">
+                    Ask AI <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Recent Activity Section -->
     <section id="recent-activity" class="recent-activity-section">
