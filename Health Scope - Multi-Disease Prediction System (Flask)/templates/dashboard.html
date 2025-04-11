@@ -1,562 +1,419 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ url_for('static', filename='images/Health.ico') }}" type="image/x-icon">
-    <title>Health Scope - A Multi-Disease Progression and Severity Prediction Platform</title>
+{% block title %}Health Scope - A Multi-Disease Progression and Severity Prediction Platform{% endblock %}
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
-</head>
-
-<body>
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="{{ url_for('dashboard') }}" class="logo">
-                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="HealthScope Logo" class="logo-img">
-                <b>Health Scope</b>
-            </a>
-            <button class="theme-toggle" id="themeToggle">
-                <i class="fas fa-moon"></i>
-                <span>Dark</span>
-            </button>
-            <ul class="nav-links">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#disease-info" class="nav-link">Disease Details</a></li>
-                <li class="dropdown">
-                    <a href="#" class="nav-link dropbtn">Disease Predictions <i class="fas fa-caret-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="#" style="color: #f39c12;">
-                            <i class="fas fa-syringe"></i> Diabetes Prediction
-                        </a>
-
-                        <a href="#" style="color: #e74c3c;">
-                            <i class="fas fa-heartbeat"></i> Heart Disease Prediction
-                        </a>
-
-                        <a href="#" style="color: #27ae60;">
-                            <i class="fas fa-notes-medical"></i> Kidney Disease Prediction
-                        </a>
-
-                    </div>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="nav-link dropbtn">AI-Powered Medical Insights <i
-                            class="fas fa-caret-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="#" style="color: #28a745;"> <!-- Green for general health -->
-                            <i class="fas fa-comment-medical"></i> AI Health Assistant
-                        </a>
-
-                        <a href="#" style="color: #ff851b;"> <!-- Orange for voice interaction -->
-                            <i class="fas fa-microphone-alt"></i> Voice AI Health Assistant
-                        </a>
-
-                        <a href="#" style="color: #6f42c1;"> <!-- Purple for image/vision -->
-                            <i class="fas fa-image"></i> AI Image Diagnosis
-                        </a>
-
-                        <a href="#" style="color: #dc3545;"> <!-- Red for reports/alerts -->
-                            <i class="fas fa-file-pdf"></i> Medical Report Analysis
-                        </a>
-
-                    </div>
-                </li>
-                <li class="user-dropdown">
-                    <div class="user-profile">
-                        <img src="{{ url_for('static', filename='images/profile.png') }}" alt="User"
-                            class="user-avatar">
-                        <span class="username">{{ user }}</span>
-                    </div>
-                    <div class="dropdown-content user-menu">
-                        <a href="#" style="color: #17a2b8;"> <!-- Teal for user/account -->
-                            <i class="fas fa-user-cog"></i> My Account
-                        </a>
-
-                        <a href="{{ url_for('logout') }}" style="color: #dc3545;"> <!-- Red for logout/exit -->
-                            <i class="fas fa-sign-out-alt"></i> Logout
-                        </a>
-                    </div>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Slider Section -->
-    <section id="home" class="hero-slider">
-        <div class="slider-container">
-            <div class="slide active" style="background-image: url('/static/images/dashboard_01.jpg')">
-                <div class="slide-content">
-                    <span class="subheading">Welcome back, Mr/Ms. {{ user }}</span>
-                    <h1>Your Health, Our Priority</h1>
-                    <p>Track your health status with intelligent insights powered by AI and Machine Learning, delivering
-                        personalized recommendations based on your medical history and predictive analysis.</p>
-                    <div class="cta-buttons">
-                        <a href="#quick-access" class="btn primary-btn">Quick Access</a>
-                        <a href="#recent-activity" class="btn secondary-btn">Recent Activity</a>
-                    </div>
+{% block content %}
+<!-- Hero Slider Section -->
+<section id="home" class="hero-slider">
+    <div class="slider-container">
+        <div class="slide active" style="background-image: url('/static/images/dashboard_01.jpg')">
+            <div class="slide-content">
+                <span class="subheading">Welcome back, Mr/Ms. {{ user }}</span>
+                <h1>Your Health, Our Priority</h1>
+                <p>Track your health status with intelligent insights powered by AI and Machine Learning, delivering
+                    personalized recommendations based on your medical history and predictive analysis.</p>
+                <div class="cta-buttons">
+                    <a href="#quick-access" class="btn primary-btn">Quick Access</a>
+                    <a href="#recent-activity" class="btn secondary-btn">Recent Activity</a>
                 </div>
             </div>
-            <div class="slide" style="background-image: url('/static/images/dashboard_03.jpg')">
-                <div class="slide-content">
-                    <span class="subheading">AI-Powered Insights</span>
-                    <h1>Smart Health Monitoring</h1>
-                    <p>Our advanced algorithms analyze your data to provide early warnings and health improvement
-                        suggestions.</p>
-                    <div class="cta-buttons">
-                        <a href="#" class="btn primary-btn">Ask AI Health Assistant</a>
-                    </div>
+        </div>
+        <div class="slide" style="background-image: url('/static/images/dashboard_03.jpg')">
+            <div class="slide-content">
+                <span class="subheading">AI-Powered Insights</span>
+                <h1>Smart Health Monitoring</h1>
+                <p>Our advanced algorithms analyze your data to provide early warnings and health improvement
+                    suggestions.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn primary-btn">Ask AI Health Assistant</a>
                 </div>
             </div>
-            <div class="slide" style="background-image: url('/static/images/dashboard_02.jpg')">
-                <div class="slide-content">
-                    <span class="subheading">Comprehensive Analysis</span>
-                    <h1>Track Your Health Progress</h1>
-                    <p>View your historical predictions and health metrics to understand your wellness journey.</p>
-                    <div class="cta-buttons">
-                        <a href="#" class="btn primary-btn">View Health History</a>
-                    </div>
+        </div>
+        <div class="slide" style="background-image: url('/static/images/dashboard_02.jpg')">
+            <div class="slide-content">
+                <span class="subheading">Comprehensive Analysis</span>
+                <h1>Track Your Health Progress</h1>
+                <p>View your historical predictions and health metrics to understand your wellness journey.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn primary-btn">View Health History</a>
                 </div>
             </div>
-            <div class="slide" style="background-image: url('/static/images/dashboard_04.jpg')">
-                <div class="slide-content">
-                    <span class="subheading">Stay Protected</span>
-                    <h1>Privacy First Approach</h1>
-                    <p>Your health data is encrypted and never shared without your explicit consent.</p>
-                    <div class="cta-buttons">
-                        <a href="#" class="btn primary-btn">Privacy Settings</a>
-                    </div>
+        </div>
+        <div class="slide" style="background-image: url('/static/images/dashboard_04.jpg')">
+            <div class="slide-content">
+                <span class="subheading">Stay Protected</span>
+                <h1>Privacy First Approach</h1>
+                <p>Your health data is encrypted and never shared without your explicit consent.</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn primary-btn">Privacy Settings</a>
                 </div>
             </div>
-            <div class="slider-controls">
-                <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
-                <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="slider-dots"></div>
         </div>
-    </section>
-
-    <!-- Floating AI-Health Services Section -->
-    <div class="floating-services">
-        <!-- AI Health Risk Predictor -->
-        <div class="service-card">
-            <div class="icon-box icon-blue">
-                <i class="fas fa-brain"></i>
-            </div>
-            <div>
-                <strong>AI Health Risk Predictor</strong><br>
-                <small>Diabetes | Heart | Kidney</small>
-            </div>
+        <div class="slider-controls">
+            <button class="prev-slide"><i class="fas fa-chevron-left"></i></button>
+            <button class="next-slide"><i class="fas fa-chevron-right"></i></button>
         </div>
+        <div class="slider-dots"></div>
+    </div>
+</section>
 
-        <!-- Virtual Health Assistant -->
-        <div class="service-card">
-            <div class="icon-box icon-green">
-                <i class="fas fa-robot"></i>
-            </div>
-            <div>
-                <strong>Virtual Health Assistant</strong><br>
-                <small>24x7 ML Chat Support</small>
-            </div>
+<!-- Floating AI-Health Services Section -->
+<div class="floating-services">
+    <!-- AI Health Risk Predictor -->
+    <div class="service-card">
+        <div class="icon-box icon-blue">
+            <i class="fas fa-brain"></i>
         </div>
-
-        <!-- Smart Health Monitoring -->
-        <div class="service-card">
-            <div class="icon-box icon-pink">
-                <i class="fas fa-heartbeat"></i>
-            </div>
-            <div>
-                <strong>Smart Health Monitoring</strong><br>
-                <small>Real-time Vitals Tracking</small>
-            </div>
+        <div>
+            <strong>AI Health Risk Predictor</strong><br>
+            <small>Diabetes | Heart | Kidney</small>
         </div>
     </div>
 
-    <!-- Quick Access Section -->
-    <section id="quick-access" class="quick-access-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Quick Access</h2>
-                <p class="quick-access-description">
-                    Checking your health is now super easy! Use our tools to quickly understand how your body is doing.
-                    Whether you want to look at something specific or just stay healthy, these features help you in just
-                    a few seconds.
-                </p>
+    <!-- Virtual Health Assistant -->
+    <div class="service-card">
+        <div class="icon-box icon-green">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div>
+            <strong>Virtual Health Assistant</strong><br>
+            <small>24x7 ML Chat Support</small>
+        </div>
+    </div>
 
+    <!-- Smart Health Monitoring -->
+    <div class="service-card">
+        <div class="icon-box icon-pink">
+            <i class="fas fa-heartbeat"></i>
+        </div>
+        <div>
+            <strong>Smart Health Monitoring</strong><br>
+            <small>Real-time Vitals Tracking</small>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Access Section -->
+<section id="quick-access" class="quick-access-section">
+    <div class="container">
+        <div class="section-header">
+            <h2>Quick Access</h2>
+            <p class="quick-access-description">
+                Checking your health is now super easy! Use our tools to quickly understand how your body is doing.
+                Whether you want to look at something specific or just stay healthy, these features help you in just
+                a few seconds.
+            </p>
+
+        </div>
+        <div class="quick-access-grid">
+            <!-- Diabetes Card -->
+            <div class="quick-access-card">
+                <div class="icon-wrapper diabetes-icon">
+                    <i class="fas fa-syringe"></i>
+                </div>
+                <h3>Diabetes Prediction</h3>
+                <p>Predict the likelihood of developing diabetes using advanced algorithms.</p>
+                <a href="#" class="quick-access-btn diabetes-btn">
+                    Check Now <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
-            <div class="quick-access-grid">
-                <!-- Diabetes Card -->
-                <div class="quick-access-card">
-                    <div class="icon-wrapper diabetes-icon">
-                        <i class="fas fa-syringe"></i>
-                    </div>
-                    <h3>Diabetes Prediction</h3>
-                    <p>Predict the likelihood of developing diabetes using advanced algorithms.</p>
-                    <a href="#" class="quick-access-btn diabetes-btn">
-                        Check Now <i class="fas fa-arrow-right"></i>
-                    </a>
-                </div>
 
-                <!-- Heart Card -->
-                <div class="quick-access-card">
-                    <div class="icon-wrapper heart-icon">
-                        <i class="fas fa-heartbeat"></i>
-                    </div>
-                    <h3>Heart Disease Prediction</h3>
-                    <p>Assess your risk of cardiovascular diseases based on health metrics.</p>
-                    <a href="#" class="quick-access-btn heart-btn">
-                        Assess Now <i class="fas fa-arrow-right"></i>
-                    </a>
+            <!-- Heart Card -->
+            <div class="quick-access-card">
+                <div class="icon-wrapper heart-icon">
+                    <i class="fas fa-heartbeat"></i>
                 </div>
+                <h3>Heart Disease Prediction</h3>
+                <p>Assess your risk of cardiovascular diseases based on health metrics.</p>
+                <a href="#" class="quick-access-btn heart-btn">
+                    Assess Now <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
 
-                <!-- Kidney Card -->
-                <div class="quick-access-card">
-                    <div class="icon-wrapper kidney-icon">
-                        <i class="fas fa-prescription-bottle-alt"></i>
-                    </div>
-                    <h3>Kidney Disease Prediction</h3>
-                    <p>Monitor kidney health and detect potential risks early.</p>
-                    <a href="#" class="quick-access-btn kidney-btn">
-                        Test Now <i class="fas fa-arrow-right"></i>
-                    </a>
+            <!-- Kidney Card -->
+            <div class="quick-access-card">
+                <div class="icon-wrapper kidney-icon">
+                    <i class="fas fa-prescription-bottle-alt"></i>
                 </div>
+                <h3>Kidney Disease Prediction</h3>
+                <p>Monitor kidney health and detect potential risks early.</p>
+                <a href="#" class="quick-access-btn kidney-btn">
+                    Test Now <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
 
-                <!-- AI Assistant Card -->
-                <div class="quick-access-card">
-                    <div class="icon-wrapper ai-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>AI Health Assistant</h3>
-                    <p>Get personalized health advice from our AI anytime.</p>
-                    <a href="#" class="quick-access-btn ai-btn">
-                        Ask AI <i class="fas fa-arrow-right"></i>
-                    </a>
+            <!-- AI Assistant Card -->
+            <div class="quick-access-card">
+                <div class="icon-wrapper ai-icon">
+                    <i class="fas fa-robot"></i>
                 </div>
+                <h3>AI Health Assistant</h3>
+                <p>Get personalized health advice from our AI anytime.</p>
+                <a href="#" class="quick-access-btn ai-btn">
+                    Ask AI <i class="fas fa-arrow-right"></i>
+                </a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Recent Activity Section -->
-    <section id="recent-activity" class="recent-activity-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Recent Activity</h2>
-                <p class="section-description">
-                    Track your health journey through recent predictions and interactions.
-                    See how your health is changing over time, get updates on what your body needs,
-                    and learn from your past reports. It's like having a smart helper that shows you the way to stay
-                    healthy!
-                </p>
-            </div>
+<!-- Recent Activity Section -->
+<section id="recent-activity" class="recent-activity-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Recent Activity</h2>
+            <p class="section-description">
+                Track your health journey through recent predictions and interactions.
+                See how your health is changing over time, get updates on what your body needs,
+                and learn from your past reports. It's like having a smart helper that shows you the way to stay
+                healthy!
+            </p>
+        </div>
 
-            <div class="activity-timeline">
-                {% if recent_activities %}
-                {% for activity in recent_activities %}
-                <div class="activity-card {{ activity.type }}-card">
-                    <div class="activity-icon">
-                        <i class="{{ activity.icon }}"></i>
+        <div class="activity-timeline">
+            {% if recent_activities %}
+            {% for activity in recent_activities %}
+            <div class="activity-card {{ activity.type }}-card">
+                <div class="activity-icon">
+                    <i class="{{ activity.icon }}"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-header">
+                        <h3>{{ activity.title }}</h3>
+                        <span class="activity-time">{{ activity.time }}</span>
                     </div>
-                    <div class="activity-content">
-                        <div class="activity-header">
-                            <h3>{{ activity.title }}</h3>
-                            <span class="activity-time">{{ activity.time }}</span>
-                        </div>
-                        <p>{{ activity.description }}</p>
-                        <div class="activity-actions">
-                            <a href="{{ activity.view_link }}" class="activity-btn view-btn">
-                                <i class="fas fa-eye"></i> View
-                            </a>
-                            {% if activity.redo_link %}
-                            <a href="{{ activity.redo_link }}" class="activity-btn redo-btn">
-                                <i class="fas fa-redo"></i> Redo
-                            </a>
-                            {% endif %}
-                        </div>
+                    <p>{{ activity.description }}</p>
+                    <div class="activity-actions">
+                        <a href="{{ activity.view_link }}" class="activity-btn view-btn">
+                            <i class="fas fa-eye"></i> View
+                        </a>
+                        {% if activity.redo_link %}
+                        <a href="{{ activity.redo_link }}" class="activity-btn redo-btn">
+                            <i class="fas fa-redo"></i> Redo
+                        </a>
+                        {% endif %}
                     </div>
                 </div>
-                {% endfor %}
-                {% else %}
-                <div class="no-activity-card">
-                    <div class="no-activity-icon">
-                        <i class="fas fa-calendar-check"></i>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="no-activity-card">
+                <div class="no-activity-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="no-activity-content">
+                    <h3>No Recent Activity</h3>
+                    <p>Get started by completing your first health assessment</p>
+                    <a href="#quick-access" class="btn primary-btn">
+                        <i class="fas fa-rocket"></i> Start Now
+                    </a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Disease Information Section -->
+<section id="disease-info" class="disease-info-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Disease Information Center</h2>
+            <p class="section-description">
+                Comprehensive guides to understand, prevent, and manage health conditions.
+                Learn about symptoms, causes, and helpful tips so you can take better care of yourself and your
+                loved ones.
+            </p>
+        </div>
+
+        <div class="disease-tabs">
+            <button class="tab-btn diabetes-tab active" data-tab="diabetes">
+                <i class="fas fa-syringe"></i> Diabetes
+            </button>
+            <button class="tab-btn heart-tab" data-tab="heart">
+                <i class="fas fa-heartbeat"></i> Heart Disease
+            </button>
+            <button class="tab-btn kidney-tab" data-tab="kidney">
+                <i class="fas fa-kidneys"></i> Kidney Disease
+            </button>
+        </div>
+
+        <div class="tab-content active" id="diabetes-tab">
+            <div class="disease-content">
+                <div class="disease-text">
+                    <div class="disease-header">
+                        <h3>Diabetes Mellitus</h3>
+                        <span class="disease-tag" style="background-color: rgba(58, 134, 255, 0.2); color: #3a86ff;">
+                            <i class="fas fa-info-circle"></i> Metabolic Disorder
+                        </span>
                     </div>
-                    <div class="no-activity-content">
-                        <h3>No Recent Activity</h3>
-                        <p>Get started by completing your first health assessment</p>
-                        <a href="#quick-access" class="btn primary-btn">
-                            <i class="fas fa-rocket"></i> Start Now
+                    <p>Diabetes is a chronic disease that occurs when the pancreas doesn't produce enough insulin or
+                        when the body cannot effectively use the insulin it produces. This leads to elevated blood
+                        glucose levels.</p>
+
+                    <div class="disease-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">463M</span>
+                            <span class="stat-label">People affected worldwide</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">1.5M</span>
+                            <span class="stat-label">Deaths annually</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">50%</span>
+                            <span class="stat-label">Undiagnosed cases</span>
+                        </div>
+                    </div>
+
+                    <div class="disease-actions">
+                        <a href="#" class="btn diabetes-btn">
+                            <i class="fas fa-chart-line"></i> Check Your Risk
+                        </a>
+                        <a href="{{ url_for('disease_details') }}" class="btn secondary-btn">
+                            <i class="fas fa-book-medical"></i> Learn More
                         </a>
                     </div>
                 </div>
-                {% endif %}
-            </div>
-        </div>
-    </section>
-
-    <!-- Disease Information Section -->
-    <section id="disease-info" class="disease-info-section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Disease Information Center</h2>
-                <p class="section-description">
-                    Comprehensive guides to understand, prevent, and manage health conditions.
-                    Learn about symptoms, causes, and helpful tips so you can take better care of yourself and your
-                    loved ones.
-                </p>
-            </div>
-
-            <div class="disease-tabs">
-                <button class="tab-btn diabetes-tab active" data-tab="diabetes">
-                    <i class="fas fa-syringe"></i> Diabetes
-                </button>
-                <button class="tab-btn heart-tab" data-tab="heart">
-                    <i class="fas fa-heartbeat"></i> Heart Disease
-                </button>
-                <button class="tab-btn kidney-tab" data-tab="kidney">
-                    <i class="fas fa-kidneys"></i> Kidney Disease
-                </button>
-            </div>
-
-            <div class="tab-content active" id="diabetes-tab">
-                <div class="disease-content">
-                    <div class="disease-text">
-                        <div class="disease-header">
-                            <h3>Diabetes Mellitus</h3>
-                            <span class="disease-tag"
-                                style="background-color: rgba(58, 134, 255, 0.2); color: #3a86ff;">
-                                <i class="fas fa-info-circle"></i> Metabolic Disorder
-                            </span>
-                        </div>
-                        <p>Diabetes is a chronic disease that occurs when the pancreas doesn't produce enough insulin or
-                            when the body cannot effectively use the insulin it produces. This leads to elevated blood
-                            glucose levels.</p>
-
-                        <div class="disease-stats">
-                            <div class="stat-item">
-                                <span class="stat-value">463M</span>
-                                <span class="stat-label">People affected worldwide</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-value">1.5M</span>
-                                <span class="stat-label">Deaths annually</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-value">50%</span>
-                                <span class="stat-label">Undiagnosed cases</span>
-                            </div>
-                        </div>
-
-                        <div class="disease-actions">
-                            <a href="#" class="btn diabetes-btn">
-                                <i class="fas fa-chart-line"></i> Check Your Risk
-                            </a>
-                            <a href="{{ url_for('disease_details') }}" class="btn secondary-btn">
-                                <i class="fas fa-book-medical"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                    <div class="disease-image">
-                        <img src="{{ url_for('static', filename='images/Diseases/diabetes_05.jpg') }}"
-                            alt="Diabetes Information">
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-content" id="heart-tab">
-                <div class="disease-content">
-                    <div class="disease-text">
-                        <div class="disease-header">
-                            <h3>Cardiovascular Disease</h3>
-                            <span class="disease-tag" style="background-color: rgba(230, 57, 70, 0.2); color: #e63946;">
-                                <i class="fas fa-heart"></i> Circulatory System
-                            </span>
-                        </div>
-                        <p>Heart disease refers to various conditions affecting the heart and blood vessels, including
-                            coronary artery disease, arrhythmias, and congenital heart defects.</p>
-
-                        <div class="disease-stats">
-                            <div class="stat-item">
-                                <span class="stat-value">17.9M</span>
-                                <span class="stat-label">Deaths annually</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-value">85%</span>
-                                <span class="stat-label">Due to heart attack/stroke</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-value">80%</span>
-                                <span class="stat-label">Preventable cases</span>
-                            </div>
-                        </div>
-
-                        <div class="disease-actions">
-                            <a href="#" class="btn heart-btn">
-                                <i class="fas fa-heartbeat"></i> Assess Heart Health
-                            </a>
-                            <a href="#" class="btn secondary-btn">
-                                <i class="fas fa-book-medical"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                    <div class="disease-image">
-                        <img src="{{ url_for('static', filename='images/Diseases/heart_02.jpg') }}"
-                            alt="Heart Disease Information">
-                    </div>
-                </div>
-            </div>
-
-            <div class="tab-content" id="kidney-tab">
-                <div class="disease-content">
-                    <div class="disease-text">
-                        <div class="disease-header">
-                            <h3>Chronic Kidney Disease</h3>
-                            <span class="disease-tag"
-                                style="background-color: rgba(131, 56, 236, 0.2); color: #8338ec;">
-                                <i class="fas fa-filter"></i> Renal System
-                            </span>
-                        </div>
-                        <p>Chronic kidney disease occurs when kidneys become damaged and can't filter blood effectively,
-                            leading to waste buildup and other complications.</p>
-
-                        <div class="disease-stats">
-                            <div class="stat-item">
-                                <span class="stat-value">850M</span>
-                                <span class="stat-label">People affected worldwide</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-value">1.2M</span>
-                                <span class="stat-label">Deaths annually</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-value">90%</span>
-                                <span class="stat-label">Unaware of condition</span>
-                            </div>
-                        </div>
-
-                        <div class="disease-actions">
-                            <a href="#" class="btn kidney-btn">
-                                <i class="fas fa-vial"></i> Test Kidney Function
-                            </a>
-                            <a href="#" class="btn secondary-btn">
-                                <i class="fas fa-book-medical"></i> Learn More
-                            </a>
-                        </div>
-                    </div>
-                    <div class="disease-image">
-                        <img src="{{ url_for('static', filename='images/Diseases/kidney_01.jpg') }}"
-                            alt="Kidney Disease Information">
-                    </div>
+                <div class="disease-image">
+                    <img src="{{ url_for('static', filename='images/Diseases/diabetes_05.jpg') }}"
+                        alt="Diabetes Information">
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Health Tips Section -->
-    <section class="health-tips-section">
-        <div class="container">
-            <h2 class="section-title">Daily Health Tips</h2>
-            <p class="section-description">Personalized recommendations based on your health profile</p>
+        <div class="tab-content" id="heart-tab">
+            <div class="disease-content">
+                <div class="disease-text">
+                    <div class="disease-header">
+                        <h3>Cardiovascular Disease</h3>
+                        <span class="disease-tag" style="background-color: rgba(230, 57, 70, 0.2); color: #e63946;">
+                            <i class="fas fa-heart"></i> Circulatory System
+                        </span>
+                    </div>
+                    <p>Heart disease refers to various conditions affecting the heart and blood vessels, including
+                        coronary artery disease, arrhythmias, and congenital heart defects.</p>
 
-            <div class="tips-carousel">
-                <div class="tip-card">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Balanced Diet</h3>
-                    <p>Include more fruits, vegetables, and whole grains in your meals today.</p>
+                    <div class="disease-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">17.9M</span>
+                            <span class="stat-label">Deaths annually</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">85%</span>
+                            <span class="stat-label">Due to heart attack/stroke</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">80%</span>
+                            <span class="stat-label">Preventable cases</span>
+                        </div>
+                    </div>
+
+                    <div class="disease-actions">
+                        <a href="#" class="btn heart-btn">
+                            <i class="fas fa-heartbeat"></i> Assess Heart Health
+                        </a>
+                        <a href="{{ url_for('disease_details') }}" class="btn secondary-btn">
+                            <i class="fas fa-book-medical"></i> Learn More
+                        </a>
+                    </div>
                 </div>
-                <div class="tip-card">
-                    <i class="fas fa-running"></i>
-                    <h3>Physical Activity</h3>
-                    <p>Aim for at least 30 minutes of moderate exercise today.</p>
-                </div>
-                <div class="tip-card">
-                    <i class="fas fa-bed"></i>
-                    <h3>Quality Sleep</h3>
-                    <p>Try to get 7-8 hours of sleep tonight for optimal health.</p>
-                </div>
-                <div class="tip-card">
-                    <i class="fas fa-stress"></i>
-                    <h3>Stress Management</h3>
-                    <p>Practice 10 minutes of deep breathing or meditation today.</p>
+                <div class="disease-image">
+                    <img src="{{ url_for('static', filename='images/Diseases/heart_02.jpg') }}"
+                        alt="Heart Disease Information">
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <a href="#home" class="logo">Health Scope</a>
-                    <p>Empowering your health journey with AI-driven insights, predictive analytics, and personalized
-                        recommendations.</p>
-                    <div class="footer-newsletter">
-                        <h4>Stay Updated</h4>
-                        <form class="newsletter-form">
-                            <input type="email" placeholder="Your email address" required>
-                            <button type="submit">Subscribe</button>
-                        </form>
+        <div class="tab-content" id="kidney-tab">
+            <div class="disease-content">
+                <div class="disease-text">
+                    <div class="disease-header">
+                        <h3>Chronic Kidney Disease</h3>
+                        <span class="disease-tag" style="background-color: rgba(131, 56, 236, 0.2); color: #8338ec;">
+                            <i class="fas fa-filter"></i> Renal System
+                        </span>
+                    </div>
+                    <p>Chronic kidney disease occurs when kidneys become damaged and can't filter blood effectively,
+                        leading to waste buildup and other complications.</p>
+
+                    <div class="disease-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">850M</span>
+                            <span class="stat-label">People affected worldwide</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">1.2M</span>
+                            <span class="stat-label">Deaths annually</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">90%</span>
+                            <span class="stat-label">Unaware of condition</span>
+                        </div>
+                    </div>
+
+                    <div class="disease-actions">
+                        <a href="#" class="btn kidney-btn">
+                            <i class="fas fa-vial"></i> Test Kidney Function
+                        </a>
+                        <a href="{{ url_for('disease_details') }}" class="btn secondary-btn">
+                            <i class="fas fa-book-medical"></i> Learn More
+                        </a>
                     </div>
                 </div>
-                <div class="footer-links">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Dashboard</a></li>
-                        <li><a href="#disease-info">Disease Info</a></li>
-                        <li><a href="#quick-access">Predictions</a></li>
-                        <li><a href="#recent-activity">Activity</a></li>
-                        <li><a href="#">My Profile</a></li>
-                        <li><a href="#">Help Center</a></li>
-                    </ul>
+                <div class="disease-image">
+                    <img src="{{ url_for('static', filename='images/Diseases/kidney_01.jpg') }}"
+                        alt="Kidney Disease Information">
                 </div>
-                <div class="footer-links">
-                    <h3>Health Tools</h3>
-                    <ul>
-                        <li><a href="#">Diabetes Check</a></li>
-                        <li><a href="#">Heart Disease Check</a></li>
-                        <li><a href="#">Kidney Disease Check</a></li>
-                        <li><a href="#">AI Assistant</a></li>
-                        <li><a href="#">Voice Assistant</a></li>
-                        <li><a href="#">Image Diagnosis</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h3>Connect With Us</h3>
-                    <div class="social-icons">
-                        <a href="https://www.facebook.com/gangad143" aria-label="Facebook" target="_blank"
-                            rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.linkedin.com/in/angadgupta143/" aria-label="LinkedIn" target="_blank"
-                            rel="noopener noreferrer"><i class="fas fa-linkedin-in"></i></a>
-                        <a href="https://www.youtube.com/@greenature143" aria-label="YouTube" target="_blank"
-                            rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
-                        <a href="https://github.com/Angad143" aria-label="GitHub" target="_blank"
-                            rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                    </div>
-                    <div class="footer-contact">
-                        <p><i class="fas fa-envelope"></i> contact@healthscope.com</p>
-                        <p><i class="fas fa-phone"></i> +91 8176047917</p>
-                        <p><i class="fas fa-map-marker-alt"></i> 123 Medical Drive, Health City, Rajkot, India</p>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 HealthScope | Developed with ❤️ by Medical AI Team | Version 2.0.0</p>
-                <p class="footer-disclaimer">For research and educational purposes only. Not intended as medical advice.
-                </p>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
-</body>
+<!-- Health Tips Section -->
+<section class="health-tips-section">
+    <div class="container">
+        <h2 class="section-title">Daily Health Tips</h2>
+        <p class="section-description">Personalized recommendations based on your health profile</p>
 
-</html>
+        <div class="tips-carousel">
+            <div class="tip-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Balanced Diet</h3>
+                <p>Include more fruits, vegetables, and whole grains in your meals today.</p>
+            </div>
+            <div class="tip-card">
+                <i class="fas fa-running"></i>
+                <h3>Physical Activity</h3>
+                <p>Aim for at least 30 minutes of moderate exercise today.</p>
+            </div>
+            <div class="tip-card">
+                <i class="fas fa-bed"></i>
+                <h3>Quality Sleep</h3>
+                <p>Try to get 7-8 hours of sleep tonight for optimal health.</p>
+            </div>
+            <div class="tip-card">
+                <i class="fas fa-stress"></i>
+                <h3>Stress Management</h3>
+                <p>Practice 10 minutes of deep breathing or meditation today.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Logout confirmation
+const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
+if (logoutBtn) {
+    logoutBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+            window.location.href = this.href;
+        }
+    });
+}
+</script>
+{% endblock %}

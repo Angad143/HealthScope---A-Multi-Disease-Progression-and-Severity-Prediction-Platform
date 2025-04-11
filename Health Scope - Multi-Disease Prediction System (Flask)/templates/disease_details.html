@@ -1,131 +1,287 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Health Information - Heart, Diabetes, and Kidney Disease</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7fc;
-            color: #333;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        header h1 {
-            margin: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-            padding: 20px;
-        }
-        .card h2 {
-            color: #007bff;
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        .card p {
-            line-height: 1.6;
-        }
-        .card ul {
-            margin-left: 20px;
-        }
-        .card ul li {
-            margin-bottom: 8px;
-        }
-        .card .section-title {
-            font-weight: bold;
-            margin-top: 15px;
-            color: #333;
-        }
-        footer {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
-</head>
-<body>
+{% extends "base.html" %}
 
-<header>
-    <h1>Health Information: Heart, Diabetes, and Kidney Disease</h1>
-</header>
+{% block title %}Disease Details - Health Scope{% endblock %}
 
-<div class="container">
-    <!-- Heart Disease Section -->
-    <div class="card">
-        <h2>Heart Disease</h2>
-        <p><span class="section-title">What is Heart Disease?</span> Heart disease refers to a range of conditions that affect the heart, including coronary artery disease, heart attacks, arrhythmias, and heart failure. It is one of the leading causes of death worldwide.</p>
-        
-        <p><span class="section-title">Types of Heart Disease:</span></p>
-        <ul>
-            <li><strong>Coronary Artery Disease:</strong> Narrowing or blockage of the arteries that supply blood to the heart muscle.</li>
-            <li><strong>Heart Attack:</strong> Occurs when blood flow to part of the heart is blocked, leading to damage to the heart muscle.</li>
-            <li><strong>Arrhythmias:</strong> Abnormal heart rhythms that can lead to inefficient pumping of the heart.</li>
-            <li><strong>Heart Failure:</strong> A condition where the heart can't pump blood effectively to meet the body's needs.</li>
-        </ul>
-        
-        <p><span class="section-title">Causes:</span> The primary causes include high blood pressure, high cholesterol, smoking, diabetes, sedentary lifestyle, and excessive alcohol consumption.</p>
-        
-        <p><span class="section-title">Prevention:</span> Maintain a healthy diet, exercise regularly, manage stress, avoid smoking, and keep blood pressure and cholesterol levels in check.</p>
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/disease_details.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="disease-details-container">
+    <!-- Header Section -->
+    <div class="title-container">
+        <h1 class="title-text">🏥 Explore Disease Details - Health Scope 🏥</h1>
     </div>
 
+    <h2 class="subtitle">🔍 Health Scope - Your Guide to Disease Insights</h2>
+    <p class="intro-text">
+        Welcome to Health Scope's comprehensive disease information center. Here you'll find detailed, medically-reviewed 
+        insights about common health conditions, including their symptoms, causes, prevention strategies, and treatment 
+        options. Our goal is to empower you with knowledge to better understand potential health risks, recognize early 
+        warning signs, and make informed decisions about your wellbeing. 
+    </p>
     <!-- Diabetes Section -->
-    <div class="card">
-        <h2>Diabetes</h2>
-        <p><span class="section-title">What is Diabetes?</span> Diabetes is a chronic disease that occurs when the body is unable to produce or effectively use insulin, leading to high blood sugar levels. It can lead to serious complications if not managed properly.</p>
-        
-        <p><span class="section-title">Types of Diabetes:</span></p>
-        <ul>
-            <li><strong>Type 1 Diabetes:</strong> An autoimmune disease where the body's immune system attacks insulin-producing cells in the pancreas.</li>
-            <li><strong>Type 2 Diabetes:</strong> A condition where the body becomes resistant to insulin, often associated with obesity and a sedentary lifestyle.</li>
-            <li><strong>Gestational Diabetes:</strong> Diabetes that occurs during pregnancy and usually goes away after childbirth but increases the risk of developing Type 2 diabetes later in life.</li>
-        </ul>
-        
-        <p><span class="section-title">Symptoms:</span> Frequent urination, excessive thirst, fatigue, blurred vision, and slow healing of wounds.</p>
-        
-        <p><span class="section-title">Management:</span> Diabetes can be managed with a healthy diet, regular physical activity, blood sugar monitoring, and medications such as insulin or oral medications.</p>
+    <div class="disease-card">
+        <h1 class="disease-title">1. Diabetes</h1>
+        <img src="{{ url_for('static', filename='images/Diseases/diabetes_01.jpg') }}" alt="Diabetes"
+            class="disease-image">
+
+        <div class="row-container">
+                <h3 class="section-title">Description:</h3>
+                <p class="section-text">Diabetes is a condition where the body struggles to process sugar (glucose) from food.
+                    Normally, insulin helps move sugar from the blood into cells for energy. In diabetes,
+                    either the body doesn't produce enough insulin or can't use it effectively, leading to
+                    high blood sugar levels. <br> There are two main types: Type 1 diabetes (where the body doesn't
+                    produce insulin) and Type 2 diabetes (where the body doesn't use insulin properly).
+                    Over time, high blood sugar can lead to serious problems with our heart, eyes, kidneys,
+                    nerves, and more.</p>
+            <div class="column">
+                <div class="info-grid">
+                    <div class="grid-item">
+                        <h3 class="section-title">Common Symptoms:</h3>
+                        <ul class="info-list">
+                            <li>1. Frequent urination (especially at night)</li>
+                            <li>2. Increased thirst and hunger</li>
+                            <li>3. Unexplained weight loss</li>
+                            <li>4. Fatigue and irritability</li>
+                            <li>5. Blurred vision</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3 class="section-title">Main Causes:</h3>
+                        <ul class="info-list">
+                            <li>1. Family history (genetics)</li>
+                            <li>2. Being overweight or obese</li>
+                            <li>3. Physical inactivity</li>
+                            <li>4. Unhealthy eating habits</li>
+                            <li>5. Age (risk increases as you get older)</li>
+                            <li>6. High blood pressure</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="info-grid">
+                    <div class="grid-item">
+                        <h3 class="section-title">Prevention Tips:</h3>
+                        <ul class="info-list">
+                            <li>1. Maintain a healthy weight through diet and exercise</li>
+                            <li>2. Eat balanced meals with plenty of fruits and vegetables</li>
+                            <li>3. Limit sugary foods and drinks</li>
+                            <li>4. Exercise regularly (at least 30 minutes daily)</li>
+                            <li>5. Get regular health checkups</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3 class="section-title">Treatment Options:</h3>
+                        <ul class="info-list">
+                            <li>1. Regular blood sugar monitoring</li>
+                            <li>2. Insulin therapy (for Type 1 diabetes)</li>
+                            <li>3. Oral medications (for Type 2 diabetes)</li>
+                            <li>4. Healthy diet and exercise plan</li>
+                            <li>5. Regular doctor visits to monitor complications</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Heart Disease Section -->
+    <div class="disease-card">
+        <h1 class="disease-title">2. Heart Disease</h1>
+        <img src="{{ url_for('static', filename='images/Diseases/heart_01.jpg') }}" alt="Heart Disease" class="disease-image">
+
+        <div class="row-container">
+                <h3 class="section-title">Description:</h3>
+                <p class="section-text">Heart disease includes various conditions that affect the heart, with coronary artery disease
+                    being the most common. It happens when arteries supplying blood to the heart narrow due to
+                    plaque buildup, reducing oxygen and nutrients.<br> This can cause chest pain,
+                    heart attacks, or worse. However, many forms of heart disease can be prevented or managed
+                    with healthy lifestyle choices.</p>
+             
+            <div class="column">
+                <div class="info-grid">
+                    <div class="grid-item">
+                        <h3 class="section-title">Symptoms:</h3>
+                        <ul class="info-list">
+                            <li>1. Chest pain, tightness, or discomfort (angina)</li>
+                            <li>2. Shortness of breath</li>
+                            <li>3. Pain in neck, jaw, throat, upper abdomen or back</li>
+                            <li>4. Nausea, fatigue, or lightheadedness</li>
+                            <li>5. Irregular heartbeat</li>
+                            <li>6. Swelling in legs, ankles or feet</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3 class="section-title">Main Causes:</h3>
+                        <ul class="info-list">
+                            <li>1. High blood pressure</li>
+                            <li>2. High cholesterol levels</li>
+                            <li>3. Smoking and tobacco use</li>
+                            <li>4. Unhealthy diet</li>
+                            <li>5. Excessive alcohol use</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="info-grid">
+                    <div class="grid-item">
+                        <h3 class="section-title">Prevention Tips:</h3>
+                        <ul class="info-list">
+                            <li>1. Don't smoke or use tobacco</li>
+                            <li>2. Exercise for at least 30 minutes most days</li>
+                            <li>3. Eat a heart-healthy diet (fruits, vegetables, whole grains)</li>
+                            <li>3. Maintain a healthy weight</li>
+                            <li>4. Get regular health screenings</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3 class="section-title">Treatment Options:</h3>
+                        <ul class="info-list">
+                            <li>1. Lifestyle changes (diet, exercise, quitting smoking)</li>
+                            <li>2. Medications to control blood pressure, cholesterol, etc.</li>
+                            <li>3. Medical procedures like angioplasty or bypass surgery</li>
+                            <li>4. Regular monitoring by a cardiologist</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Kidney Disease Section -->
-    <div class="card">
-        <h2>Kidney Disease</h2>
-        <p><span class="section-title">What is Kidney Disease?</span> Kidney disease, or chronic kidney disease (CKD), refers to the gradual loss of kidney function over time. The kidneys play a critical role in filtering waste from the blood, and when they fail, waste builds up in the body.</p>
-        
-        <p><span class="section-title">Types of Kidney Disease:</span></p>
-        <ul>
-            <li><strong>Chronic Kidney Disease (CKD):</strong> A long-term condition where kidney function gradually declines, often due to diabetes or hypertension.</li>
-            <li><strong>Acute Kidney Injury (AKI):</strong> A sudden loss of kidney function due to injury or illness, but often reversible with treatment.</li>
-            <li><strong>Polycystic Kidney Disease (PKD):</strong> A genetic disorder characterized by cysts in the kidneys that can lead to kidney failure.</li>
-        </ul>
-        
-        <p><span class="section-title">Symptoms:</span> Swelling, fatigue, frequent urination changes, nausea, and high blood pressure.</p>
-        
-        <p><span class="section-title">Prevention and Treatment:</span> Control diabetes and high blood pressure, follow a kidney-friendly diet, avoid smoking, and consider dialysis or a kidney transplant in severe cases.</p>
+    <div class="disease-card">
+        <h1 class="disease-title">3. Kidney Disease</h1>
+        <img src="{{ url_for('static', filename='images/Diseases/kidney_02.jpg') }}" alt="Kidney Disease" class="disease-image">
+
+        <div class="row-container">
+                <h3 class="section-title">Description:</h3>
+                <p class="section-text">Kidney disease occurs when your kidneys are damaged and can't filter blood effectively.
+                    These bean-shaped organs remove waste, balance minerals, make urine, and regulate blood pressure.
+                    Chronic kidney disease (CKD) means lasting damage that can get worse over time. If the damage is
+                    very bad, your kidneys may stop working completely. <br>This is called kidney failure, and you would
+                    need dialysis or a kidney transplant to survive. Many people don't realize they have kidney disease
+                    until it's advanced because symptoms often don't appear until the kidneys are badly damaged.</p>
+            
+             <div class="column">
+                <div class="info-grid">
+                    <div class="grid-item">
+                        <h3 class="section-title">Symptoms:</h3>
+                        <ul class="info-list">
+                            <li>1. Fatigue and weakness</li>
+                            <li>2. Shortness of breath</li>
+                            <li>3. Blood in urine (may appear pink or cola-colored)</li>
+                            <li>4. Puffy eyes, especially in the morning</li>
+                            <li>5. Dry, itchy skin</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3 class="section-title">Main Causes:</h3>
+                        <ul class="info-list">
+                            <li>1. Diabetes (leading cause of kidney disease)</li>
+                            <li>2. High blood pressure</li>
+                            <li>3. Glomerulonephritis (inflammation of kidney filters)</li>
+                            <li>4. Polycystic kidney disease (inherited condition)</li>
+                            <li>5. Prolonged urinary tract obstruction</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="info-grid">
+                    <div class="grid-item">
+                        <h3 class="section-title">Prevention Tips:</h3>
+                        <ul class="info-list">
+                            <li>1. Manage high blood pressure</li>
+                            <li>2. Eat a balanced, low-salt diet</li>
+                            <li>3. Stay hydrated by drinking enough water</li>
+                            <li>4. Don't smoke or use tobacco products</li>
+                            <li>5. Get regular exercise</li>
+                        </ul>
+                    </div>
+                    <div class="grid-item">
+                        <h3 class="section-title">Treatment Options:</h3>
+                        <ul class="info-list">
+                            <li>1. Medications to control underlying causes</li>
+                            <li>2. Dietary changes to reduce kidney workload</li>
+                            <li>3. Treatment for complications like anemia or weak bones</li>
+                            <li>4. Regular monitoring of kidney function</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+{% endblock %}
 
-<footer>
-    <p>Health Information © 2025. All Rights Reserved.</p>
-</footer>
+{% block extra_js %}
+<script>
+    // Initialize navbar functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function () {
+                const html = document.documentElement;
+                const isDark = html.getAttribute('data-theme') === 'dark';
 
-</body>
-</html>
+                if (isDark) {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    this.innerHTML = '<i class="fas fa-moon"></i><span>Dark</span>';
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    this.innerHTML = '<i class="fas fa-sun"></i><span>Light</span>';
+                }
+            });
+        }
+
+        // Logout confirmation
+        const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    window.location.href = this.href;
+                }
+            });
+        }
+
+
+
+        // ===================== Dropdown Menu Functionality =====================
+        const dropdowns = document.querySelectorAll('.dropdown, .user-dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const btn = dropdown.querySelector('.dropbtn, .user-profile');
+            const content = dropdown.querySelector('.dropdown-content, .user-menu');
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-content, .user-menu').forEach(item => {
+                    if (item !== content) {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Toggle current dropdown
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
+                }
+            });
+        });
+    });
+
+</script>
+{% endblock %}
