@@ -375,8 +375,10 @@
 <section class="health-tips-section">
     <div class="container">
         <h2 class="section-title">Daily Health Tips</h2>
-        <p class="section-description">Personalized recommendations based on your health profile</p>
-
+        <p class="section-description">
+            Get special health tips made just for you! We look at your health details and suggest what’s best for your
+            body, like what to eat, how to exercise, or which habits to follow to stay fit and healthy.
+        </p>
         <div class="tips-carousel">
             <div class="tip-card">
                 <i class="fas fa-utensils"></i>
@@ -394,7 +396,7 @@
                 <p>Try to get 7-8 hours of sleep tonight for optimal health.</p>
             </div>
             <div class="tip-card">
-                <i class="fas fa-stress"></i>
+                <i class="fas fa-brain"></i>
                 <h3>Stress Management</h3>
                 <p>Practice 10 minutes of deep breathing or meditation today.</p>
             </div>
@@ -406,14 +408,14 @@
 {% block extra_js %}
 <script>
     // Logout confirmation
-const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
-if (logoutBtn) {
-    logoutBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (confirm('Are you sure you want to logout?')) {
-            window.location.href = this.href;
-        }
-    });
-}
+    const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = this.href;
+            }
+        });
+    }
 </script>
 {% endblock %}
