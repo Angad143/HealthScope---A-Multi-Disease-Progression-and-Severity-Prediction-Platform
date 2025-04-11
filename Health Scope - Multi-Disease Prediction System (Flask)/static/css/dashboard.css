@@ -631,20 +631,16 @@ img {
 }
 
 /* ===================== Recent Activity Section ===================== */
+/* Recent Activity Section */
 .recent-activity-section {
-  padding: 5rem 0;
-  background-color: var(--bg-color);
-}
-
-.activity-timeline {
-  max-width: 800px;
-  margin: 0 auto;
+  padding: 6rem 0;
+  background: var(--bg-color);
 }
 
 .section-title {
-  text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: var(--primary-color);
+  text-align: center;
   margin-bottom: 1rem;
 }
 
@@ -653,53 +649,69 @@ img {
   color: var(--text-color);
   max-width: 100%;
   margin: 0 auto 3rem;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
-.activity-item {
+.activity-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.activity-card {
   display: flex;
   gap: 1.5rem;
   padding: 1.5rem;
-  border-radius: 10px;
+  border-radius: 12px;
   margin-bottom: 1.5rem;
   background: var(--card-bg);
-  box-shadow: var(--shadow);
-  transition: var(--transition);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border-left: 4px solid;
 }
 
-.activity-item:hover {
+.activity-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
+
+/* Activity Type Colors */
+.diabetes-card { border-color: #3a86ff; }
+.heart-card { border-color: #e63946; }
+.kidney-card { border-color: #8338ec; }
+.ai-card { border-color: #06d6a0; }
 
 .activity-icon {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: var(--primary-color);
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
   flex-shrink: 0;
+  color: white;
+  font-size: 1.2rem;
 }
+
+.diabetes-card .activity-icon { background: linear-gradient(135deg, #3a86ff, #6a8cff); }
+.heart-card .activity-icon { background: linear-gradient(135deg, #e63946, #ff758f); }
+.kidney-card .activity-icon { background: linear-gradient(135deg, #8338ec, #b56aff); }
+.ai-card .activity-icon { background: linear-gradient(135deg, #06d6a0, #48cae4); }
 
 .activity-content {
   flex: 1;
 }
 
-.activity-content h3 {
-  font-size: 1.2rem;
-  color: var(--text-color);
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 0.5rem;
 }
 
-.activity-content p {
+.activity-header h3 {
+  font-size: 1.2rem;
   color: var(--text-color);
-  opacity: 0.8;
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
+  margin: 0;
 }
 
 .activity-time {
@@ -708,84 +720,255 @@ img {
   font-weight: 500;
 }
 
-.no-activity {
+.activity-content p {
+  color: var(--text-color);
+  opacity: 0.8;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.activity-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.activity-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.view-btn {
+  background: rgba(74, 111, 165, 0.1);
+  color: var(--primary-color);
+}
+
+.redo-btn {
+  background: rgba(106, 176, 76, 0.1);
+  color: #4CAF50;
+}
+
+.activity-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* No Activity State */
+.no-activity-card {
   text-align: center;
   padding: 3rem;
-  background: var(--card-bg);
-  border-radius: 10px;
-  box-shadow: var(--shadow);
+  background: linear-gradient(135deg, rgba(85, 163, 183, 0.166), rgba(77, 173, 98, 0.158), rgba(154, 163, 71, 0.166));
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
-.no-activity i {
-  font-size: 3rem;
-  color: var(--primary-color);
-  margin-bottom: 1.5rem;
+.no-activity-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+  color: white;
+  font-size: 2rem;
+  border-radius: 50%;
 }
 
-.no-activity h3 {
+.no-activity-content h3 {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   color: var(--text-color);
 }
 
-.no-activity p {
+.no-activity-content p {
   margin-bottom: 2rem;
   color: var(--text-color);
   opacity: 0.8;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .section-title {
+      font-size: 2rem;
+  }
+  
+  .activity-card {
+      flex-direction: column;
+      gap: 1rem;
+  }
+  
+  .activity-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+  }
+  
+  .activity-icon {
+      margin: 0 auto;
+  }
+}
+
 /* ===================== Disease Info Section ===================== */
 .disease-info-section {
-  padding: 5rem 0;
+  padding: 6rem 0;
   background-color: var(--card-bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  width: 80px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.section-description {
+  max-width: 100%;
+  margin: 0 auto;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  line-height: 1.6;
 }
 
 .disease-tabs {
   display: flex;
   justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
 }
 
 .tab-btn {
-  padding: 0.8rem 1.5rem;
-  background: transparent;
+  padding: 0.8rem 2rem;
   border: none;
   border-radius: 30px;
   font-weight: 600;
   cursor: pointer;
-  transition: var(--transition);
-  color: var(--text-color);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.tab-btn i {
+  font-size: 1.1rem;
 }
 
 .tab-btn.active {
-  background: var(--primary-color);
   color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.diabetes-tab {
+  background: rgba(58, 134, 255, 0.1);
+  color: #3a86ff;
+}
+
+.diabetes-tab.active {
+  background: linear-gradient(135deg, #3a86ff, #6a8cff);
+}
+
+.heart-tab {
+  background: rgba(230, 57, 70, 0.1);
+  color: #e63946;
+}
+
+.heart-tab.active {
+  background: linear-gradient(135deg, #e63946, #ff758f);
+}
+
+.kidney-tab {
+  background: rgba(131, 56, 236, 0.1);
+  color: #8338ec;
+}
+
+.kidney-tab.active {
+  background: linear-gradient(135deg, #8338ec, #b56aff);
 }
 
 .tab-content {
   display: none;
+  animation: fadeIn 0.5s ease;
 }
 
 .tab-content.active {
   display: block;
 }
 
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 .disease-content {
   display: flex;
   gap: 3rem;
   align-items: center;
+  background: var(--bg-color);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  position: relative;
+  z-index: 1;
+  border: 1px solid rgba(74, 111, 165, 0.1);
 }
 
 .disease-text {
   flex: 1;
+  padding: 1rem;
 }
 
-.disease-text h3 {
+.disease-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.disease-header h3 {
   font-size: 1.8rem;
   color: var(--text-color);
-  margin-bottom: 1.5rem;
+  margin: 0;
+}
+
+.disease-tag {
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .disease-text p {
@@ -799,18 +982,36 @@ img {
   display: flex;
   gap: 2rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
 .stat-item {
   text-align: center;
+  min-width: 120px;
+  padding: 1rem;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(5px);
 }
 
 .stat-value {
   display: block;
   font-size: 2rem;
   font-weight: 700;
-  color: var(--primary-color);
   line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.diabetes-tab.active ~ .tab-content#diabetes-tab .stat-value {
+  color: #3a86ff;
+}
+
+.heart-tab.active ~ .tab-content#heart-tab .stat-value {
+  color: #e63946;
+}
+
+.kidney-tab.active ~ .tab-content#kidney-tab .stat-value {
+  color: #8338ec;
 }
 
 .stat-label {
@@ -819,11 +1020,56 @@ img {
   opacity: 0.8;
 }
 
+.disease-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.diabetes-btn {
+  background: linear-gradient(135deg, #3a86ff, #6a8cff);
+  color: white;
+}
+
+.heart-btn {
+  background: linear-gradient(135deg, #e63946, #ff758f);
+  color: white;
+}
+
+.kidney-btn {
+  background: linear-gradient(135deg, #8338ec, #b56aff);
+  color: white;
+}
+
+.secondary-btn {
+  background: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
 .disease-image {
   flex: 1;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--shadow);
+  position: relative;
+  max-width: 500px;
 }
 
 .disease-image img {
@@ -833,8 +1079,81 @@ img {
   transition: transform 0.5s ease;
 }
 
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  z-index: 1;
+}
+
 .disease-image:hover img {
   transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .disease-content {
+    flex-direction: column;
+  }
+  
+  .disease-image {
+    order: -1;
+    max-width: 100%;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .disease-tabs {
+    gap: 1rem;
+  }
+  
+  .tab-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .disease-content {
+    padding: 1.5rem;
+  }
+  
+  .disease-stats {
+    gap: 1rem;
+  }
+  
+  .stat-item {
+    min-width: calc(50% - 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .section-title {
+    font-size: 1.8rem;
+  }
+  
+  .disease-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .disease-actions {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ===================== Health Tips Section ===================== */

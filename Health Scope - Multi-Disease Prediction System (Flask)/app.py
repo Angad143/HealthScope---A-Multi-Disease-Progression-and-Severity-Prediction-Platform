@@ -76,6 +76,15 @@ def dashboard():
 # def dashboard():
 #     return render_template('dashboard.html', username=session.get('username'))
 
+# Details about different disease route
+@app.route("/disease_details")
+def disease_details():
+    if session.get("logged_in"):  # ✅ Use .get() to avoid KeyError
+        return render_template("disease_details.html", user=session["user_name"])
+    else:
+        flash("Please log in first!", "warning")
+        return redirect(url_for("login_user"))
+
 # Set up logout route (clears session data and flashes a message)
 @app.route("/logout")
 def logout():
