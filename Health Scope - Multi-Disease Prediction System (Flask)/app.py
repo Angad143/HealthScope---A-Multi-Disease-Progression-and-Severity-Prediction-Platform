@@ -7,7 +7,10 @@ from auth.register import register
 from auth.forgot_password import forgot_password, reset_password
 from auth.activate_account import activate_account
 from functools import wraps
-
+from flask import request, send_file
+from prediction_diseases.diabetes import DiabetesPredictor
+import io
+import numpy as np
 
 # Create a Flask web application instance
 app = Flask(__name__)
@@ -16,16 +19,6 @@ app.config.from_object(Config)
 # Initialize MySQL and Bcrypt (to be used in the Flask app)
 mysql = MySQL(app)
 bcrypt = Bcrypt(app)
-
-# # Login required decorator
-# def login_required(f):
-#     @wraps(f)
-#     def decorated_function(*args, **kwargs):
-#         if 'username' not in session:
-#             flash('Please log in to access this page.', 'warning')
-#             return redirect(url_for('dashboard'))
-#         return f(*args, **kwargs)
-#     return decorated_function
 
 # Main index route
 @app.route("/")
@@ -70,11 +63,6 @@ def dashboard():
     else:
         flash("Please log in first!", "warning")
         return redirect(url_for("login_user"))
-# Dashboard Routes
-# @app.route('/dashboard')
-# @login_required
-# def dashboard():
-#     return render_template('dashboard.html', username=session.get('username'))
 
 # Details about different disease route
 @app.route("/disease_details")
@@ -92,6 +80,63 @@ def logout():
     # flash("You have been logged out!", "info")
     return redirect(url_for("home"))
 
+################################ Diabetes Diseases Prediction ###########################################
+# Initialize the predictor
+# Initialize the predictor
+diabetes_predictor = DiabetesPredictor()
 
+def convert_numpy_types(obj):
+    """Convert numpy types to native Python types for JSON serialization"""
+    if isinstance(obj, (np.integer)):
+        return int(obj)
+    elif isinstance(obj, (np.floating)):
+        return float(obj)
+    elif isinstance(obj, (np.ndarray,)):
+        return obj.tolist()
+    elif isinstance(obj, dict):
+        return {k: convert_numpy_types(v) for k, v in obj.items()}
+    elif isinstance(obj, list):
+        return [convert_numpy_types(v) for v in obj]
+    return obj
+
+@app.route('/diabetes-prediction', methods=['GET', 'POST'])
+def diabetes_prediction():
+    if request.method == 'POST':
+        # Get form data and make prediction
+        prediction, pdf_report = diabetes_predictor.predict(request.form)
+        
+        # Convert numpy types to native Python types
+        prediction = convert_numpy_types(prediction)
+        
+        # Store the PDF in session for download
+        session['diabetes_report'] = pdf_report.decode('latin1') if isinstance(pdf_report, bytes) else pdf_report
+        session['diabetes_prediction'] = prediction
+        
+        # Render the template with prediction result
+        return render_template('diabetes.html', prediction=prediction, user=session["user_name"])
+    
+    # For GET requests, just show the form
+    return render_template('diabetes.html', prediction=None, user=session["user_name"])
+
+@app.route('/download-diabetes-report')
+def download_diabetes_report():
+    # Retrieve the PDF from session
+    pdf_content = session.get('diabetes_report')
+    if not pdf_content:
+        return redirect(url_for('diabetes_prediction'))
+    
+    # Create a file-like object in memory
+    pdf_file = io.BytesIO(pdf_content.encode('latin1') if isinstance(pdf_content, str) else io.BytesIO(pdf_content))
+    
+    # Send the file as a download
+    return send_file(
+        pdf_file,
+        mimetype='application/pdf',
+        as_attachment=True,
+        download_name='diabetes_risk_report.pdf'
+    )
+
+# ... rest of your existing routes ...
+###########################################################################
 if __name__ == "__main__":
     app.run(debug=True)
