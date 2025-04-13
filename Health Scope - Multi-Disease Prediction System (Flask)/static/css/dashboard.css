@@ -1217,7 +1217,7 @@ img {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 3rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.2rem;
 }
 
 .footer-logo {
@@ -1347,12 +1347,16 @@ img {
   align-items: right;
   gap: 0.5rem;
   margin-bottom: 0.8rem;
+  margin-top: -0.5rem;
   opacity: 0.8;
   text-align: right;
+  transition: var(--transition);
+
 }
 
 .footer-contact i {
   width: 20px;
+  margin-top: 0.5rem;
   color: var(--accent-color);
 }
 
