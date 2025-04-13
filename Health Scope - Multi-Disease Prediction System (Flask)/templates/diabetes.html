@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+
+{% block title %}Diabetes Prediction | HealthScope{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/diabetes.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="diabetes-container">
+    <!-- Title Section -->
+    <div class="title-container">
+        <h1 class="title-text">🩸 Predictive Analytics for Diabetes Risk Detection 🩸</h1>
+    </div>
+    <!-- Form Section -->
+    <div class="form-container">
+        <h2 class="form-header">📝 Submit Your Health Details for Intelligent Diabetes Risk Analysis:</h2>        
+        <form method="POST" action="{{ url_for('diabetes_prediction') }}">
+            <div class="form-row">
+                <!-- Left Column -->
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label" for="polyuria">Do you experience excessive urination (Polyuria)?</label>
+                        <select class="form-control" id="polyuria" name="polyuria" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="polydipsia">Do you feel excessively thirsty (Polydipsia)?</label>
+                        <select class="form-control" id="polydipsia" name="polydipsia" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="gender">What is your gender?</label>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="age">What is your age?</label>
+                        <input type="number" class="form-control" id="age" name="age" min="10" max="100" value="30" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="sudden_weight_loss">Have you experienced sudden weight loss?</label>
+                        <select class="form-control" id="sudden_weight_loss" name="sudden_weight_loss" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label" for="partial_paresis">Do you have muscle weakness (Partial Paresis)?</label>
+                        <select class="form-control" id="partial_paresis" name="partial_paresis" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="alopecia">Have you noticed hair loss (Alopecia)?</label>
+                        <select class="form-control" id="alopecia" name="alopecia" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="irritability">Do you experience frequent mood swings (Irritability)?</label>
+                        <select class="form-control" id="irritability" name="irritability" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="delayed_healing">Do your wounds heal slowly (Delayed Healing)?</label>
+                        <select class="form-control" id="delayed_healing" name="delayed_healing" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="itching">Do you experience skin itching (Itching)?</label>
+                        <select class="form-control" id="itching" name="itching" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group btn-container text-center">
+                <button type="submit" class="btn btn-primary">Predict</button>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Results Section (shown after form submission) -->
+    {% if prediction is not none %}
+    <div class="result-container fade-in">
+        {% if prediction == 1 %}
+        <!-- High Risk -->
+        <div class="alert alert-danger high_risk" role="alert">
+            <h3 class="risk-result">⚠️ The patient is at risk of diabetes.</h3>
+        </div>
+        <img src="{{ url_for('static', filename='images/prediction_diseases/diabetes_risk.jpg') }}" alt="Diabetes Risk" class="result-image">
+        <p class="text-muted">⚠️ Please consult a doctor. 🏥</p>
+        {% else %}
+        <!-- Low Risk -->
+        <div class="alert alert-success low_risk" role="alert">
+            <h3 class="risk-result">✅ The patient is not at risk of diabetes.</h3>
+        </div>
+        <img src="{{ url_for('static', filename='images/prediction_diseases/diabetes_save.jpg') }}" alt="Diabetes Safe" class="result-image">
+        <p class="text-muted">✅ Stay Healthy! 😊</p>
+        {% endif %}
+
+        <!-- PDF Report Download -->
+        <div class="mt-4">
+            <a href="{{ url_for('download_diabetes_report') }}" class="btn btn-success">
+                <i class="fas fa-file-pdf"></i> Download Detailed Report (PDF)
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Initialize navbar functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function () {
+                const html = document.documentElement;
+                const isDark = html.getAttribute('data-theme') === 'dark';
+
+                if (isDark) {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    this.innerHTML = '<i class="fas fa-moon"></i><span>Dark</span>';
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    this.innerHTML = '<i class="fas fa-sun"></i><span>Light</span>';
+                }
+            });
+        }
+
+        // Logout confirmation
+        const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    window.location.href = this.href;
+                }
+            });
+        }
+        // ===================== Dropdown Menu Functionality =====================
+        const dropdowns = document.querySelectorAll('.dropdown, .user-dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const btn = dropdown.querySelector('.dropbtn, .user-profile');
+            const content = dropdown.querySelector('.dropdown-content, .user-menu');
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-content, .user-menu').forEach(item => {
+                    if (item !== content) {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Toggle current dropdown
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
+                }
+            });
+        });
+    });
+    
+</script>
+{% endblock %}
