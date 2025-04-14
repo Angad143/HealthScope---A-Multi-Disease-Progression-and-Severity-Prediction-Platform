@@ -6,11 +6,14 @@ from auth.login import login
 from auth.register import register
 from auth.forgot_password import forgot_password, reset_password
 from auth.activate_account import activate_account
-from functools import wraps
 from flask import request, send_file
 from prediction_diseases.diabetes import DiabetesPredictor
+from prediction_diseases.heart import HeartDiseasePredictor
+from prediction_diseases.kidney import KidneyDiseasePredictor
 import io
 import numpy as np
+import os
+from flask import current_app
 
 # Create a Flask web application instance
 app = Flask(__name__)
@@ -82,7 +85,6 @@ def logout():
 
 ################################ Diabetes Diseases Prediction ###########################################
 # Initialize the predictor
-# Initialize the predictor
 diabetes_predictor = DiabetesPredictor()
 
 def convert_numpy_types(obj):
@@ -136,7 +138,107 @@ def download_diabetes_report():
         download_name='diabetes_risk_report.pdf'
     )
 
-# ... rest of your existing routes ...
+################################ Heart Disease Prediction ###########################################
+# Initialize the predictor
+heart_predictor = HeartDiseasePredictor()
+
+@app.route('/heart-disease-prediction', methods=['GET', 'POST'])
+def heart_disease_prediction():
+    if request.method == 'POST':
+        # Get form data and make prediction
+        prediction, pdf_report = heart_predictor.predict(request.form)
+
+        # Convert numpy types to native Python types
+        prediction = convert_numpy_types(prediction)
+
+        # 🔥 Ensure temp folder exists
+        temp_folder = os.path.join(current_app.root_path, 'static/temp')
+        if not os.path.exists(temp_folder):
+            os.makedirs(temp_folder)  # Create the folder if it doesn't exist
+
+        # 🔥 Store PDF in a temporary directory instead of session
+        temp_path = os.path.join(temp_folder, 'heart_report.pdf')
+        with open(temp_path, "wb") as f:
+            f.write(pdf_report)
+
+        session['heart_report_path'] = temp_path  # Store **only** the file path
+        session['heart_prediction'] = prediction
+
+        print(f"✅ PDF Saved at: {temp_path}")  # Debugging print
+
+        return render_template('heart.html', prediction=prediction, user=session["user_name"])
+
+    return render_template('heart.html', prediction=None, user=session["user_name"])
+
+@app.route('/download-heart-report')
+def download_heart_report():
+    # Retrieve stored **file path** instead of binary data
+    pdf_path = session.get('heart_report_path')
+
+    if not pdf_path or not os.path.exists(pdf_path):
+        print("❌ ERROR: PDF file missing!")  # Debugging print
+        return redirect(url_for('heart_disease_prediction'))
+
+    print(f"📂 Downloading PDF from: {pdf_path}")  # Debugging print
+
+    return send_file(
+        pdf_path,
+        mimetype='application/pdf',
+        as_attachment=True,
+        download_name='heart_disease_risk_report.pdf'
+    )
+
+################################ Kidney Disease Prediction ###########################################
+# Initialize the predictor
+kidney_predictor = KidneyDiseasePredictor()
+
+@app.route('/kidney-disease-prediction', methods=['GET', 'POST'])
+def kidney_disease_prediction():
+    if request.method == 'POST':
+        # Get form data and make prediction
+        prediction, pdf_report = kidney_predictor.predict(request.form)
+
+        # Convert numpy types to native Python types
+        prediction = convert_numpy_types(prediction)
+
+        # 🔥 Ensure temp folder exists
+        temp_folder = os.path.join(current_app.root_path, 'static/temp')
+        if not os.path.exists(temp_folder):
+            os.makedirs(temp_folder)  # Create the folder if it doesn't exist
+
+        # 🔥 Store PDF in a temporary directory instead of session
+        temp_path = os.path.join(temp_folder, 'kidney_report.pdf')
+        with open(temp_path, "wb") as f:
+            f.write(pdf_report)
+
+        session['kidney_report_path'] = temp_path  # Store **only** the file path
+        session['kidney_prediction'] = prediction
+
+        print(f"✅ PDF Saved at: {temp_path}")  # Debugging print
+
+        return render_template('kidney.html', prediction=prediction, user=session["user_name"])
+
+    return render_template('kidney.html', prediction=None, user=session["user_name"])
+
+
+@app.route('/download-kidney-report')
+def download_kidney_report():
+    # Retrieve stored **file path** instead of binary data
+    pdf_path = session.get('kidney_report_path')
+
+    if not pdf_path or not os.path.exists(pdf_path):
+        print("❌ ERROR: PDF file missing!")  # Debugging print
+        return redirect(url_for('kidney_disease_prediction'))
+
+    print(f"📂 Downloading PDF from: {pdf_path}")  # Debugging print
+
+    return send_file(
+        pdf_path,
+        mimetype='application/pdf',
+        as_attachment=True,
+        download_name='kidney_disease_risk_report.pdf'
+    )
+
 ###########################################################################
 if __name__ == "__main__":
     app.run(debug=True)
