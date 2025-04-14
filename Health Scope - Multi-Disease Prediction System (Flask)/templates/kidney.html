@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+{% block title %}Kidney Disease Prediction | HealthScope{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/kidney.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="kidney-container">
+    <!-- Title Section -->
+    <div class="title-container">
+        <h1 class="title-text">🧪 Early Kidney Disease Detection System Application🧪</h1>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <h2 class="form-header">📝 Provide your health details for an insightful evaluation of kidney health risks:</h2>
+        <form method="POST" action="{{ url_for('kidney_disease_prediction') }}">
+            <div class="form-row">
+                <!-- Left Column -->
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label" for="blood_pressure"
+                            title="Normal range: 90-120 mmHg. High BP may indicate kidney issues.">🩸 What is your Blood
+                            Pressure (mmHg)?</label>
+                        <input type="number" class="form-control" id="blood_pressure" name="blood_pressure" min="50"
+                            max="200" value="120" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="specific_gravity"
+                            title="Normal range: 1.005 - 1.030. Higher values may indicate dehydration or kidney problems.">🔬
+                            What is your Specific Gravity (Urine Concentration)?</label>
+                        <select class="form-control" id="specific_gravity" name="specific_gravity" required>
+                            <option value="1.005">1.005</option>
+                            <option value="1.010">1.010</option>
+                            <option value="1.015">1.015</option>
+                            <option value="1.020">1.020</option>
+                            <option value="1.025">1.025</option>
+                            <option value="1.030">1.030</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="albumin"
+                            title="Normal: 0-1. High albumin in urine can be a sign of kidney disease.">💧 What is your
+                            Albumin level (Protein in Urine)?</label>
+                        <select class="form-control" id="albumin" name="albumin" required>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="sugar"
+                            title="Normal: 0. High sugar levels in urine may indicate diabetes or kidney issues.">🍬
+                            What is your Sugar Level (0-5)?</label>
+                        <select class="form-control" id="sugar" name="sugar" required>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="blood_urea"
+                            title="Normal range: 7-25 mg/dL. High levels may indicate kidney dysfunction.">🧪 Enter your
+                            Blood Urea level (mg/dL)?</label>
+                        <input type="number" class="form-control" id="blood_urea" name="blood_urea" min="0" max="300"
+                            value="35" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="serum_creatinine"
+                            title="Normal: 0.7-1.3 mg/dL (males) & 0.6-1.1 mg/dL (females). High levels indicate kidney issues.">🧪
+                            What is your Serum Creatinine level (mg/dL)?</label>
+                        <input type="number" step="0.1" class="form-control" id="serum_creatinine"
+                            name="serum_creatinine" min="0.1" max="20.0" value="1.2" required>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label" for="sodium"
+                            title="Normal range: 135-145 mEq/L. Low sodium may indicate kidney problems.">🧂 What is
+                            your Sodium level (mEq/L)?</label>
+                        <input type="number" class="form-control" id="sodium" name="sodium" min="100" max="200"
+                            value="140" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="potassium"
+                            title="Normal range: 3.5-5.0 mEq/L. High levels may suggest kidney disease.">🍌 What is your
+                            Potassium level (mEq/L)?</label>
+                        <input type="number" step="0.1" class="form-control" id="potassium" name="potassium" min="1.0"
+                            max="10.0" value="4.5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="hemoglobin"
+                            title="Normal: 12-16 g/dL (females) & 13.5-17.5 g/dL (males). Low levels indicate anemia.">🩸
+                            What is your Hemoglobin level (g/dL)?</label>
+                        <input type="number" step="0.1" class="form-control" id="hemoglobin" name="hemoglobin" min="5.0"
+                            max="20.0" value="13.5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="wbc_count"
+                            title="Normal: 4,000-11,000 cells/cmm. High WBC may indicate infection.">🦠 What is your
+                            White Blood Cell Count (cells/cmm)?</label>
+                        <input type="number" class="form-control" id="wbc_count" name="wbc_count" min="2000" max="15000"
+                            value="7800" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="rbc_count"
+                            title="Normal: 4.7-6.1 million/cmm (males) & 4.2-5.4 million/cmm (females). Low count may indicate kidney disease.">🩸
+                            What is your Red Blood Cell Count (millions/cmm)?</label>
+                        <input type="number" step="0.1" class="form-control" id="rbc_count" name="rbc_count" min="2.0"
+                            max="7.0" value="5.2" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="red_blood_cells"
+                            title="Abnormal RBC count can indicate kidney issues.">🔴 Is your Red Blood Cell Condition
+                            Normal or Abnormal?</label>
+                        <select class="form-control" id="red_blood_cells" name="red_blood_cells" required>
+                            <option value="Normal">Normal</option>
+                            <option value="Abnormal">Abnormal</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row -->
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label class="form-label" for="hypertension"
+                        title="High BP is a major risk factor for kidney disease.">⚠️ Do you have Hypertension (High
+                        Blood Pressure)?</label>
+                    <select class="form-control" id="hypertension" name="hypertension" required>
+                        <option value="No">No</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group btn-container text-center">
+                <button type="submit" class="btn btn-primary">Predict</button>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Results Section (shown after form submission) -->
+    {% if prediction is not none %}
+    <div class="result-container fade-in">
+        {% if prediction == 1 %}
+        <!-- High Risk -->
+        <div class="alert alert-danger high_risk" role="alert">
+            <h3 class="risk-result">⚠️ The patient is at risk of kidney disease.</h3>
+        </div>
+        <img src="{{ url_for('static', filename='images/prediction_diseases/kidney_risk.jpg') }}"
+            alt="Kidney Disease Risk" class="result-image">
+        <p class="text-muted">⚠️ Please consult a nephrologist. 🏥</p>
+        {% else %}
+        <!-- Low Risk -->
+        <div class="alert alert-success low_risk" role="alert">
+            <h3 class="risk-result">✅ The patient is not at risk of kidney disease.</h3>
+        </div>
+        <img src="{{ url_for('static', filename='images/prediction_diseases/kidney_safe.jpg') }}"
+            alt="Kidney Disease Safe" class="result-image">
+        <p class="text-muted">✅ Your kidneys are healthy! 😊</p>
+        {% endif %}
+
+        <!-- PDF Report Download -->
+        <div class="mt-4">
+            <a href="{{ url_for('download_kidney_report') }}" class="btn btn-success">
+                <i class="fas fa-file-pdf"></i> Download Detailed Report (PDF)
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Initialize navbar functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function () {
+                const html = document.documentElement;
+                const isDark = html.getAttribute('data-theme') === 'dark';
+
+                if (isDark) {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    this.innerHTML = '<i class="fas fa-moon"></i><span>Dark</span>';
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    this.innerHTML = '<i class="fas fa-sun"></i><span>Light</span>';
+                }
+            });
+        }
+
+        // Logout confirmation
+        const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    window.location.href = this.href;
+                }
+            });
+        }
+        // ===================== Dropdown Menu Functionality =====================
+        const dropdowns = document.querySelectorAll('.dropdown, .user-dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const btn = dropdown.querySelector('.dropbtn, .user-profile');
+            const content = dropdown.querySelector('.dropdown-content, .user-menu');
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-content, .user-menu').forEach(item => {
+                    if (item !== content) {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Toggle current dropdown
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
+                }
+            });
+        });
+    });
+
+</script>
+{% endblock %}

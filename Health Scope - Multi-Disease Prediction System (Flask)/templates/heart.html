@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}Heart Disease Prediction | HealthScope{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/heart.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="heart-container">
+    <!-- Title Section -->
+    <div class="title-container">
+        <h1 class="title-text">❤️ Heart Disease Prediction with Predictive Analytics ❤️</h1>
+    </div>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <h2 class="form-header">📝 Submit your details for an insightful analysis of your heart health risks:</h2>
+        <form method="POST" action="{{ url_for('heart_disease_prediction') }}">
+            <div class="form-row">
+                <!-- Left Column -->
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label" for="age">📅 What is your age?</label>
+                        <input type="number" class="form-control" id="age" name="age" min="20" max="100" value="50"
+                            required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="gender">⚤ What is your biological sex?</label>
+                        <select class="form-control" id="gender" name="gender" required>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="chest_pain">❤️ What type of chest pain do you experience?</label>
+                        <select class="form-control" id="chest_pain" name="chest_pain" required>
+                            <option value="0">Typical Angina</option>
+                            <option value="1">Atypical Angina</option>
+                            <option value="2">Non-anginal Pain</option>
+                            <option value="3">Asymptomatic</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="resting_bp">💓 What is your resting blood pressure? (mm
+                            Hg)</label>
+                        <input type="number" class="form-control" id="resting_bp" name="resting_bp" min="80" max="200"
+                            value="120" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="cholesterol">🩸 What is your cholesterol level? (mg/dl)</label>
+                        <input type="number" class="form-control" id="cholesterol" name="cholesterol" min="100"
+                            max="600" value="200" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="fasting_bs">🍚 Is your fasting blood sugar greater than 120
+                            mg/dl?</label>
+                        <select class="form-control" id="fasting_bs" name="fasting_bs" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="form-col">
+                    <div class="form-group">
+                        <label class="form-label" for="resting_ecg">📊 Resting ECG results:</label>
+                        <select class="form-control" id="resting_ecg" name="resting_ecg" required>
+                            <option value="0">Normal</option>
+                            <option value="1">ST-T wave abnormality</option>
+                            <option value="2">Left ventricular hypertrophy</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="max_hr">🏃‍♂️ What is the maximum heart rate achieved during
+                            exercise?</label>
+                        <input type="number" class="form-control" id="max_hr" name="max_hr" min="60" max="220"
+                            value="140" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="exercise_angina">🚶‍♂️ Do you experience chest pain during
+                            exercise?</label>
+                        <select class="form-control" id="exercise_angina" name="exercise_angina" required>
+                            <option value="No">No</option>
+                            <option value="Yes">Yes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="st_depression">📉 How much ST depression was induced by exercise?
+                            (mm)</label>
+                        <input type="number" step="0.1" class="form-control" id="st_depression" name="st_depression"
+                            min="0.0" max="5.0" value="1.0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="slope">📈 What is the slope of your ST segment?</label>
+                        <select class="form-control" id="slope" name="slope" required>
+                            <option value="0">Upsloping</option>
+                            <option value="1">Flat</option>
+                            <option value="2">Downsloping</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label" for="major_vessels">🫀 How many major blood vessels are visible in
+                            your angiogram? (0-3)</label>
+                        <input type="number" class="form-control" id="major_vessels" name="major_vessels" min="0"
+                            max="3" value="1" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row -->
+            <div class="form-row">
+                <div class="form-group full-width">
+                    <label class="form-label" for="thal">🧬 What type of thalassemia do you have?</label>
+                    <select class="form-control" id="thal" name="thal" required>
+                        <option value="0">Normal</option>
+                        <option value="1">Fixed Defect</option>
+                        <option value="2">Reversible Defect</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group btn-container text-center">
+                <button type="submit" class="btn btn-primary">Predict</button>
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Back to Dashboard</a>
+            </div>
+        </form>
+    </div>
+
+    <!-- Results Section (shown after form submission) -->
+    {% if prediction is not none %}
+    <div class="result-container fade-in">
+        {% if prediction == 1 %}
+        <!-- High Risk -->
+        <div class="alert alert-danger high_risk" role="alert">
+            <h3 class="risk-result">⚠️ The patient is at risk of heart disease.</h3>
+        </div>
+        <img src="{{ url_for('static', filename='images/prediction_diseases/heart_risk.jpg') }}"
+            alt="Heart Disease Risk" class="result-image">
+        <p class="text-muted">⚠️ Please consult a cardiologist. 🏥</p>
+        {% else %}
+        <!-- Low Risk -->
+        <div class="alert alert-success low_risk" role="alert">
+            <h3 class="risk-result">✅ The patient is not at risk of heart disease.</h3>
+        </div>
+        <img src="{{ url_for('static', filename='images/prediction_diseases/heart_safe.jpg') }}"
+            alt="Heart Disease Safe" class="result-image">
+        <p class="text-muted">✅ Keep your heart healthy! 😊</p>
+        {% endif %}
+
+        <!-- PDF Report Download -->
+        <div class="mt-4">
+            <a href="{{ url_for('download_heart_report') }}" class="btn btn-success">
+                <i class="fas fa-file-pdf"></i> Download Detailed Report (PDF)
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Initialize navbar functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function () {
+                const html = document.documentElement;
+                const isDark = html.getAttribute('data-theme') === 'dark';
+
+                if (isDark) {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    this.innerHTML = '<i class="fas fa-moon"></i><span>Dark</span>';
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    this.innerHTML = '<i class="fas fa-sun"></i><span>Light</span>';
+                }
+            });
+        }
+
+        // Logout confirmation
+        const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    window.location.href = this.href;
+                }
+            });
+        }
+        // ===================== Dropdown Menu Functionality =====================
+        const dropdowns = document.querySelectorAll('.dropdown, .user-dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const btn = dropdown.querySelector('.dropbtn, .user-profile');
+            const content = dropdown.querySelector('.dropdown-content, .user-menu');
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-content, .user-menu').forEach(item => {
+                    if (item !== content) {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Toggle current dropdown
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
+                }
+            });
+        });
+    });
+
+</script>
+{% endblock %}
