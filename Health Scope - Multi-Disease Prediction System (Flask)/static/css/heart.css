@@ -1,0 +1,232 @@
+/* Main container styling */
+.heart-container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin-top: 110px;
+}
+
+/* Title styling */
+.title-container {
+    background: linear-gradient(90deg, rgba(255, 50, 50, 0.261), rgba(52, 50, 200, 0.249), rgba(52, 180, 61, 0.244));
+    padding: 1.0rem;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.title-text {
+    color: #128DAC;
+    font-size: 2.25rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* Form styling */
+.form-container {
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-header {
+    color: #128DAC;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    background-color: #e2e4e7;
+}
+
+.form-control:focus {
+    border-color: #ff7675;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(255, 107, 107, 0.25);
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* Results styling */
+.result-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.risk-result {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.result-image {
+    max-width: 350px;
+    margin: 1rem auto;
+    border-radius: 10px;
+}
+
+/* Button styling */
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 5px;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #d63031;
+    border-color: #d63031;
+}
+
+.btn-primary:hover {
+    background-color: #b71c1c;
+    border-color: #b71c1c;
+}
+
+.btn-secondary {
+    color: #fff;
+    background-color: #3bab48;
+    border-color: #0287b7;
+}
+
+.btn-secondary:hover {
+    background-color: #2e7133;
+    border-color: #1665b3;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.high_risk {
+    background-color: #ffcccc;
+    width: 100%;
+    padding: 0.2rem;
+}
+
+.low_risk {
+    background-color: #c8e6c9;
+    padding: 0.05rem;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* Responsive layout */
+@media (min-width: 576px) {
+    .heart-container {
+        max-width: 90%;
+        padding: 1.8rem;
+    }
+    
+    .title-text {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .heart-container {
+        max-width: 85%;
+        margin-top: 100px;
+    }
+    
+    .form-row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -0.8rem;
+        margin-left: -0.8rem;
+    }
+
+    .form-col {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding-right: 0.8rem;
+        padding-left: 0.8rem;
+    }
+    
+    .btn-container {
+        gap: 1rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .heart-container {
+        max-width: 80%;
+    }
+    
+    .title-text {
+        font-size: 2.25rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .heart-container {
+        max-width: 1100px;
+    }
+}
+
+/* Animation for results */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
