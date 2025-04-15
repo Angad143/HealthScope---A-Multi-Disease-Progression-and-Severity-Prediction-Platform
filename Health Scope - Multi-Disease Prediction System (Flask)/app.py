@@ -14,6 +14,7 @@ import io
 import numpy as np
 import os
 from flask import current_app
+from AI_Powered_Medical_Insights.ai_health_assistant import AIHealthAssistant
 
 # Create a Flask web application instance
 app = Flask(__name__)
@@ -238,6 +239,42 @@ def download_kidney_report():
         as_attachment=True,
         download_name='kidney_disease_risk_report.pdf'
     )
+
+################################ AI Health Assistant ###########################################
+from datetime import datetime
+
+def datetime_format(value, format="%H:%M"):
+    if isinstance(value, str):
+        value = datetime.fromisoformat(value)
+    return value.strftime(format)
+
+app.jinja_env.filters['datetimeformat'] = datetime_format
+
+@app.route('/ai-health-assistant', methods=['GET', 'POST'])
+def ai_health_assistant():
+    assistant = AIHealthAssistant()
+    chat_history = assistant.initialize_chat_history(session)
+    
+    if request.method == 'POST':
+        user_input = request.form.get('user_input')
+        button_clicked = request.form.get('button_clicked')
+        chat_history = assistant.handle_user_input(session, user_input, button_clicked)
+        return redirect(url_for('ai_health_assistant'))
+    
+    # Format timestamps before passing to template
+    formatted_history = []
+    for message in session.get('chat_history', []):
+        message_copy = message.copy()
+        try:
+            dt = datetime.fromisoformat(message['timestamp'])
+            message_copy['formatted_time'] = dt.strftime('%H:%M')
+        except:
+            message_copy['formatted_time'] = message['timestamp']
+        formatted_history.append(message_copy)
+    
+    return render_template('ai_health_assistant.html', 
+                         chat_history=formatted_history,
+                         user=session.get("user_name"))
 
 ###########################################################################
 if __name__ == "__main__":
