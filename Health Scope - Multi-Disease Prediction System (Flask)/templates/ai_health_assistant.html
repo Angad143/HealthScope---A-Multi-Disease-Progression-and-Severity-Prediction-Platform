@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block title %}AI Health Assistant | HealthScope{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ai_health_assistant.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+    /* Preloader to prevent FOUC */
+    body:not(.loaded) .ai-assistant-container {
+        opacity: 0;
+    }
+
+    .ai-assistant-container {
+        transition: opacity 0.3s ease;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="ai-assistant-container">
+    <!-- Title -->
+    <div class="title-container">
+        <h1 class="title-text">🤖 Your AI-Powered Health Companion 🤖</h1>
+    </div>
+
+    <!-- Quick Tools with Better Icons -->
+    <div class="quick-tools-container">
+        <h2 class="section-title">Quick Health Tools</h2>
+        <div class="quick-tools-grid">
+            <button type="submit" form="chat-form" name="button_clicked" value="med_button" class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-pills"></i>
+                </div>
+                <span>Medication Info</span>
+            </button>
+            <button type="submit" form="chat-form" name="button_clicked" value="symp_button" class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-thermometer-half"></i>
+                </div>
+                <span>Symptom Checker</span>
+            </button>
+            <button type="submit" form="chat-form" name="button_clicked" value="health_button" class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <span>Health Tips</span>
+            </button>
+            <button type="submit" form="chat-form" name="button_clicked" value="doctor_button" class="tool-card">
+                <div class="tool-icon">
+                    <i class="fas fa-user-md"></i>
+                </div>
+                <span>Find Doctors</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Enhanced Chat Container -->
+    <div class="chat-interface">
+        <div class="messages-container" id="messages-container">
+            {% for message in chat_history %}
+            <div class="message-bubble {% if message.role == 'assistant' %}ai-message{% else %}user-message{% endif %}">
+                <div class="message-avatar">
+                    {% if message.role == 'assistant' %}
+                    <i class="fas fa-robot"></i>
+                    {% else %}
+                    <i class="fas fa-user-circle"></i>
+                    {% endif %}
+                </div>
+                <div class="message-content">
+                    <div class="message-text">
+                        {{ message.content|replace('\n', '<br>')|safe }}
+                    </div>
+                    <div class="message-meta">
+                        <span class="message-time">{{ message.timestamp|datetimeformat('%H:%M') }}</span>
+                        <span class="message-badge">
+                            {% if message.role == 'assistant' %}AI Assistant{% else %}You{% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Modern Input with Integrated Send Button -->
+    <form method="POST" action="{{ url_for('ai_health_assistant') }}" id="chat-form" class="message-input-container">
+        <div class="input-wrapper">
+            <input type="text" name="user_input" class="message-input"
+                placeholder="Ask about symptoms, medications, or health advice...">
+            <button type="submit" class="send-button">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Initialize navbar functionality
+    document.addEventListener('DOMContentLoaded', function () {
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', function () {
+                const html = document.documentElement;
+                const isDark = html.getAttribute('data-theme') === 'dark';
+
+                if (isDark) {
+                    html.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                    this.innerHTML = '<i class="fas fa-moon"></i><span>Dark</span>';
+                } else {
+                    html.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                    this.innerHTML = '<i class="fas fa-sun"></i><span>Light</span>';
+                }
+            });
+        }
+
+        // Logout confirmation
+        const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to logout?')) {
+                    window.location.href = this.href;
+                }
+            });
+        }
+        // ===================== Dropdown Menu Functionality =====================
+        const dropdowns = document.querySelectorAll('.dropdown, .user-dropdown');
+
+        dropdowns.forEach(dropdown => {
+            const btn = dropdown.querySelector('.dropbtn, .user-profile');
+            const content = dropdown.querySelector('.dropdown-content, .user-menu');
+
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+
+                // Close all other dropdowns
+                document.querySelectorAll('.dropdown-content, .user-menu').forEach(item => {
+                    if (item !== content) {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Toggle current dropdown
+                if (content.style.display === 'block') {
+                    content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
+                }
+            });
+        });
+    });
+    
+ // #########################################################################
+    document.addEventListener('DOMContentLoaded', function () {
+        // Mark as loaded to prevent FOUC
+        document.body.classList.add('loaded');
+
+        // Auto-scroll to bottom
+        const container = document.getElementById('messages-container');
+        container.scrollTop = container.scrollHeight;
+
+        // Input height adjustment
+        const input = document.querySelector('.message-input');
+        input.addEventListener('input', function () {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    });
+
+    // Handle form submission
+    const chatForm = document.getElementById('chat-form');
+    chatForm.addEventListener('submit', function (e) {
+        // Show loading state
+        const sendButton = this.querySelector('.send-button');
+        sendButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        sendButton.disabled = true;
+    });
+
+    // Re-enable button after submission if needed
+    const sendButton = document.querySelector('.send-button');
+    if (sendButton.disabled) {
+        sendButton.innerHTML = '<i class="fas fa-paper-plane"></i>';
+        sendButton.disabled = false;
+    }
+</script>
+{% endblock %}
