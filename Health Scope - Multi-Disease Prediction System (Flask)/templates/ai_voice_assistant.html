@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Health Voice Assistant | HealthScope{% endblock %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ai_voice_assistant.css') }}" />
+{% endblock %}
+
+{% block content %}
+<div class="assistant-container" role="main">
+  <header class="header">
+    <div class="logo" aria-label="Health Assistant Logo">
+      <span class="material-icons" style="color: #0c986c;" aria-hidden="true">healing</span>
+      <h1>AI Voice Health Assistant</h1>
+      <span class="material-icons" style="color: #0c986c;" aria-hidden="true">healing</span>
+  </header>
+  <p class="subtitle">Your personal AI health voice assistant, ready to answer medical questions, offer wellness tips, and support your journey to better health.</p>
+</header>
+
+  <section class="voice-interface" aria-label="Voice assistant input section">
+    <div class="voice-visualizer" id="sound-wave" aria-hidden="true">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+
+    <button id="voice-button" class="voice-button" aria-label="Start voice input">
+      <span class="material-icons mic-icon">mic</span>
+      <span class="material-icons active-mic-icon" style="display: none;">mic_none</span>
+    </button>
+
+    <div class="status" id="status" aria-live="polite">Tap the microphone to ask a health-related question.</div>
+  </section>
+
+  <footer class="disclaimer">
+    <span class="material-icons" style="font-size: 14px;" aria-hidden="true">info</span>
+    <p style = "text-align: center; font-size: 12px; margin-top: -2px;">Information shared is for educational purposes only and not to be substitute for professional medical advice.</p>
+  </footer>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Initialize navbar functionality
+  document.addEventListener('DOMContentLoaded', function () {
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        const html = document.documentElement;
+        const isDark = html.getAttribute('data-theme') === 'dark';
+
+        if (isDark) {
+          html.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+          this.innerHTML = '<i class="fas fa-moon"></i><span>Dark</span>';
+        } else {
+          html.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          this.innerHTML = '<i class="fas fa-sun"></i><span>Light</span>';
+        }
+      });
+    }
+
+    // Logout confirmation
+    const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+          window.location.href = this.href;
+        }
+      });
+    }
+    // ===================== Dropdown Menu Functionality =====================
+    const dropdowns = document.querySelectorAll('.dropdown, .user-dropdown');
+
+    dropdowns.forEach(dropdown => {
+      const btn = dropdown.querySelector('.dropbtn, .user-profile');
+      const content = dropdown.querySelector('.dropdown-content, .user-menu');
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+
+        // Close all other dropdowns
+        document.querySelectorAll('.dropdown-content, .user-menu').forEach(item => {
+          if (item !== content) {
+            item.style.display = 'none';
+          }
+        });
+
+        // Toggle current dropdown
+        if (content.style.display === 'block') {
+          content.style.display = 'none';
+        } else {
+          content.style.display = 'block';
+        }
+      });
+    });
+  });
+</script>
+<script src="{{ url_for('static', filename='js/ai_voice_assistant.js') }}"></script>
+{% endblock %}

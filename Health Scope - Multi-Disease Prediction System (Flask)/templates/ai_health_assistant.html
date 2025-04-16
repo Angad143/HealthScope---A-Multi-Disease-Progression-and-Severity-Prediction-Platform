@@ -96,6 +96,47 @@
 </div>
 
 <script>
+
+    // This part stop refresh whole page when we ask from ai health assistant
+    document.getElementById("chat-form").addEventListener("submit", function (e) {
+        e.preventDefault();  // Prevent page refresh
+
+        const inputField = document.querySelector('.message-input');
+        const user_input = inputField.value;
+        const button_clicked = document.activeElement.value;
+
+        // Optional: Show spinner or disable button here
+
+        fetch("{{ url_for('ai_health_assistant') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({
+                user_input: user_input,
+                button_clicked: button_clicked
+            })
+        })
+            .then(response => response.text())
+            .then(html => {
+                // Replace just the chat section with updated content
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const newMessages = doc.querySelector("#messages-container").innerHTML;
+                document.querySelector("#messages-container").innerHTML = newMessages;
+
+                // Scroll to bottom
+                const container = document.getElementById('messages-container');
+                container.scrollTop = container.scrollHeight;
+
+                // Clear input
+                inputField.value = "";
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+    });
+
     // Initialize navbar functionality
     document.addEventListener('DOMContentLoaded', function () {
         // Theme toggle
@@ -153,8 +194,8 @@
             });
         });
     });
-    
- // #########################################################################
+
+    // #########################################################################
     document.addEventListener('DOMContentLoaded', function () {
         // Mark as loaded to prevent FOUC
         document.body.classList.add('loaded');
