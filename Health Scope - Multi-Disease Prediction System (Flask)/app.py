@@ -6,7 +6,7 @@ from auth.login import login
 from auth.register import register
 from auth.forgot_password import forgot_password, reset_password
 from auth.activate_account import activate_account
-from flask import request, send_file
+from flask import request, send_file, jsonify
 from prediction_diseases.diabetes import DiabetesPredictor
 from prediction_diseases.heart import HeartDiseasePredictor
 from prediction_diseases.kidney import KidneyDiseasePredictor
@@ -14,7 +14,10 @@ import io
 import numpy as np
 import os
 from flask import current_app
+from datetime import datetime
 from AI_Powered_Medical_Insights.ai_health_assistant import AIHealthAssistant
+from AI_Powered_Medical_Insights.ai_voice_assistant import AIVoiceHealthAssistant
+
 
 # Create a Flask web application instance
 app = Flask(__name__)
@@ -241,8 +244,6 @@ def download_kidney_report():
     )
 
 ################################ AI Health Assistant ###########################################
-from datetime import datetime
-
 def datetime_format(value, format="%H:%M"):
     if isinstance(value, str):
         value = datetime.fromisoformat(value)
@@ -250,31 +251,35 @@ def datetime_format(value, format="%H:%M"):
 
 app.jinja_env.filters['datetimeformat'] = datetime_format
 
-@app.route('/ai-health-assistant', methods=['GET', 'POST'])
+@app.route("/ai-health-assistant", methods=["GET", "POST"])
 def ai_health_assistant():
     assistant = AIHealthAssistant()
     chat_history = assistant.initialize_chat_history(session)
     
-    if request.method == 'POST':
-        user_input = request.form.get('user_input')
-        button_clicked = request.form.get('button_clicked')
-        chat_history = assistant.handle_user_input(session, user_input, button_clicked)
-        return redirect(url_for('ai_health_assistant'))
+    if request.method == "POST":
+        user_input = request.form.get("user_input")
+        button_clicked = request.form.get("button_clicked")
+        
+        # Call the assistant's response handler
+        chat_history = assistant.handle_user_input(session, user_input=user_input, button_clicked=button_clicked)
+
+    return render_template("ai_health_assistant.html", chat_history=chat_history, user=session["user_name"])
+
+################################ AI Voice Health Assistant ###########################################
+assistant = AIVoiceHealthAssistant()
+
+@app.route('/ai-voice-assistant')
+def ai_voice_assistant():
+    return render_template('ai_voice_assistant.html', user=session["user_name"])
+
+@app.route('/ask', methods=['POST'])
+def ask():
+    user_input = request.form.get('user_input', '').strip()
+    if not user_input:
+        return jsonify({'response': 'Please ask a question.'})
     
-    # Format timestamps before passing to template
-    formatted_history = []
-    for message in session.get('chat_history', []):
-        message_copy = message.copy()
-        try:
-            dt = datetime.fromisoformat(message['timestamp'])
-            message_copy['formatted_time'] = dt.strftime('%H:%M')
-        except:
-            message_copy['formatted_time'] = message['timestamp']
-        formatted_history.append(message_copy)
-    
-    return render_template('ai_health_assistant.html', 
-                         chat_history=formatted_history,
-                         user=session.get("user_name"))
+    response = assistant.process_query(user_input)
+    return jsonify({'response': response})
 
 ###########################################################################
 if __name__ == "__main__":
