@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+{% block title %}AI Medical Image Diagnosis | HealthScope{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ai_image_diagnosis.css') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+{% endblock %}
+
+{% block content %}
+<div class="container_image">
+    <h1><i class="fas fa-notes-medical"></i> AI Medical Image Diagnosis</h1>
+    <p class="subtitle">
+        Upload a medical image (such as a skin condition, eye issue, wound, X-ray etc) to get an AI-powered diagnostic
+        report, treatment suggestions, and healthcare guidance. For educational purpose only.
+    </p>
+    <form id="diagnosisForm" method="POST" enctype="multipart/form-data" class="upload-form">
+        <div class="file-input-container">
+            <label for="imageUpload" class="file-label">
+                <i class="fas fa-upload"></i> Upload a Medical Image for AI Diagnosis
+                <input type="file" id="imageUpload" name="image" required accept="image/*">
+            </label>
+            <span id="fileName">No file chosen</span>
+        </div>
+
+        <div id="previewContainer" class="preview-container" style="display: none;">
+            <img id="imagePreview" src="#" alt="Preview" class="preview-image">
+        </div>
+
+        <button type="submit" id="analyzeBtn" class="analyze-btn">
+            <span id="btnText">Analyze Image</span>
+            <div id="spinner" class="spinner" style="display: none;"></div>
+        </button>
+    </form>
+
+    <div id="resultBox" class="result-box" style="display: none;">
+        <h2><i class="fas fa-diagnosis"></i> Diagnosis Result</h2>
+        <div id="diagnosisResult" class="result-content"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Initialize navbar functionality
+  document.addEventListener('DOMContentLoaded', function () {
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        const html = document.documentElement;
+        const isDark = html.getAttribute('data-theme') === 'dark';
+
+        if (isDark) {
+          html.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+          this.innerHTML = '<i class="fas fa-moon"></i><span>Dark</span>';
+        } else {
+          html.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          this.innerHTML = '<i class="fas fa-sun"></i><span>Light</span>';
+        }
+      });
+    }
+
+    // Logout confirmation
+    const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+          window.location.href = this.href;
+        }
+      });
+    }
+    // ===================== Dropdown Menu Functionality =====================
+    const dropdowns = document.querySelectorAll('.dropdown, .user-dropdown');
+
+    dropdowns.forEach(dropdown => {
+      const btn = dropdown.querySelector('.dropbtn, .user-profile');
+      const content = dropdown.querySelector('.dropdown-content, .user-menu');
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+
+        // Close all other dropdowns
+        document.querySelectorAll('.dropdown-content, .user-menu').forEach(item => {
+          if (item !== content) {
+            item.style.display = 'none';
+          }
+        });
+
+        // Toggle current dropdown
+        if (content.style.display === 'block') {
+          content.style.display = 'none';
+        } else {
+          content.style.display = 'block';
+        }
+      });
+    });
+  });
+</script>
+<script src="{{ url_for('static', filename='js/ai_image_diagnosis.js') }}"></script>
+{% endblock %}
