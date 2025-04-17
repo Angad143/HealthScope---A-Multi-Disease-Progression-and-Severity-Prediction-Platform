@@ -17,6 +17,8 @@ from flask import current_app
 from datetime import datetime
 from AI_Powered_Medical_Insights.ai_health_assistant import AIHealthAssistant
 from AI_Powered_Medical_Insights.ai_voice_assistant import AIVoiceHealthAssistant
+from AI_Powered_Medical_Insights.ai_image_diagnosis import diagnose_image
+
 
 
 # Create a Flask web application instance
@@ -280,6 +282,16 @@ def ask():
     
     response = assistant.process_query(user_input)
     return jsonify({'response': response})
+
+################################ Medical Images Diagnosis ###########################################
+@app.route('/ai-image-diagnosis', methods=['GET', 'POST'])
+def ai_image_diagnosis():
+    if request.method == 'POST':
+        file = request.files['image']
+        if file:
+            diagnosis_result = diagnose_image(file)
+            return {'result': diagnosis_result}
+    return render_template('ai_image_diagnosis.html', user=session["user_name"])
 
 ###########################################################################
 if __name__ == "__main__":
