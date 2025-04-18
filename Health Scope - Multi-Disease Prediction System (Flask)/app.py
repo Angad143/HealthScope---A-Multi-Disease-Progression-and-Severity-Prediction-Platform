@@ -18,8 +18,7 @@ from datetime import datetime
 from AI_Powered_Medical_Insights.ai_health_assistant import AIHealthAssistant
 from AI_Powered_Medical_Insights.ai_voice_assistant import AIVoiceHealthAssistant
 from AI_Powered_Medical_Insights.ai_image_diagnosis import diagnose_image
-
-
+from AI_Powered_Medical_Insights.medical_report_analysis import process_medical_report, analyze_query
 
 # Create a Flask web application instance
 app = Flask(__name__)
@@ -293,6 +292,51 @@ def ai_image_diagnosis():
             return {'result': diagnosis_result}
     return render_template('ai_image_diagnosis.html', user=session["user_name"])
 
+
+################################## Medical Report Analysis System #########################################
+
+app.config['UPLOAD_FOLDER'] = 'AI_Powered_Medical_Insights/Uploaded_Medical_Report/'
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB limit
+
+# Ensure upload folder exists
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+@app.route('/medical-report-analysis')
+def medical_report_analysis():
+    return render_template('medical_report_analysis.html', user=session["user_name"])
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file uploaded'}), 400
+    
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No file selected'}), 400
+    
+    if file and file.filename.lower().endswith('.pdf'):
+        filepath = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        file.save(filepath)
+        
+        # Process the medical report
+        result = process_medical_report(filepath)
+        if result.get('error'):
+            return jsonify(result), 400
+        return jsonify({'message': 'File processed successfully'})
+    else:
+        return jsonify({'error': 'Please upload a PDF file'}), 400
+
+@app.route('/analyze', methods=['POST'])
+def analyze():
+    data = request.get_json()
+    if not data or 'query' not in data:
+        return jsonify({'error': 'No query provided'}), 400
+    
+    query = data['query']
+    response = analyze_query(query)
+    return jsonify(response)
+
 ###########################################################################
+
 if __name__ == "__main__":
     app.run(debug=True)
