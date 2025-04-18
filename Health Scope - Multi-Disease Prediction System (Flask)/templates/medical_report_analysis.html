@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Medical Report Analysis | HealthScope{% endblock %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/medical_report_analysis.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header>
+        <h1><i class="fas fa-file-medical"></i> AI-powered Medical Report Analysis</h1>
+        <p class="subtitle">Our AI-powered system helps analyze patient medical reports quickly and accurately,
+            providing faster insights and better understanding to support doctors and healthcare professionals.</p>
+    </header>
+
+    <div class="upload-section">
+        <h2>Upload Medical Report PDF for Analysis</h2>
+        <div class="upload-box" id="uploadBox">
+            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+            <p>Drag & drop your medical report (PDF) here or click to browse</p>
+            <input type="file" id="fileInput" accept=".pdf">
+        </div>
+        <div id="uploadStatus"></div>
+    </div>
+
+    <div class="analysis-section" id="analysisSection">
+        <h2>Report Analysis</h2>
+        <div class="qa-container" id="qaContainer">
+            <!-- Question and answer will appear here -->
+        </div>
+        <div class="input-area">
+            <input type="text" id="userQuery" placeholder="Ask about the medical report...">
+            <button id="sendQuery"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <footer>
+        <p>For educational purposes only | Not for clinical use</p>
+    </footer>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Initialize navbar functionality
+  document.addEventListener('DOMContentLoaded', function () {
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+      themeToggle.addEventListener('click', function () {
+        const html = document.documentElement;
+        const isDark = html.getAttribute('data-theme') === 'dark';
+
+        if (isDark) {
+          html.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+          this.innerHTML = '<i class="fas fa-moon"></i><span>Dark</span>';
+        } else {
+          html.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+          this.innerHTML = '<i class="fas fa-sun"></i><span>Light</span>';
+        }
+      });
+    }
+
+    // Logout confirmation
+    const logoutBtn = document.querySelector('a[href="{{ url_for("logout") }}"]');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (confirm('Are you sure you want to logout?')) {
+          window.location.href = this.href;
+        }
+      });
+    }
+    // ===================== Dropdown Menu Functionality =====================
+    const dropdowns = document.querySelectorAll('.dropdown, .user-dropdown');
+
+    dropdowns.forEach(dropdown => {
+      const btn = dropdown.querySelector('.dropbtn, .user-profile');
+      const content = dropdown.querySelector('.dropdown-content, .user-menu');
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+
+        // Close all other dropdowns
+        document.querySelectorAll('.dropdown-content, .user-menu').forEach(item => {
+          if (item !== content) {
+            item.style.display = 'none';
+          }
+        });
+
+        // Toggle current dropdown
+        if (content.style.display === 'block') {
+          content.style.display = 'none';
+        } else {
+          content.style.display = 'block';
+        }
+      });
+    });
+  });
+</script>
+<script src="{{ url_for('static', filename='js/medical_report_analysis.js') }}"></script>
+{% endblock %}
