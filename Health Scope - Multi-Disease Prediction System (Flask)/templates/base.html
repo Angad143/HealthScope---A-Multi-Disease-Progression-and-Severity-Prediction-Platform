@@ -74,7 +74,7 @@
                         <span class="username">{{ user }}</span>
                     </div>
                     <div class="dropdown-content user-menu">
-                        <a href="#" style="color: #17a2b8;"> <!-- Teal for user/account -->
+                        <a href="{{ url_for('my_account_page') }}" style="color: #17a2b8;"> <!-- Teal for user/account -->
                             <i class="fas fa-user-cog"></i> My Account
                         </a>
 
@@ -118,6 +118,7 @@
                     <ul>
                         <li><a href="{{ url_for('dashboard') }}">Home</a></li>
                         <li><a href="{{ url_for('dashboard') }}">Disease Information</a></li>
+                        <li><a href="{{ url_for('dashboard') }}">AI Powered Disease Analysis</a></li>
                         <li><a href="{{ url_for('dashboard') }}">Disease Predictions</a></li>
                         <li><a href="{{ url_for('dashboard') }}">Show Activity</a></li>
                     </ul>
