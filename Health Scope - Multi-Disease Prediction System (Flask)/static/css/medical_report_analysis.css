@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --primary-color: #4a6fa5;
     --secondary-color: #166088;
     --accent-color: #4fc3f7;
@@ -7,7 +7,7 @@
     --success-color: #28a745;
     --error-color: #dc3545;
     --warning-color: #ffc107;
-}
+} */
 
 * {
     margin: 0;
@@ -15,17 +15,11 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #f5f7fa;
-    color: var(--dark-color);
-    line-height: 1.6;
-}
-
-.container {
+.container_medical {
     max-width: 850px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 25px;
+    margin-top: 80px;
 }
 
 header {
@@ -49,7 +43,7 @@ header h1 {
 }
 
 .upload-section {
-    background-color: white;
+    background-color: rgb(220, 217, 217);
     border-radius: 10px;
     padding: 30px;
     margin-bottom: 30px;
@@ -121,7 +115,6 @@ header h1 {
 }
 
 .analysis-section {
-    background-color: white;
     border-radius: 10px;
     padding: 30px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -140,7 +133,6 @@ header h1 {
 }
 
 .question-box {
-    background-color: var(--light-color);
     padding: 15px;
     border-radius: 8px;
     margin-bottom: 15px;
@@ -148,7 +140,6 @@ header h1 {
 }
 
 .answer-box {
-    background-color: #f0f8ff;
     padding: 15px;
     border-radius: 8px;
     border-left: 4px solid var(--accent-color);
@@ -203,16 +194,16 @@ header h1 {
     100% { transform: rotate(360deg); }
 }
 
-footer {
+.footer_med {
     text-align: center;
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 20px 0;
     color: var(--primary-color);
     font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
-    .container {
+    .container_medical {
         padding: 15px;
     }
     
