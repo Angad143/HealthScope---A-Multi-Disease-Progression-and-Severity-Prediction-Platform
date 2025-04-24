@@ -19,6 +19,7 @@ from AI_Powered_Medical_Insights.ai_health_assistant import AIHealthAssistant
 from AI_Powered_Medical_Insights.ai_voice_assistant import AIVoiceHealthAssistant
 from AI_Powered_Medical_Insights.ai_image_diagnosis import diagnose_image
 from AI_Powered_Medical_Insights.medical_report_analysis import process_medical_report, analyze_query
+from auth.my_account import my_account, delete_account
 
 # Create a Flask web application instance
 app = Flask(__name__)
@@ -122,8 +123,12 @@ def diabetes_prediction():
         # Render the template with prediction result
         return render_template('diabetes.html', prediction=prediction, user=session["user_name"])
     
+    if session.get("logged_in"):
     # For GET requests, just show the form
-    return render_template('diabetes.html', prediction=None, user=session["user_name"])
+      return render_template('diabetes.html', prediction=None, user=session["user_name"])
+    else:
+        flash("Please log in first!", "warning")
+        return redirect(url_for("login_user"))
 
 @app.route('/download-diabetes-report')
 def download_diabetes_report():
@@ -172,8 +177,12 @@ def heart_disease_prediction():
         print(f"✅ PDF Saved at: {temp_path}")  # Debugging print
 
         return render_template('heart.html', prediction=prediction, user=session["user_name"])
-
-    return render_template('heart.html', prediction=None, user=session["user_name"])
+    
+    if session.get("logged_in"):
+      return render_template('heart.html', prediction=None, user=session["user_name"])
+    else:
+        flash("Please log in first!", "warning")
+        return redirect(url_for("login_user"))
 
 @app.route('/download-heart-report')
 def download_heart_report():
@@ -223,7 +232,11 @@ def kidney_disease_prediction():
 
         return render_template('kidney.html', prediction=prediction, user=session["user_name"])
 
-    return render_template('kidney.html', prediction=None, user=session["user_name"])
+    if session.get("logged_in"):
+        return render_template('kidney.html', prediction=None, user=session["user_name"])
+    else:
+        flash("Please log in first!", "warning")
+        return redirect(url_for("login_user"))
 
 
 @app.route('/download-kidney-report')
@@ -264,14 +277,23 @@ def ai_health_assistant():
         # Call the assistant's response handler
         chat_history = assistant.handle_user_input(session, user_input=user_input, button_clicked=button_clicked)
 
-    return render_template("ai_health_assistant.html", chat_history=chat_history, user=session["user_name"])
+    if session.get("logged_in"):
+        return render_template("ai_health_assistant.html", chat_history=chat_history, user=session["user_name"])
+    else:
+        flash("Please log in first!", "warning")
+        return redirect(url_for("login_user"))
 
 ################################ AI Voice Health Assistant ###########################################
 assistant = AIVoiceHealthAssistant()
 
 @app.route('/ai-voice-assistant')
 def ai_voice_assistant():
-    return render_template('ai_voice_assistant.html', user=session["user_name"])
+    if session.get("logged_in"):
+        return render_template('ai_voice_assistant.html', user=session["user_name"])
+    else:
+        flash("Please log in first!", "warning")
+        return redirect(url_for("login_user"))
+    
 
 @app.route('/ask', methods=['POST'])
 def ask():
@@ -290,8 +312,11 @@ def ai_image_diagnosis():
         if file:
             diagnosis_result = diagnose_image(file)
             return {'result': diagnosis_result}
-    return render_template('ai_image_diagnosis.html', user=session["user_name"])
-
+    if session.get("logged_in"):
+        return render_template('ai_image_diagnosis.html', user=session["user_name"])
+    else:
+        flash("Please log in first!", "warning")
+        return redirect(url_for("login_user"))
 
 ################################## Medical Report Analysis System #########################################
 
@@ -303,7 +328,11 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 @app.route('/medical-report-analysis')
 def medical_report_analysis():
-    return render_template('medical_report_analysis.html', user=session["user_name"])
+    if session.get("logged_in"):
+        return render_template('medical_report_analysis.html', user=session["user_name"])
+    else:
+        flash("Please log in first!", "warning")
+        return redirect(url_for("login_user"))
 
 @app.route('/upload', methods=['POST'])
 def upload_file():
@@ -335,6 +364,28 @@ def analyze():
     query = data['query']
     response = analyze_query(query)
     return jsonify(response)
+
+################################ My Account Page ###########################################
+
+@app.route('/my_account', methods=['GET', 'POST'])
+def my_account_page():
+    if not session.get('logged_in'):
+        return redirect(url_for('login_user'))
+    return my_account(mysql)
+
+@app.route('/delete_account', methods=['POST'])
+def delete_account_route():
+    """Route for handling account deletion"""
+    if not session.get('logged_in'):
+        return redirect(url_for('login_user'))
+    
+    result = delete_account(mysql)
+    
+    if result['success']:
+        return jsonify(result)  # Return JSON for AJAX handling
+    else:
+        flash(result['message'], 'danger')
+        return redirect(url_for('my_account_page'))
 
 ###########################################################################
 
