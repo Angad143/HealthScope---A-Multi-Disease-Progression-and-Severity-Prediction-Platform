@@ -58,3 +58,91 @@
   <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL">
 </div>
+
+-------------------------------
+
+# **Health Scope - A Multi-Disease Progression and Severity Prediction Platform**
+
+**Health Scope** is an AI-powered website that helps users predict and monitor diseases like **Diabetes, Heart Disease, and Kidney Disease**. It also provides **AI-based health assistance** through chat, voice, image analysis, and medical report checking.  
+
+---
+
+## **🌐 How to Use the Website**  
+
+### **1. Home Page (Index Page)**  
+- **Welcome Screen**: Explains what Health Scope does.  
+- **Navigation**:  
+  - **Login/Register**: To access the dashboard.  
+  - **About**: Info about the project.  
+  - **Help**: FAQs and support.  
+  - **Services**: Lists all disease prediction tools.  
+
+### **2. Login & Register**  
+- **New Users**: Click **"Register"** to create an account.  
+- **Existing Users**: Click **"Login"** to enter.  
+
+### **3. Dashboard (After Login)**  
+Once logged in, you can:  
+
+#### **🔍 Disease Prediction**  
+1. **Diabetes Prediction** → Enter health details → Get risk prediction → **Download PDF Report**.  
+2. **Heart Disease Prediction** → Enter test results → Check risk → **Download PDF Report**.  
+3. **Kidney Disease Prediction** → Input medical data → See results → **Download PDF Report**.  
+
+#### **🤖 AI-Powered Health Tools**  
+1. **AI Health Assistant** → Chat with an AI doctor for health advice.  
+2. **Voice AI Assistant** → Ask health questions using your voice.  
+3. **AI Image Diagnosis** → Upload medical images (like X-rays) for AI analysis.  
+4. **Medical Report Analysis** → Upload PDF reports → AI gives insights.  
+
+#### **👤 My Account**  
+- View profile.  
+- **Logout** when done.  
+
+---
+
+## **🔧 Technologies Used**  
+- **Python** (Backend programming)  
+- **Flask** (Website framework)  
+- **Machine Learning and Deep Learning** (Disease prediction models)  
+- **HTML, CSS, JavaScript** (Website design, little use of js)  
+- **PDF Generation** (For medical reports)  
+- **Generative AI** (For AI Health Assistant etc)
+- **Deep Seek AI API Keys** (For Assistant)
+---
+
+## **📥 How to Install & Run**  
+*(For Developers)*  
+
+1. **Install Python** (if not installed).  
+2. **Download Project Files** (from GitHub).  
+3. **Install Dependencies**:  
+   ```sh
+   pip install -r requirements.txt
+   ```
+4. **Run the App**:  
+   ```sh
+   python app.py
+   ```
+5. **Open Browser** → Go to `http://localhost:5000`.  
+
+---
+
+## **📜 Important Notes**  
+- **This is for educational purposes only.**  
+- **Not a replacement for real doctors.** Always consult a healthcare professional.  
+- **Data Privacy**: Your health data is secure and not shared.  
+
+---
+
+## **📞 Contact & Support**  
+- **Email**: gangad419@rku.ac.in  
+- **Phone**: +91 8176047927  
+- **Social Media**: [Facebook](https://www.facebook.com/gangad143) | [LinkedIn](https://www.linkedin.com/in/angadgupta143/) | [YouTube](https://www.youtube.com/@greenature143)  
+
+---
+
+### **🚀 Thank You for Using Health Scope!**  
+Hope this tool helps you stay healthy! ❤️  
+
+---   
