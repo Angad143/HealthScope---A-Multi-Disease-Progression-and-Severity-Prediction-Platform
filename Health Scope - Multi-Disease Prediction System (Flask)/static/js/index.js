@@ -93,32 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check on scroll
     window.addEventListener('scroll', checkScroll);
     
-    // Form submission handling
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = this.querySelector('input[type="text"]').value;
-            const email = this.querySelector('input[type="email"]').value;
-            const message = this.querySelector('textarea').value;
-            
-            // Simple validation
-            if (!name || !email || !message) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Here you would typically send the data to a server
-            // For demo purposes, we'll just show a success message
-            alert(`Thank you, ${name}! Your message has been sent. We'll get back to you soon.`);
-            
-            // Reset the form
-            this.reset();
-        });
-    }
-    
     // Add animation to elements when they come into view
     const animateOnScroll = () => {
         const elements = document.querySelectorAll('.tech-card, .service-card, .help-card');
