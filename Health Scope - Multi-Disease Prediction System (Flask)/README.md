@@ -109,7 +109,6 @@ Once logged in, you can:
 - **PDF Generation** (For medical reports)  
 - **Generative AI** (For AI Health Assistant etc)
 - **Deep Seek AI API Keys** (For Assistant)
----
 
 ## **📥 How to Install & Run**  
 *(For Developers)*  
@@ -126,23 +125,19 @@ Once logged in, you can:
    ```
 5. **Open Browser** → Go to `http://localhost:5000`.  
 
----
 
 ## **📜 Important Notes**  
 - **This is for educational purposes only.**  
 - **Not a replacement for real doctors.** Always consult a healthcare professional.  
 - **Data Privacy**: Your health data is secure and not shared.  
 
----
 
 ## **📞 Contact & Support**  
 - **Email**: gangad419@rku.ac.in  
 - **Phone**: +91 8176047927  
 - **Social Media**: [Facebook](https://www.facebook.com/gangad143) | [LinkedIn](https://www.linkedin.com/in/angadgupta143/) | [YouTube](https://www.youtube.com/@greenature143)  
 
----
 
 ### **🚀 Thank You for Using Health Scope!**  
 Hope this tool helps you stay healthy! ❤️  
-
----   
+   
