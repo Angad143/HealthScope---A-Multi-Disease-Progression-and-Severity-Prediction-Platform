@@ -61,7 +61,7 @@
 
 -------------------------------
 
-# **Health Scope - A Multi-Disease Progression and Severity Prediction Platform**
+# ** 🤖 💊Health Scope - A Multi-Disease Progression and Severity Prediction Platform 🔬 🧬*
 
 **Health Scope** is an AI-powered website that helps users predict and monitor diseases like **Diabetes, Heart Disease, and Kidney Disease**. It also provides **AI-based health assistance** through chat, voice, image analysis, and medical report checking.  
 
