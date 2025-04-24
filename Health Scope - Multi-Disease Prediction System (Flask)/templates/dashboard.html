@@ -26,7 +26,7 @@
                 <p>Our advanced algorithms analyze your data to provide early warnings and health improvement
                     suggestions.</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn primary-btn">Ask AI Health Assistant</a>
+                    <a href="{{ url_for('ai_health_assistant') }}" class="btn primary-btn">Ask AI Health Assistant</a>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 <h1>Track Your Health Progress</h1>
                 <p>View your historical predictions and health metrics to understand your wellness journey.</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn primary-btn">View Health History</a>
+                    <a href="#recent-activity" class="btn primary-btn">View Health History</a>
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                 <h1>Privacy First Approach</h1>
                 <p>Your health data is encrypted and never shared without your explicit consent.</p>
                 <div class="cta-buttons">
-                    <a href="#" class="btn primary-btn">Privacy Settings</a>
+                    <a href="{{ url_for('my_account_page') }}#info" class="btn primary-btn">Privacy Settings</a>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
                 </div>
                 <h3>Diabetes Prediction</h3>
                 <p>Predict the likelihood of developing diabetes using advanced algorithms.</p>
-                <a href="#" class="quick-access-btn diabetes-btn">
+                <a href="{{ url_for('diabetes_prediction') }}" class="quick-access-btn diabetes-btn">
                     Check Now <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -126,7 +126,7 @@
                 </div>
                 <h3>Heart Disease Prediction</h3>
                 <p>Assess your risk of cardiovascular diseases based on health metrics.</p>
-                <a href="#" class="quick-access-btn heart-btn">
+                <a href="{{ url_for('heart_disease_prediction') }}" class="quick-access-btn heart-btn">
                     Assess Now <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -138,7 +138,7 @@
                 </div>
                 <h3>Kidney Disease Prediction</h3>
                 <p>Monitor kidney health and detect potential risks early.</p>
-                <a href="#" class="quick-access-btn kidney-btn">
+                <a href="{{ url_for('kidney_disease_prediction') }}" class="quick-access-btn kidney-btn">
                     Test Now <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -150,7 +150,7 @@
                 </div>
                 <h3>AI Health Assistant</h3>
                 <p>Get personalized health advice from our AI anytime.</p>
-                <a href="#" class="quick-access-btn ai-btn">
+                <a href="{{ url_for('ai_health_assistant') }}" class="quick-access-btn ai-btn">
                     Ask AI <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -268,7 +268,7 @@
                     </div>
 
                     <div class="disease-actions">
-                        <a href="#" class="btn diabetes-btn">
+                        <a href="{{ url_for('diabetes_prediction') }}" class="btn diabetes-btn">
                             <i class="fas fa-chart-line"></i> Check Your Risk
                         </a>
                         <a href="{{ url_for('disease_details') }}" class="btn secondary-btn">
@@ -311,7 +311,7 @@
                     </div>
 
                     <div class="disease-actions">
-                        <a href="#" class="btn heart-btn">
+                        <a href="{{ url_for('heart_disease_prediction') }}" class="btn heart-btn">
                             <i class="fas fa-heartbeat"></i> Assess Heart Health
                         </a>
                         <a href="{{ url_for('disease_details') }}" class="btn secondary-btn">
@@ -354,7 +354,7 @@
                     </div>
 
                     <div class="disease-actions">
-                        <a href="#" class="btn kidney-btn">
+                        <a href="{{ url_for('kidney_disease_prediction') }}" class="btn kidney-btn">
                             <i class="fas fa-vial"></i> Test Kidney Function
                         </a>
                         <a href="{{ url_for('disease_details') }}" class="btn secondary-btn">
