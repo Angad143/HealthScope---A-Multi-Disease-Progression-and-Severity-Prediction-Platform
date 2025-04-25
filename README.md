@@ -1,148 +1,196 @@
-# **Tools and Libraries Used in HealthScope**  
+# 🩺 HealthScope - A Multi-Disease Progression and Severity Prediction Platform
 
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">  
-  <!-- Web Framework & Backend -->
-  <img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white" alt="Flask" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/Flask_Bcrypt-FF0000?style=flat&logo=flask&logoColor=white" alt="Flask-Bcrypt" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/Flask_Mail-0078D4?style=flat&logo=microsoft-outlook&logoColor=white" alt="Flask-Mail" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/Flask_MySQLdb-4479A1?style=flat&logo=mysql&logoColor=white" alt="Flask-MySQLdb" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/Flask_WTF-000000?style=flat&logo=flask&logoColor=white" alt="Flask-WTF" style="flex: 1 1 30%;">
+**Developer**: Angad Gupta  
+**Project Type**: AI-powered health prediction and assistance system  
+**Tech Stack**: Python, Streamlit, Flask, Scikit-learn, XGBoost, TensorFlow, Keras, OpenAI, Google Generative AI, MySQL etc
 
-  <!-- Authentication & Security -->
-  <img src="https://img.shields.io/badge/PyJWT-000000?style=flat&logo=json-web-tokens&logoColor=white" alt="PyJWT" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/Bcrypt-003366?style=flat&logo=python&logoColor=white" alt="Bcrypt" style="flex: 1 1 30%;">
+------------------------------
 
-  <!-- Data Processing & ML -->
-  <img src="https://img.shields.io/badge/scikit_learn-F7931E?style=flat&logo=scikit-learn&logoColor=white" alt="scikit-learn" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white" alt="Pandas" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/NumPy-013243?style=flat&logo=numpy&logoColor=white" alt="NumPy" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/Joblib-1A202C?style=flat&logo=python&logoColor=white" alt="Joblib" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white" alt="PyTorch" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/Transformers-FFD43B?style=flat&logo=huggingface&logoColor=black" alt="Transformers" style="flex: 1 1 30%;">
+## 📌 Project Overview
+HealthScope is an all-in-one AI-based platform that predicts and monitors multiple diseases, including Diabetes, Heart Disease, and Kidney Disease. It provides both progression and severity analysis, alongside an AI Health Assistant for personalized medical insights using advanced language models.
 
-  <!-- Database -->
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL" style="flex: 1 1 30%;">
+The platform is deployed using both **Streamlit** (for real-time prediction) and **Flask** (for full-stack user experience including login, dashboard, voice/image/chat medical assistant).
 
-  <!-- PDF Generation -->
-  <img src="https://img.shields.io/badge/FPDF-008000?style=flat&logo=pdf&logoColor=white" alt="FPDF" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/PyPDF2-FF0000?style=flat&logo=adobe-acrobat-reader&logoColor=white" alt="PyPDF2" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/pdfplumber-000080?style=flat&logo=pdf&logoColor=white" alt="pdfplumber" style="flex: 1 1 30%;">
+---------------------------
 
-  <!-- AI Features -->
-  <img src="https://img.shields.io/badge/LangChain-00A67E?style=flat&logo=python&logoColor=white" alt="LangChain" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/OpenAI-412991?style=flat&logo=openai&logoColor=white" alt="OpenAI" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/Ollama-585858?style=flat&logo=ollama&logoColor=white" alt="Ollama" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/LangChain_Community-00A67E?style=flat&logo=python&logoColor=white" alt="LangChain Community" style="flex: 1 1 30%;">
+## 🔬 Disease Modules and Features
 
-  <!-- Image Processing -->
-  <img src="https://img.shields.io/badge/Pillow-3776AB?style=flat&logo=python&logoColor=white" alt="Pillow" style="flex: 1 1 30%;">
+### 🩸 Diabetes Progression Prediction
+[GitHub Repo](https://github.com/Angad143/HealthScope---A-Multi-Disease-Progression-and-Severity-Prediction-Platform/tree/main/Diabetes%20Progression%20Prediction)
 
-  <!-- Utilities -->
-  <img src="https://img.shields.io/badge/python_dotenv-3776AB?style=flat&logo=python&logoColor=white" alt="python-dotenv" style="flex: 1 1 30%;">
-  <img src="https://img.shields.io/badge/Requests-3776AB?style=flat&logo=python&logoColor=white" alt="Requests" style="flex: 1 1 30%;">
-</div>
+**Objective**: Predict whether a person is at risk of early-stage diabetes using clinical data.
 
-### **Key Frontend Technologies**
+#### 📈 Workflow:
+- Data Collection: Early Stage Diabetes Risk Prediction Dataset
+- Data Cleaning and Preprocessing
+- Exploratory Data Analysis (EDA)
+- Feature Encoding and Scaling
+- Model Training: Logistic Regression, Decision Tree, Random Forest, XGBoost, SVM
+- Model Evaluation & Comparison
+- Deployment using Streamlit
 
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML5">
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS3"> 
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" alt="JavaScript">
-  <img src="https://img.shields.io/badge/Font_Awesome-528DD7?style=flat&logo=font-awesome&logoColor=white" alt="Font Awesome">
-</div>
+#### 🚀 Web App Features:
+- Patient detail input form
+- Real-time diabetes prediction result
 
-### **Key Backend Technologies** 
+#### ✅ Future Enhancements:
+- More diverse features
+- Deep Learning integration
 
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  <img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white" alt="Flask">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python">
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL">
-</div>
+----------------------------------
 
--------------------------------
+### ❤️ Heart Disease Severity Prediction
+[GitHub Repo](https://github.com/Angad143/HealthScope---A-Multi-Disease-Progression-and-Severity-Prediction-Platform/tree/main/Heart%20Disease%20Severity%20Prediction)
 
-# **Health Scope - A Multi-Disease Progression and Severity Prediction Platform**
+**Objective**: Predict the severity of heart disease using clinical parameters.
 
-**Health Scope** is an AI-powered website that helps users predict and monitor diseases like **Diabetes, Heart Disease, and Kidney Disease**. It also provides **AI-based health assistance** through chat, voice, image analysis, and medical report checking.  
+#### 📈 Workflow:
+- Dataset: Heart Disease Dataset
+- Preprocessing: Missing values, scaling, encoding
+- Models: Logistic Regression, Random Forest, SVM (best accuracy: **88.52%**)
+- Evaluation: Accuracy, Classification Report
+- Deployment using Streamlit
 
----
+#### 🖥️ Streamlit App:
+- Form input for user medical info
+- Result shows risk level/severity
 
-## **🌐 How to Use the Website**  
+#### 🔮 Future Work:
+- Real-time health data integration
+- Advanced model enhancements
 
-### **1. Home Page (Index Page)**  
-- **Welcome Screen**: Explains what Health Scope does.  
-- **Navigation**:  
-  - **Login/Register**: To access the dashboard.  
-  - **About**: Info about the project.  
-  - **Help**: FAQs and support.  
-  - **Services**: Lists all disease prediction tools.  
+---------------------------------
 
-### **2. Login & Register**  
-- **New Users**: Click **"Register"** to create an account.  
-- **Existing Users**: Click **"Login"** to enter.  
+### 🧪 Kidney Disease Progression Prediction
+[GitHub Repo](https://github.com/Angad143/HealthScope---A-Multi-Disease-Progression-and-Severity-Prediction-Platform/tree/main/Kidney%20Disease%20Progression%20Prediction)
 
-### **3. Dashboard (After Login)**  
-Once logged in, you can:  
+**Objective**: Predict chronic kidney disease based on medical attributes.
 
-#### **🔍 Disease Prediction**  
-1. **Diabetes Prediction** → Enter health details → Get risk prediction → **Download PDF Report**.  
-2. **Heart Disease Prediction** → Enter test results → Check risk → **Download PDF Report**.  
-3. **Kidney Disease Prediction** → Input medical data → See results → **Download PDF Report**.  
+#### 📈 Workflow:
+- Dataset: 14 medical features from Kaggle
+- Models: Random Forest, XGBoost
+- Evaluation: Accuracy, Precision, Recall
 
-#### **🤖 AI-Powered Health Tools**  
-1. **AI Health Assistant** → Chat with an AI doctor for health advice.  
-2. **Voice AI Assistant** → Ask health questions using your voice.  
-3. **AI Image Diagnosis** → Upload medical images (like X-rays) for AI analysis.  
-4. **Medical Report Analysis** → Upload PDF reports → AI gives insights.  
+#### 🔍 Features:
+- Instant prediction from medical inputs
+- Streamlit web app with scaled input handling
 
-#### **👤 My Account**  
-- View profile.  
-- **Logout** when done.  
+#### 🌟 Highlights:
+- Real-time prediction
+- User-friendly interface
+- Early detection
 
----
+------------------------------
 
-## **🔧 Technologies Used**  
-- **Python** (Backend programming)  
-- **Flask** (Website framework)  
-- **Machine Learning and Deep Learning** (Disease prediction models)  
-- **HTML, CSS, JavaScript** (Website design, little use of js)  
-- **PDF Generation** (For medical reports)  
-- **Generative AI** (For AI Health Assistant etc)
-- **Deep Seek AI API Keys** (For Assistant)
----
+## 🧠 Health Scope - Multi-Disease Prediction System (Streamlit)
+[GitHub Repo](https://github.com/Angad143/HealthScope---A-Multi-Disease-Progression-and-Severity-Prediction-Platform/tree/main/Health%20Scope%20-%20Multi-Disease%20Prediction%20System%20(Streamlit))
 
-## **📥 How to Install & Run**  
-*(For Developers)*  
+### 🔎 Features:
+- Disease prediction for Diabetes, Heart, Kidney
+- AI Chat Assistant using **DeepSeek** / **Google Generative AI**
+- Dynamic sidebar navigation
+- Disease Report generation in PDF
 
-1. **Install Python** (if not installed).  
-2. **Download Project Files** (from GitHub).  
-3. **Install Dependencies**:  
-   ```sh
+### 📁 Structure:
+```
+HealthScope/
+ ├── app.py
+ ├── requirements.txt
+ ├── models/
+ ├── pages/
+ ├── utils/
+ ├── AI_Chatbot/
+ ├── Disease_Reports/
+```
+
+### 💬 AI Assistant Capabilities:
+- Answer user health-related queries
+- Provide suggestions and guidance
+- Available 24/7 via chat interface
+
+-----------------------------------
+
+## 🌐 HealthScope (Flask Web Application)
+[GitHub Repo](https://github.com/Angad143/HealthScope---A-Multi-Disease-Progression-and-Severity-Prediction-Platform/tree/main/Health%20Scope%20-%20Multi-Disease%20Prediction%20System%20(Flask))
+
+### 🖥️ Key Functionalities:
+- Secure Login & Registration System
+- Dashboard with disease prediction services
+- AI Assistant via chat, voice, image, and PDF report analysis
+
+### 🔐 Tech Stack:
+- Backend: Flask, MySQL, PyJWT, Flask-Mail
+- Frontend: HTML5, CSS3, JavaScript, Bootstrap
+- AI & ML: PyTorch, Transformers, LangChain, OpenAI, Ollama
+
+### ⚙ How to Run:
+```bash
+pip install -r requirements.txt
+python app.py
+```
+
+---------------------------------------------------
+---------------------------------------------------
+
+## 🛠 Tools and Libraries Used
+- **Languages & Frameworks**: Python, Flask, Streamlit
+- **ML Libraries**: Scikit-learn, XGBoost, TensorFlow, Keras etc
+- **NLP Tools**: OpenAI, Google Generative AI, DeepSeek etc
+- **Utilities**: Joblib, Pandas, NumPy, Matplotlib, Seaborn, SHAP etc
+- **PDF Tools**: FPDF, PyPDF2, pdfplumber
+
+## 📦 Installation Guide
+
+1. **Clone the Repository**:
+
+   ```bash
+   git clone https://github.com/Angad143/HealthScope---A-Multi-Disease-Progression-and-Severity-Prediction-Platform.git
+   ```
+
+2. **Navigate to the Project Directory**:
+
+   ```bash
+   cd HealthScope---A-Multi-Disease-Progression-and-Severity-Prediction-Platform
+   ```
+
+3. **Install Dependencies**:
+
+   ```bash
    pip install -r requirements.txt
    ```
-4. **Run the App**:  
-   ```sh
+
+4. **Run the Streamlit Application**:
+
+   ```bash
+   cd 'Health Scope - Multi-Disease Prediction System (Streamlit)'
+   streamlit run app.py
+   ```
+
+5. **Run the Flask Application**:
+
+   ```bash
+   cd 'Health Scope - Multi-Disease Prediction System (Flask)'
    python app.py
    ```
-5. **Open Browser** → Go to `http://localhost:5000`.  
 
----
+-------------------------------------
 
-## **📜 Important Notes**  
-- **This is for educational purposes only.**  
-- **Not a replacement for real doctors.** Always consult a healthcare professional.  
-- **Data Privacy**: Your health data is secure and not shared.  
+## 📌 Future Roadmap
+- Expand prediction to include more diseases (e.g., Liver, Cancer, Alzheimer’s)
+- Connect to real-time health APIs and databases
+- Improve AI assistant accuracy with medical NLP models
+- Launch as a cross-platform mobile app
 
----
 
-## **📞 Contact & Support**  
-- **Email**: gangad419@rku.ac.in  
-- **Phone**: +91 8176047927  
-- **Social Media**: [Facebook](https://www.facebook.com/gangad143) | [LinkedIn](https://www.linkedin.com/in/angadgupta143/) | [YouTube](https://www.youtube.com/@greenature143)  
+## 🤝 Contributors
+**Angad Gupta** – Developer & Maintainer  
+Connect with me on [GitHub](https://github.com/Angad143)
 
----
 
-### **🚀 Thank You for Using Health Scope!**  
-Hope this tool helps you stay healthy! ❤️  
+## 📜 License
+This project is for academic and research purposes. It is open-source and contributions are welcome. Not a replacement for professional healthcare advice.
 
----   
+
+> **Note**: Always consult medical professionals for accurate diagnosis and treatment. HealthScope is an assistance tool and not a substitute for a licensed doctor.
+
+---------------------
