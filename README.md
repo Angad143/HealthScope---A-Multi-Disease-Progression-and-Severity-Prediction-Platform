@@ -1,4 +1,4 @@
-# 🩺 HealthScope - A Multi-Disease Progression and Severity Prediction Platform
+# 🩺 🩸**HealthScope - A Multi-Disease Progression and Severity Prediction Platform** ❤️ 🧪
 
 **Developer**: Angad Gupta  
 **Project Type**: AI-powered health prediction and assistance system  
